@@ -72,97 +72,97 @@
                             <b>
                        
                                 <pre>
-                                    <xmp id="code-3-3"> 
-                                    #include <iostream>
-                                    using namespace std;
-                                    
-                                    void checkVertical(int x, int y, char temp[105][105], char currentWord[]){
-                                        int n = strlen(currentWord);
-                                        for(int i = 0; i < n; i++){
-                                            if(temp[x + i][y] == '-' || temp[x + i][y] == currentWord[i])
-                                                temp[x + i][y] = currentWord[i];
-                                            else
-                                                temp[0][0] = '@';
+                                    <code> 
+                                        #include &lt;iostream&gt;
+                                        using namespace std;
+                                        
+                                        void checkVertical(int x, int y, char temp[105][105], char currentWord[]){
+                                            int n = strlen(currentWord);
+                                            for(int i = 0; i &lt; n; i++){
+                                                if(temp[x + i][y] == &apos;-&apos; || temp[x + i][y] == currentWord[i])
+                                                    temp[x + i][y] = currentWord[i];
+                                                else
+                                                    temp[0][0] = &apos;@&apos;;
+                                            }
                                         }
-                                    }
-                                    
-                                    void checkHorizontal(int x, int y, char temp[105][105], char currentWord[]){
-                                         int n = strlen(currentWord);
-                                        for(int i = 0; i < n; i++){
-                                            if(temp[x][y + i] == '-' || temp[x][y + i] == currentWord[i])
-                                                temp[x][y + i] = currentWord[i];
-                                            else
-                                                temp[0][0] = '@';
+                                        
+                                        void checkHorizontal(int x, int y, char temp[105][105], char currentWord[]){
+                                             int n = strlen(currentWord);
+                                            for(int i = 0; i &lt; n; i++){
+                                                if(temp[x][y + i] == &apos;-&apos; || temp[x][y + i] == currentWord[i])
+                                                    temp[x][y + i] = currentWord[i];
+                                                else
+                                                    temp[0][0] = &apos;@&apos;;
+                                            }
                                         }
-                                    }
-                                    
-                                    void back(char words[105][105], int sz, int n, int m, char matrix[105][105], int index, bool & g, char sol[105][105]){
-                                        if(index < sz && g == false){
-                                            int maxLen = n - strlen(words[index]);
-                                            for (int i = 0; i < m; i++) {
-                                                for (int j = 0; j <= maxLen; j++) {
-                                                    char temp[105][105];
-                                                    for(int x = 0; x < n; x++)
-                                                        for(int y = 0; y < m; y++)
-                                                            temp[x][y] = matrix[x][y];
-                                    
-                                                    checkVertical(j, i, temp, words[index]);
-                                    
-                                                    if (temp[0][0] != '@') {
-                                                        back(words, sz, n, m, temp, index + 1, g, sol);
+                                        
+                                        void back(char words[105][105], int sz, int n, int m, char matrix[105][105], int index, bool &amp; g, char sol[105][105]){
+                                            if(index &lt; sz &amp;&amp; g == false){
+                                                int maxLen = n - strlen(words[index]);
+                                                for (int i = 0; i &lt; m; i++) {
+                                                    for (int j = 0; j &lt;= maxLen; j++) {
+                                                        char temp[105][105];
+                                                        for(int x = 0; x &lt; n; x++)
+                                                            for(int y = 0; y &lt; m; y++)
+                                                                temp[x][y] = matrix[x][y];
+                                        
+                                                        checkVertical(j, i, temp, words[index]);
+                                        
+                                                        if (temp[0][0] != &apos;@&apos;) {
+                                                            back(words, sz, n, m, temp, index + 1, g, sol);
+                                                        }
+                                                    }
+                                                }
+                                                maxLen = m - strlen(words[index]);
+                                                for (int i = 0; i &lt; n; i++) {
+                                                    for (int j = 0; j &lt;= maxLen; j++) {
+                                                        char temp[105][105];
+                                                        for(int x = 0; x &lt; n; x++)
+                                                            for(int y = 0; y &lt; m; y++)
+                                                                temp[x][y] = matrix[x][y];
+                                        
+                                                        checkHorizontal(i, j, temp, words[index]);
+                                        
+                                                        if (temp[0][0] != &apos;@&apos;) {
+                                                            back(words, sz, n, m, temp, index + 1, g, sol);
+                                                        }
                                                     }
                                                 }
                                             }
-                                            maxLen = m - strlen(words[index]);
-                                            for (int i = 0; i < n; i++) {
-                                                for (int j = 0; j <= maxLen; j++) {
-                                                    char temp[105][105];
-                                                    for(int x = 0; x < n; x++)
-                                                        for(int y = 0; y < m; y++)
-                                                            temp[x][y] = matrix[x][y];
-                                    
-                                                    checkHorizontal(i, j, temp, words[index]);
-                                    
-                                                    if (temp[0][0] != '@') {
-                                                        back(words, sz, n, m, temp, index + 1, g, sol);
-                                                    }
+                                            else 
+                                                if(index == sz &amp;&amp; g == false){
+                                                    g = true;
+                                                    for(int i = 0; i &lt; n; i++)
+                                                        for(int j = 0; j &lt; m; j++)
+                                                            sol[i][j] = matrix[i][j];
                                                 }
-                                            }
                                         }
-                                        else 
-                                            if(index == sz && g == false){
-                                                g = true;
-                                                for(int i = 0; i < n; i++)
-                                                    for(int j = 0; j < m; j++)
-                                                        sol[i][j] = matrix[i][j];
-                                            }
-                                    }
-                                    
-                                    
-                                    void solvePuzzle(char words[105][105], int sz, int n, int m, char sol[105][105]){
-                                        char matrix[105][105];
-                                        for(int i = 0; i < n; i++)
-                                            for(int j = 0; j < m; j++)
-                                               sol[i][j] = matrix[i][j] = '-';
-                                    
-                                        bool g = false;
-                                    
-                                        back(words, sz, n, m, matrix, 0, g, sol);
-                                    }
-                                    
-                                    
-                                    int main(){
-                                        char words[105][105] = {"INFO", "GREU", "TEST", "REN", "JOC", "FOC"}; 
-                                        char matrix[105][105];
-                                        int n = 3;
-                                        int m = 5;
-                                        solvePuzzle(words, 6, n, m, matrix);
-                                    
-                                        for(int i = 0; i < n; i++, cout<<"\n")
-                                            for(int j = 0; j < m; j++)
-                                                cout<<matrix[i][j]<<" ";
-                                    }
-                                </xmp>
+                                        
+                                        
+                                        void solvePuzzle(char words[105][105], int sz, int n, int m, char sol[105][105]){
+                                            char matrix[105][105];
+                                            for(int i = 0; i &lt; n; i++)
+                                                for(int j = 0; j &lt; m; j++)
+                                                   sol[i][j] = matrix[i][j] = &apos;-&apos;;
+                                        
+                                            bool g = false;
+                                        
+                                            back(words, sz, n, m, matrix, 0, g, sol);
+                                        }
+                                        
+                                        
+                                        int main(){
+                                            char words[105][105] = {&quot;INFO&quot;, &quot;GREU&quot;, &quot;TEST&quot;, &quot;REN&quot;, &quot;JOC&quot;, &quot;FOC&quot;}; 
+                                            char matrix[105][105];
+                                            int n = 3;
+                                            int m = 5;
+                                            solvePuzzle(words, 6, n, m, matrix);
+                                        
+                                            for(int i = 0; i &lt; n; i++, cout&lt;&lt;&quot;\n&quot;)
+                                                for(int j = 0; j &lt; m; j++)
+                                                    cout&lt;&lt;matrix[i][j]&lt;&lt;&quot; &quot;;
+                                        }
+                                    </code>
 
                                 </pre>
                             </b>

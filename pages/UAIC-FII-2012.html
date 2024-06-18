@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        />
+        <title> Isciuc Iustin - Constantin </title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="../style.css"
+        />
+        <link
+            rel="icon"
+            href="../images/code.svg"
+        />
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid d-flex justify-content-center">
+                <span class="navbar-brand mx-auto h1">
+                    <b> Isciuc Iustin - Constantin </b>
+                </span>
+            </div>
+        </nav>
+        <main>
+            <div class="container">
+                <div class="d-flex justify-content-center my-3">
+                    <ul
+                        class="list-unstyled"
+                        style="
+                            list-style-type: disc !important;
+                            padding-left: 1em;
+                        "
+                    >
+                        <li>
+                            <a href="../UAIC-FII-MATERIALS/SUBJECT-SEPTEMBER-2012.pdf"
+                                >Subject</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-start my-3">
+                    <ul>
+                        <i>II. 4.</i>
+                        <br />
+                        <p>
+                            <b>
+                                <pre>
+                                    <code> 
+                                        #include &lt; iostream &gt;
+                                        #include &lt;cstring &gt;
+                                        using namespace std;
+                                        
+                                        char s[105], S[105][105], P[105][105], C[105][105];
+                                        int szS, szP, szC;
+                                        
+                                        int main(){
+                                            while(cin&gt;&gt;s){
+                                                char cv[105];
+                                                int it = 0, sz = 0;
+                                                while(s[it] != &apos;#&apos;){
+                                                    cv[sz++] = s[it++];
+                                                }
+                                                it++;
+                                                cv[sz] = &apos;\0&apos;;
+                                                if(s[it] == &apos;S&apos;)
+                                                    strcpy(S[szS++], cv);
+                                                if(s[it] == &apos;P&apos;)
+                                                    strcpy(P[szP++], cv);
+                                                if(s[it] == &apos;C&apos;)
+                                                    strcpy(C[szC++], cv);
+                                            }
+                                        
+                                            for(int i = 0; i &lt; szS; i++)
+                                                for(int j = 0; j &lt; szP; j++)
+                                                    for(int k = 0; k &lt; szC; k++)
+                                                       cout&lt;&lt; S[i]&lt;&lt;&quot; &quot;&lt;&lt;P[j]&lt;&lt;&quot; &quot;&lt;&lt;C[k]&lt;&lt;&apos;,&apos;&lt;&lt;&quot; &quot;;
+                                            return 0;
+                                        }   
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script>
+       function copy(id){
+            console.log(id)
+        }
+    </script>
+</html>
