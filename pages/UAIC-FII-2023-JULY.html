@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        />
+        <title> Isciuc Iustin - Constantin </title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="../style.css"
+        />
+        <link
+            rel="icon"
+            href="../images/code.svg"
+        />
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid d-flex justify-content-center">
+                <span class="navbar-brand mx-auto h1">
+                    <b> Isciuc Iustin - Constantin </b>
+                </span>
+            </div>
+        </nav>
+        <main>
+            <div class="container">
+                <div class="d-flex justify-content-center my-3">
+                    <ul
+                        class="list-unstyled"
+                        style="
+                            list-style-type: disc !important;
+                            padding-left: 1em;
+                        "
+                    >
+                        <li>
+                            <a
+                                href="../UAIC-FII-MATERIALS/SUBJECT-JULY-2023.pdf"
+                                >Subject</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="../UAIC-FII-MATERIALS/RESPONSES-JULY-2023.pdf"
+                                >Responses</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-start my-3">
+                    <ul>
+                        <i>I. 1.</i>
+                        <br />
+                        <p>
+                            <b> D. !(a >= 9) && (a > 7) </b>
+                        </p>
+                        <br />
+                        <i>I. 2.</i>
+                        <br />
+                        <p>
+                            <b> a) F(2395) = 0</b>
+                        </p>
+                        <br />
+                        <p>
+                            <b> b) 1313</b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                <pre>
+                                    <code>
+                                        subprogram FRec(n)
+                                            DACA n = 0 ATUNCI
+                                                RETURNEAZA 1
+                                            ALTFEL
+                                                DACA ( (n % 2 == 0) SAU ( (n > 9) && (n % 10 == (n / 10) % 10 )  ) ) ATUNCI 
+                                                    RETURNEAZA 0
+                                            ALTFEL
+                                                RETURNEAZA FRec(n / 10)
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                d)
+                                <br />
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        using namespace std;
+
+                                        int F(int n){
+                                            int r = 1, c = 0;
+                                            while(r != 0 &amp;&amp; n != 0){
+                                                if(n % 2 == 0 || n % 10 == c){
+                                                    r = 0;
+                                                }
+                                                else{
+                                                    c = n % 10;
+                                                    n = n / 10;
+                                                }
+                                            }
+                                            return r;
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
