@@ -115,6 +115,230 @@
                                 </pre>
                             </b>
                         </p>
+                        <br />
+                        <i>II. 1.</i>
+                        <br />
+                        <p>
+                            <b> C. 292 </b>
+                        </p>
+                        <br />
+                        <i>II. 2.</i>
+                        <br />
+                        <p>
+                            <b> A. 21 </b>
+                        </p>
+                        <br />
+                        <i>II. 3.</i>
+                        <br />
+                        <p>
+                            <b>
+                                a) <br />
+                                0 -> 3 -> 1 -> 2
+                                <br />
+                                b) <br />
+                                O ordonare este posibila doar daca avem cel
+                                putin 2 echipe astfel: Daca n = 2 atunci avem i
+                                -> j sau j -> i <br />
+                                Daca n > 2 atunci pentru o noua echipa x avem:
+                                <br />
+                                I) x -> i atunci ordonarea va fi x -> i -> j
+                                <br />
+                                II) j -> x atunci ordonarea va fi i -> j -> x
+                                III) i -> x si x -> j atunci ordonarea va fi i
+                                -> x -> j <br />
+                                Astfel pentru orice n >= 2 putem garanta
+                                existenta unei solutii.
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                c)
+                                <br />
+                                <pre>
+                                    <code>
+                                    void ordonare(int n, int a[105][105], int s[105]){
+                                        int i, j, sz = 0;
+                                        for(i = 0; i &lt; n &amp;&amp; sz != 1; i++)
+                                            for(j = 0; j &lt; n &amp;&amp; sz != 1; j++)
+                                                if(a[i][j])
+                                                    s[sz] = i, s[++sz] = j;
+                                        
+                                        for(int x = 0; x &lt; n; x++)
+                                            if(x != i &amp;&amp; x != j){
+                                                if(a[x][s[0]]){
+                                                    sz++;
+                                                    for(int k = sz; k &gt; 0; k--)
+                                                        s[k] = s[k - 1];
+                                                    s[0] = x;
+                                                }
+                                                else
+                                                    if(a[s[sz]][x])
+                                                        s[++sz] = x;
+                                                else{
+                                                    for(int k = 0; k &lt; sz; k++)
+                                                        if(a[k][x] &amp;&amp; a[x][k + 1]){
+                                                            sz++;
+                                                            for(int y = sz; y &gt; (k + 1); y--)
+                                                                s[y] = s[y - 1];
+                                                            s[k + 1] = y;
+                                                        }
+                                                }
+                                            }
+                                    }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <i>II. 4.</i>
+                        <br />
+                        <p>
+                            <b>
+                                a)
+                                <br />
+                                0 1 1 1 1 1 1 <br />
+                                1 0 1 0 0 0 1 <br />
+                                1 1 0 1 0 0 0 <br />
+                                1 0 1 0 1 0 0 <br />
+                                1 0 0 1 0 1 0 <br />
+                                1 0 0 0 1 0 1 <br />
+                                1 1 0 0 0 1 0 <br />
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                b)
+                                <br />
+                                <pre>
+                                    <code>
+                                        void retea(int n, int m[105][105]){
+                                            for(int i = 0; i &lt; n; i++)
+                                                for(int j = 0; j &lt; n; j++)
+                                                    m[i][j] = 0;
+                                                    
+                                            for(int i = 1; i &lt; n; i++){
+                                                m[0][i] = m[i][0] = 1;
+                                                m[i][i + 1] = m[i + 1][i] = 1;
+                                            }
+                                            m[1][n - 1] = m[n - 1][1] = 1;
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <i>III. 1.</i>
+                        <br />
+                        <p>
+                            <b> rac(2, 0) = -3 </b>
+                        </p>
+                        <br />
+                        <i>III. 2.</i>
+                        <br />
+                        <p>
+                            <b> C. 3 </b>
+                        </p>
+                        <br />
+                        <i>III. 3.</i>
+                        <br />
+                        <p>
+                            <b>
+                                a)
+
+                                <br />
+                                <pre>
+                                    <code>
+                                    int verifica (int A[105][105], int N, int M){
+                                        for(int i = 0; i &lt; (N - 2); i++)
+                                            for(int j = 0; j &lt; (M - 2); j++){
+                                                if(A[i][j] &lt; A[i + 1][j] &amp;&amp; A[i][j] &lt; A[i][j + 1] &amp;&amp; A[i + 1][j + 1] &lt; A[i + 1][j] &amp;&amp; A[i + 1][j + 1] &lt; A[i][j + 1])
+                                                    return 0;
+                                                if(A[i + 1][j] &lt; A[i][j] &amp;&amp; A[i + 1][j] &lt; A[i + 1][j + 1] &amp;&amp; A[i][j + 1] &lt; A[i][j] &amp;&amp; A[i][j + 1] &lt; A[i + 1][j + 1])
+                                                    return 0;
+                                                return 1;
+                                            }
+                                    }
+                                    </code>
+                                </pre>
+                                <br />
+                                b)
+                                <br />
+                                <pre>
+                                    <code>
+                                        int complet(int A[105][105], int N, int M){
+                                            int sum = 0;
+                                            for(int i = 0; i &lt; N; i++)
+                                                for(int j = 0; j &lt; M; j++)
+                                                    sum += A[i][j];
+                                            return sum;
+                                        }
+                                    </code>
+                                </pre>
+                                <br />
+                                c)
+                                <br />
+                                <pre>
+                                    <code>
+                                        int optim(int A[105][105], int N, int M, int K){
+                                            int X = -1;
+                                            for(int i = 0; i &lt;= N - K; i++)
+                                                for(int j = 0; j &lt;= M - K; j++){
+                                        
+                                                    int di[] = {-1, 0, 1, 0};
+                                                    int dj[] = {0, 1, 0, -1};
+                                        
+                                                    int l, c, m = -1;
+                                                    int a[105][105];
+                                                    for(int x = 0; x &lt; N; x++)
+                                                        for(int y = 0; y &lt; M; y++)
+                                                            a[x][y] = A[x][y];
+                                                    
+                                                    for(int x = i; x &lt;= i + K - 1; x++)
+                                                        for(int y = j; y &lt;= j + K - 1; y++)
+                                                            if(m == -1)
+                                                                m = A[x][y], l = x, c = y;
+                                                            else
+                                                                if(m &gt; A[x][y])
+                                                                    m = A[x][y], l = x, c = y;
+                                                                    
+                                                            struct P
+                                                            {
+                                                                int lin, col;
+                                                            }q[N * M + 5];
+                                                            int st = 1, dr = 1, cnt = 1;
+                                        
+                                                            q[st].lin = l, q[st].col = c; a[l][c] = -2;
+                                        
+                                                            while(st &lt;= dr){
+                                                                int x = q[st].lin, y = q[st].col;
+                                                                st++;
+                                                                for(int k = 0; k &lt; 4; k++){
+                                                                    int iv = x + di[k], jv = y + dj[k];
+                                                                    if(iv &gt;= 0 &amp;&amp; iv &lt; N &amp;&amp; jv &gt;= 0 &amp;&amp; jv &lt; M &amp;&amp; a[iv][jv] &gt;= m){
+                                                                        cnt += a[iv][jv] - m + 1;
+                                                                        a[iv][jv] = -2;
+                                                                        q[++dr].lin = iv;
+                                                                        q[dr].col = jv;
+                                                                    }
+                                                                }
+                                                            }
+                                        
+                                                            if(X == -1)
+                                                                X = cnt;
+                                                            else
+                                                                if(X &gt; cnt)
+                                                                    X = cnt;
+                                                            
+                                                        
+                                                    }
+                                            return X;
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
                     </ul>
                 </div>
             </div>
