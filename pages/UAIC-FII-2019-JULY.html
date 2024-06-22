@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        />
+        <title> Isciuc Iustin - Constantin </title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="../style.css"
+        />
+        <link
+            rel="icon"
+            href="../images/code.svg"
+        />
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid d-flex justify-content-center">
+                <span class="navbar-brand mx-auto h1">
+                    <b> Isciuc Iustin - Constantin </b>
+                </span>
+            </div>
+        </nav>
+        <main>
+            <div class="container">
+                <div class="d-flex justify-content-center my-3">
+                    <ul
+                        class="list-unstyled"
+                        style="
+                            list-style-type: disc !important;
+                            padding-left: 1em;
+                        "
+                    >
+                        <li>
+                            <a
+                                href="../UAIC-FII-MATERIALS/SUBJECT-JULY-2019.pdf"
+                                >Subject</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="../UAIC-FII-MATERIALS/RESPONSES-JULY-2019.pdf"
+                                >Responses</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-start my-3">
+                    <ul>
+                        <i>I. 1.</i>
+                        <br />
+                        <p>
+                            <b> C. !( (n % 5 != 0) || (n % 20 == 0) ) </b>
+                        </p>
+                        <br />
+                        <i>II. 2.</i>
+                        <br />
+                        <p>
+                            <b> a) 26 </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b> b) 511 </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                c)
+                                <br />
+                                <pre>
+                                    <code>
+                                        subprogram FRec(n, t)
+                                            DACA n = 0 ATUNCI   
+                                                RETURNEAZA 0
+                                            ALTFEL
+                                                DACA n % 2 = 0 ATUNCI
+                                                    RETURNEAZA t + FRec(n / 2, t * 2)
+                                            ALTFEL
+                                                RETURNEAZA F(n / 2, t * 2)
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                d)
+                                <br />
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        using namespace std;
+                                            
+                                        int F(int n){
+                                            int p = 0, t = 1;
+                                            while(n != 0){
+                                                if(n % 2 == 0)
+                                                    p = p + t;
+                                                n = n / 2;
+                                                t = t * 2;
+                                            }
+                                            return p;
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <i>II. 1.</i>
+                        <br />
+                        <p>
+                            <b> B. 94 </b>
+                        </p>
+                        <br />
+                        <i>II. 2.</i>
+                        <br />
+                        <p>
+                            <b> C. (1,1,2,3,4,5) </b>
+                        </p>
+                        <br />
+                        <i>II. 3.</i>
+                        <br />
+                        <p>
+                            <b>
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt; 
+                                        using namespace std;
+
+                                        int compute(int a){
+                                            int cnt = 0, cp = a, o = 0;
+                                            while(cp &gt; 0){
+                                                cnt++;
+                                                if(cp % 10 == 0)
+                                                    return -1;
+                                                o = o * 10 + cp % 10;
+                                                cp /= 10;
+                                            }
+                                            if(cnt &lt; 4)
+                                                return -1;
+                                            int n = 0, m = 0;
+                                            cnt = 0;
+                                            while(o &gt; 0){
+                                                cnt++;
+                                                if(cnt % 2 == 1)
+                                                    n = n * 10 + o % 10;
+                                                else
+                                                    m = m * 10 + o % 10;
+                                                o /= 10;
+                                            }
+                                            int uc1 = 0, uc2 = 0;
+                                            uc1 = n * n % 10;
+                                            for(int i = 3; i &lt;= m; i++)
+                                                uc1 = uc1 * n % 10;
+                                            
+                                            uc2 = n % 10;
+                                            n--;
+                                            while(n &gt; 1){
+                                                uc2 = uc2 * n % 10;
+                                                n--;
+                                            }
+                                            if((uc1 - uc2 - 1) % 10 == 0)
+                                                return 1;
+                                            return 0;
+
+                                        }
+
+                                        int main(){
+                                            int a;
+                                            cin&gt;&gt;a;
+                                            cout&lt;&lt;compute(a);
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <i>II. 4.</i>
+                        <br />
+                        <p>
+                            <b>
+                                a)
+                                <br />
+                                <pre>
+                                        0 0 1 0 0 0 0 <br />
+                                        0 0 0 0 1 0 1 <br />
+                                        0 0 0 1 0 0 0 <br />
+                                        1 0 0 0 0 0 0 <br />
+                                        0 0 0 0 0 1 0 <br />
+                                        0 1 0 0 0 0 0 <br />
+                                        0 1 0 0 0 0 0 <br />
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                b)
+                                <br />
+                                <pre>
+                                      <code>
+                                        int pre(int D[105][105], int m, int n int i){
+                                            for(int j = 0; j &lt; m + n; j++)
+                                                if(D[j][i] == 1)
+                                                    return j;
+                                        }
+                                      </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                c)
+                                <br />
+                                <pre>
+                                    <code>
+                                        int garages(int D[105][105], int m, int n, int i){
+                                            for(int x = m; x &lt; m + n; x++){
+                                                int pre = prev(D, m, n, x);
+                                                while(pre &gt;= m){
+                                                    pre = prev(D, m, n, x);
+                                                }
+                                                cout&lt;&lt;pre&lt;&lt;&quot; &quot;;
+                                            }
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <i>III. 1.</i>
+                        <br />
+                        <p>
+                            <b> 12 </b>
+                        </p>
+                        <br />
+                        <i>III. 2.</i>
+                        <br />
+                        <p>
+                            <b> A. 11 </b>
+                        </p>
+                        <br />
+                        <i>III. 3.</i>
+                        <br />
+                        <p>
+                            <b>
+                                a) Nodurile 1, 3, 6 au fiecare cate 3 culori
+                                accesibile distincte.
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                b) <br />
+                                <pre>
+                                    <code>
+                                        void dfs(int k, int nrc, int n, int a[105][105], int col[105], int f[105], int cnt, int cc[105]){
+                                            cc[k] = nrc;
+                                            for(int i = 0; i &lt; n; i++)
+                                                if(a[k][i] == 1 &amp;&amp; cc[i] == 0){
+                                                    if(f[col[i]] == 0)
+                                                        cnt++, f[col[i]] = 1;
+                                                    dfs(i, nrc, n, a, col, f, cnt, cc);
+                                                }
+                                        }
+                                        
+                                        int maxColor(int n, int c, int a[105][105], int col[105]){
+                                            int cntmax = -1, cnt = -1, sol = -1;
+                                            int f[c + 1], cc[n + 1], nrc = 0;
+                                            for(int i = 0; i &lt; n; i++){
+                                                if(!cc[i]){
+                                                    cnt = 0;
+                                                    nrc++;
+                                                    for(int j = 0; j &lt; n; j++)
+                                                        f[j] = 0;
+                                                    dfs(i, nrc, n, a, col, f, cnt);
+                                                    if(cntmax &lt; cnt || cntmax == -1)	
+                                                        sol = i, cntmax = cnt;
+                                                }
+                                            }
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                        <br />
+                        <p>
+                            <b>
+                                b) <br />
+                                <pre>
+                                    <code>
+                                        int maxConnect(int n, int c, int a[105][105], int col[105]){
+                                            int cntmax = maxColor(n, c, a, col);
+                                            int cnt_i = cntmax;
+                                            for(int i = 0; i &lt; n; i++)
+                                                for(int j = 0; j &lt; n; j++)
+                                                    if(i != j &amp;&amp; a[i][j] == 0){
+                                                        a[i][j] = a[j][i] = 1;
+                                                        int cnt = maxColor(n, c, a, col);
+                                                        if(cntmax &lt; cnt)
+                                                            cntmax = cnt;
+                                                        a[i][j] = a[j][i] = 0;
+                                                    }
+                                        }
+                                    </code>
+                                </pre>
+                            </b>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
