@@ -23,15 +23,21 @@
         />
     </head>
     <body>
-        <nav class="navbar bg-body-tertiary">
+        <nav class="navbar bg-body-tertiary fixed-top shadow">
             <div class="container-fluid d-flex justify-content-center">
                 <span class="navbar-brand mx-auto h1">
-                    <b> Isciuc Iustin - Constantin </b>
+                    <b>
+                        <a
+                            href="../index.html"
+                            class="text-reset text-decoration-none"
+                            >Isciuc Iustin - Constantin</a
+                        >
+                    </b>
                 </span>
             </div>
         </nav>
         <main>
-            <div class="container">
+            <div class="container min-vh-100 py-5">
                 <div class="d-flex justify-content-center my-3">
                     <ul
                         class="list-unstyled"
@@ -41,7 +47,8 @@
                         "
                     >
                         <li>
-                            <a href="../UAIC-FII-MATERIALS/SUBJECT-SEPTEMBER-2012.pdf"
+                            <a
+                                href="../UAIC-FII-MATERIALS/SUBJECT-SEPTEMBER-2012.pdf"
                                 >Subject</a
                             >
                         </li>
@@ -52,26 +59,20 @@
                         <i>I. 1.</i>
                         <br />
                         <p>
-                            <b>
-                                b. n = n / 10 % 100
-                            </b>
+                            <b> b. n = n / 10 % 100 </b>
                         </p>
                         <i>I. 2.</i>
                         <br />
                         <i>a)</i>
                         <br />
                         <p>
-                            <b>
-                               rezultat = 224, iteratii = 7
-                            </b>
+                            <b> rezultat = 224, iteratii = 7 </b>
                         </p>
                         <br />
                         <i>b)</i>
                         <br />
                         <p>
-                            <b>
-                                b minim = 11, b maxim = 32
-                            </b>
+                            <b> b minim = 11, b maxim = 32 </b>
                         </p>
                         <br />
                         <i>c)</i>
@@ -107,7 +108,7 @@
                         <br />
                         <p>
                             <b>
-                              <pre>
+                                <pre>
                                 <code>
                                     #include &lt;iostream&gt;
                                     using namespace std;
@@ -140,16 +141,12 @@
                         <i>II. 1.</i>
                         <br />
                         <p>
-                            <b>
-                                a.0
-                            </b>
+                            <b> a.0 </b>
                         </p>
                         <i>II. 2.</i>
                         <br />
                         <p>
-                            <b>
-                                b.6
-                            </b>
+                            <b> b.6 </b>
                         </p>
                         <i>II. 3.</i>
                         <br />
@@ -265,8 +262,8 @@
 
                                         }
                                     </code> 
-                                </pre>  
-                            </b>    
+                                </pre>
+                            </b>
                         </p>
                         <i>III. 1.</i>
                         <br />
@@ -277,20 +274,28 @@
                         <i>III. 3.</i>
                         <br />
                         <i>a)</i>
-                        <p><b>
-                            O solutie pentru problema descrisa se bazeaza pe metoda backtracking.
-                        <br />
-                        Putem amplasa in vectorul solutie toate generarile pentru linie si coloana.
-                        <br />
-                        Pentru orice k din [i - 1, 0] verificam:
-                        <br />
-                        1) daca s[i] == s[k] (in acest caz coloanele sunt egale)
-                        <br />
-                        2) daca (i - s[i] == k - s[k]) || 
-                                (s[i] + i == s[k] + k) ( in acest caz reginele se afla pe aceeasi diagonala)
-                        <br />
-                        Daca 1 si 2 sunt false inseamna ca regina de pe linia i este plasata corect si putem merge la linia i + 1.
-                        </b></p>
+                        <p
+                            ><b>
+                                O solutie pentru problema descrisa se bazeaza pe
+                                metoda backtracking.
+                                <br />
+                                Putem amplasa in vectorul solutie toate
+                                generarile pentru linie si coloana.
+                                <br />
+                                Pentru orice k din [i - 1, 0] verificam:
+                                <br />
+                                1) daca s[i] == s[k] (in acest caz coloanele
+                                sunt egale)
+                                <br />
+                                2) daca (i - s[i] == k - s[k]) || (s[i] + i ==
+                                s[k] + k) ( in acest caz reginele se afla pe
+                                aceeasi diagonala)
+                                <br />
+                                Daca 1 si 2 sunt false inseamna ca regina de pe
+                                linia i este plasata corect si putem merge la
+                                linia i + 1.
+                            </b></p
+                        >
                         <i>b)</i>
                         <p>
                             <b>
@@ -369,5 +374,24 @@
                 </div>
             </div>
         </main>
+        <footer>
+            <nav class="navbar bg-body-tertiary sticky-bottom">
+                <div class="container-fluid d-flex justify-content-center">
+                    <div class="row row-cols-1 row-cols-md-2 w-100">
+                        <div
+                            class="col d-flex justify-content-center justify-content-md-end"
+                        >
+                            <b>
+                                <i>,,Give me liberty, or give me death!''</i></b
+                            >
+                        </div>
+                        <div
+                            class="col d-flex justify-content-center justify-content-md-start"
+                            ><b>- Patrick Henry</b>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </footer>
     </body>
 </html>
