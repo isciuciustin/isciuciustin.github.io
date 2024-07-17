@@ -66,6 +66,215 @@
                             <b>
                                 <i>I. 1.</i>
                                 <br />
+                                d. 75
+                                <br />
+                                <i>I. 2.</i>
+                                <br />
+                                b. 0, 2, 0, 1
+                                <br />
+                                <i>I. 3.</i>
+                                <br />
+                                c. (80, 70, 30, 20)
+                                <br />
+                                <i>I. 4.</i>
+                                <br />
+                                c. 5
+                                <br />
+                                <i>I. 5.</i>
+                                a. 4
+                                <br />
+                                <i>II. 1.</i>
+                                <br />
+                                a. 11100
+                                <br />
+                                b. 24680, 86420
+                                <br />
+                                c.
+                                <br />
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        using namespace std;
+
+                                        int a, c, b, x;
+
+                                        int main(){
+                                            cin&gt;&gt;a;
+                                            c = 0;
+                                            do{
+                                                b = a, x = 0;
+                                                do{
+                                                    if(b % 10 == c){
+                                                        x = 1;
+                                                    }
+                                                    b /= 10;
+                                                }while(b != 0 &amp;&amp; x != 1);
+                                                cout&lt;&lt;x&lt;&lt;&quot; &quot;;
+                                                c = c + 2;
+                                            }while(c &lt;= 9);
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
+                                <br />
+                                d.
+                                <br />
+                                <pre>
+                                    <code>
+                                        CITESTE a 
+                                        c <- 0
+                                        REPETA 
+                                            b <- a; x <- 0
+                                            CAT TIMP b != 0 SI x != 1 EXECUTA 
+                                                DACA b % 10 = c ATUNCI 
+                                                    x <- 1
+                                                b <- [b / 10]
+                                        SCRIE x, ' '
+                                        c <- c + 2
+                                        PANA CAND c > 9
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>II. 2.</i>
+                                <br />
+                                <pre>
+                                    <code>
+                                        struct calculator{
+                                            char monitor;
+                                            struct mem{
+                                                int interna, externa;
+                                            } memorie;
+                                        }c;
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>II. 3.</i>
+                                <br />
+                                <pre>
+                                    <code>
+                                        for(i = 0; i &lt; 9; i ++)
+                                        for(j = 0; j &lt; 9; j++)
+                                            if(i + j &gt;= 9 &amp;&amp; i &gt; j) 
+                                                a[i][j] = &apos;&lt;&apos;;
+                                            else
+                                                a[i][j] = &apos;&gt;&apos;;
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>III. 1.</i>
+                                <br />
+                                <pre>
+                                    <code>
+                                        int suma(int a, int b){
+                                            int sum = 0;
+                                            for(int i = 1; i &lt;= min(a, b); i++)
+                                                if(a % i == 0 &amp;&amp; b % i == 0)
+                                                    sum += i;
+                                            return sum;
+                                        }
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>III. 2.</i>
+                                <br />
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        #include &lt;cstring&gt;
+                                        using namespace std;
+
+                                        char s[105], sol[105] = &quot;&quot;;
+                                        bool g = false;
+
+                                        int main(){
+                                            cin.getline(s, 100);
+                                            char *p = strtok(s, &quot; &quot;);
+                                            while(p != NULL){
+                                                if(strlen(p) &lt; 3){
+                                                    strcat(sol, p);
+                                                    strcat(sol, &quot; &quot;);
+                                                }
+                                                else{
+                                                    char rot[105]; g = true;
+                                                    rot[strlen(p) - 1] = p[0];
+                                                    for(int i = 0; i &lt; (strlen(p) - 1); i++)
+                                                        rot[i] = p[i + 1];
+                                                    rot[strlen(p)] = &apos;\0&apos;;
+                                                    strcat(sol, rot);
+                                                    strcat(sol, &quot; &quot;);
+                                                }
+                                                p = strtok(NULL, &quot; &quot;);
+                                            }
+                                            if(g){
+                                                cout&lt;&lt;sol;
+                                            }
+                                            else{
+                                                cout&lt;&lt;&quot;nu exista&quot;;
+                                            }
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>III. 3.</i>
+                                <br />
+                                a.
+                                <br />
+                                <pre>
+                                    <code>
+                                        Algoritmul proiectat retine nr. de aparitii al fiecarui element din fisier 
+                                        in vectorul fv. 
+                                        In cazul in care avem nr. par de elemente in fisier si nu exista 
+                                        elemente care apar de nr. impar de ori sau avem 
+                                        nr. impar de elemente si exista un singur nr. care apare de nr. impar de ori
+                                        in fisier, atunci putem forma un sir palindromic.
+                                    </code>
+                                </pre>
+                                <br />
+                                b.
+                                <br />
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        #include &lt;fstream&gt;
+                                        using namespace std;
+
+                                        ifstream in(&quot;bac.in&quot;);
+
+                                        int fv[1005], x, cnt = 0;
+                                        bool ok = false;
+
+                                        int main(){
+                                            while(in&gt;&gt;x){
+                                                fv[x]++;
+                                                cnt++;
+                                            }
+                                            int p = 0, imp = 0;
+                                            for(int i = 1; i &lt;= 1000; i ++){
+                                                if(fv[i] % 2 == 0 &amp;&amp; fv[i] &gt; 0){ 
+                                                    p++;
+                                                }
+                                                else 
+                                                    if(fv[i] % 2 == 1 &amp;&amp; fv[i] &gt; 0){
+                                                    imp++;
+                                                }
+                                            }
+                                            cout&lt;&lt;p&lt;&lt;&quot; &quot;&lt;&lt;imp&lt;&lt;&quot;\n&quot;;
+                                            if(cnt % 2 == 0 &amp;&amp; imp == 0)
+                                                ok = true;
+                                            else
+                                                if(cnt % 2 == 1 &amp;&amp; imp == 1)
+                                                    ok = true;
+                                            if(ok){
+                                                cout&lt;&lt;&quot;DA&quot;;
+                                            }
+                                            else{
+                                                cout&lt;&lt;&quot;NU&quot;;
+                                            }
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
