@@ -66,6 +66,175 @@
                             <b>
                                 <i>I. 1.</i>
                                 <br />
+                                a. x = 4 si y = 2
+                                <br />
+                                <i>I. 2.</i>
+                                <br />
+                                b. 5
+                                <br />
+                                <i>I. 3.</i>
+                                <br />
+                                b. strchr("aeiou", x);
+                                <br />
+                                <i>I. 4.</i>
+                                <br />
+                                b. 5413
+                                <br />
+                                <i>I. 5.</i>
+                                <br />
+                                c. 16
+                                <br />
+                                <i>II. 1.</i>
+                                <br />
+                                a. 3
+                                <br />
+                                b. 25, 30
+                                <br />
+                                c.
+                                <br />
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        using namespace std;
+                                        
+                                        int m, n, p, q, s1, s2, s;
+                                        
+                                        int main(){
+                                            cin&gt;&gt;m&gt;&gt;n&gt;&gt;p&gt;&gt;q;
+                                            while(p &lt;= q){
+                                                if(p % m == 0 || p % n == 0)
+                                                    s1++;
+                                                if(p % m == 0 &amp;&amp; p % n == 0)
+                                                    s2++;
+                                                p++;
+                                            }
+                                            s = s1 - 2 * s2;
+                                            cout&lt;&lt;s;
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
+                                <br />
+                                d.
+                                <br />
+                                <pre>
+                                    <code>
+                                        CITESTE m, n, p, q 
+                                        s1 <- 0, s2 <- 0
+                                        PENTRU i <- p, q, 1 EXECUTA
+                                            DACA i % m = 0 SAU i % n = 0 ATUNCI
+                                                s1 <- s1 + 1
+                                            DACA i % m = 0 SI i % n = 0 ATUNCI
+                                                s2 <- s2 + 1
+                                            p <- p + 1
+                                        s <- s1 - 2 * s2 
+                                        SCRIE s
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>II. 2.</i>
+                                <br />
+                                3 -> 5 -> 1 -> 2 -> 6
+                                <br />
+                                <i>II. 3.</i>
+                                <br />
+                                <pre>
+                                    <code>
+                                        fig.raza = 1;
+                                        fig.centru.x = 0;
+                                        fig.centru.y = 0;
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>III. 1.</i>
+                                <br />
+                                <pre>
+                                    <code>
+                                        void Impare(int &amp; n){
+                                            int v[15], it = 0;
+                                            while(n){
+                                                int cif = n % 10;
+                                                if(cif % 2 == 1)
+                                                    v[it++] = (cif - 1);
+                                                else
+                                                    v[it++] = cif;
+                                                n /= 10;
+                                            }    
+                                            for(int i = (it - 1); i &gt;= 0; i --)
+                                                n = n * 10 + v[i];
+                                        }
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>III. 2.</i>
+                                <br />
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        using namespace std;
+
+                                        int m, n, a[25][25];
+                                        bool g = false;
+
+                                        int main(){
+                                            cin&gt;&gt;m&gt;&gt;n;
+                                            for(int i = 1; i &lt;= m; i++)
+                                                for(int j = 1; j &lt;= n; j++)
+                                                    cin&gt;&gt;a[i][j];
+
+                                            for(int i = 1; i &lt;= m &amp;&amp; g == false; i++)
+                                                for(int j = 1; j &lt;= (n / 2); j++)
+                                                    if(a[i][j] != a[i][n - j + 1])
+                                                        g = true;
+                                            if(g)
+                                                cout&lt;&lt;&quot;NU&quot;;
+                                            else
+                                                cout&lt;&lt;&quot;DA&quot;;
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
+                                <br />
+                                <i>III. 3.</i>
+                                <br />
+                                a.
+                                <pre>
+                                    <code>
+                                            Algoritmul proiectat parcurge fisierul dat prin intermediul variabilei x
+                                            iar in variabila maxim este retinuta valoarea maxima curenta
+                                            Daca am gasit un nou maxim sau daca maximul este egal cu x si pre 
+                                            este egal cu maximul atunci afisez x 
+                                            Complexitate de timp: O(n)
+                                            Complexitate de memorie : O(1) 
+                                    </code>
+                                </pre>
+                                <br />
+                                b.
+                                <pre>
+                                    <code>
+                                        #include &lt;iostream&gt;
+                                        #include &lt;fstream&gt;
+                                        using namespace std;
+
+                                        ifstream in(&quot;bac.txt&quot;);
+
+                                        int x, pre = -1, maxim = -1;
+
+                                        int main(){
+                                            while(in&gt;&gt;x){
+                                                if(maxim &lt; x){
+                                                    maxim = x;
+                                                    cout&lt;&lt;x&lt;&lt;&quot; &quot;;
+                                                }
+                                                else
+                                                    if(maxim  == x &amp;&amp; pre == x)
+                                                        cout&lt;&lt;x&lt;&lt;&quot; &quot;;
+                                                pre = x;
+                                            }
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
