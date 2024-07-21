@@ -196,25 +196,88 @@
                                     <code>
                                         #include &lt;iostream&gt;
                                         using namespace std;
-
-                                        int n, p, A[105], B[105];
-                                        int szA, szB;
-
+                                        
+                                        int A[105], szA, B[105], szB;
+                                        int AP[105], szAP, BP[105], szBP;
+                                        int n, p;
+                                        
                                         int main(){
                                             cin&gt;&gt;n&gt;&gt;p;
-                                            if(n % 4 == 0 &amp;&amp; p &gt;= 1 &amp;&amp; p &lt;= n / 2){
-                                                for(int k = 1; k &lt;= n / 2; k ++)
-                                                    if(k % 2 == 1)
-                                                        A[++szA] = k, A[++szA] = (n - k + 1);
-                                                    else{
-                                                        B[++szB] = k, B[++szB] = (n - k + 1);
+                                            if(n &gt;= 4 &amp;&amp; n % 4 == 0 &amp;&amp; p &gt;= 1 &amp;&amp; p &lt;= n / 2){
+                                                for(int i = 1; i &lt;= n / 2; i++)
+                                                    if(i % 2 == 1)
+                                                        A[++szA] = i, A[++szA] = n - i + 1;
+                                                    else
+                                                        B[++szB] = i, B[++szB] = n - i + 1;
+                                                    cout&lt;&lt;&quot;A : &quot;;
+                                                    for(int i = 1; i &lt;= szA; i++)
+                                                        cout&lt;&lt;A[i]&lt;&lt;&quot; &quot;;
+                                                    cout&lt;&lt;&quot;\n&quot;;
+                                                    cout&lt;&lt;&quot;B : &quot;;
+                                                    for(int i = 1; i &lt;= szB; i++)
+                                                        cout&lt;&lt;B[i]&lt;&lt;&quot; &quot;;
+                                                    cout&lt;&lt;&quot;\n&quot;;
+                                        
+                                                    if(p % 2 == 1){
+                                                        cout&lt;&lt;&quot;partitie inexistenta&quot;;
                                                     }
-                                                
+                                                    else{
+                                                        if(p / 2 % 2 == 1){
+                                                            for(int i = 1; i &lt;= n / 2; i++){
+                                                             if(i % 2 == 1)
+                                                                        AP[++szAP] = n - i + 1;
+                                                                 else
+                                                                        if(i % 2 == 0)
+                                                                        BP[++szBP] = n - i + 1;
+                                                                if(i != p){
+                                                                   
+                                                                    if(i == p / 2){
+                                                                        BP[++szBP] = i;
+                                                                    }
+                                                                    else
+                                                                        if(i % 2 == 0)
+                                                                            BP[++szBP] = i;
+                                                                    else
+                                                                        if(i != p / 2 &amp;&amp; i % 2 == 1)
+                                                                            AP[++szAP] = i;
+                                                                }
+                                                            }
+                                                        }
+                                                        else{
+                                                            for(int i = 1; i &lt;= n / 2; i++) {
+                                                                if(i % 2 == 1)
+                                                                        AP[++szAP] = n - i + 1;
+                                                                    else
+                                                                        if(i % 2 == 0)
+                                                                        BP[++szBP] = n - i + 1;
+                                                                if(i != p){
+                                                                    if(i == 1 || i == (p / 2 + 1))
+                                                                        BP[++szBP] = i;
+                                                                    else
+                                                                        if(i % 2 == 0 &amp;&amp; i != p / 2)
+                                                                            BP[szBP] = i;
+                                                                    else
+                                                                        if(i == p / 2)
+                                                                            AP[++szAP] = i;
+                                                                    else
+                                                                        if(i % 2 == 1)
+                                                                            AP[++szAP] = i;
+                                                                }
+                                                            }
+                                                        }
+                                                        cout&lt;&lt;&quot;A prim : &quot;;
+                                                        for(int i = 1; i &lt;= szAP; i++)
+                                                            cout&lt;&lt;AP[i]&lt;&lt;&quot; &quot;;
+                                                        cout&lt;&lt;&quot;\n&quot;;
+                                                        cout&lt;&lt;&quot;B prim : &quot;;
+                                                        for(int i = 1; i &lt;= szBP; i++)
+                                                            cout&lt;&lt;BP[i]&lt;&lt;&quot; &quot;;
+                                        
+                                                    }
                                             }
                                             else{
                                                 cout&lt;&lt;&quot;date invalide&quot;;
                                             }
-                                            return 0;
                                         }
                                     </code>
                                 </pre>
