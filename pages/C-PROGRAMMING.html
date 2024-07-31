@@ -127,6 +127,141 @@
                                         }
                                     </code>
                                 </pre>
+                                A PROGRAM TO COUNT TABS, BLANKS AND NEWLINES
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        // count lines in input 
+
+                                        int main(){
+                                            int c, nl;
+                                            nl = 0;
+                                            while((c = getchar()) != EOF)
+                                                if(c == &apos; &apos; || c == &apos;\t&apos; || c == &apos;\n&apos;)
+                                                    ++nl;
+                                            printf(&quot;%d\n&quot;, nl);
+                                        }
+                                    </code>
+                                </pre>
+                                A PROGRAM THAT COPIES ITS INPUT TO ITS OUTPUT
+                                AND REPLACES \t, \b and \\
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* 
+                                            write a program to that copies its input to its output, 
+                                            replacing each tab by \t,each backspace by \b, 
+                                            and each backslash by \\.
+                                        */
+
+                                        int main() {
+                                            int c;
+
+                                            while ((c = getchar()) != EOF) {
+                                                if (c == &apos;\t&apos;) {
+                                                    putchar(&apos;\\&apos;);
+                                                    putchar(&apos;t&apos;);
+                                                } else if (c == &apos;\b&apos;) {
+                                                    putchar(&apos;\\&apos;);
+                                                    putchar(&apos;b&apos;);
+                                                } else if (c == &apos;\\&apos;) {
+                                                    putchar(&apos;\\&apos;);
+                                                    putchar(&apos;\\&apos;);
+                                                } else {
+                                                    putchar(c);
+                                                }
+                                            }
+
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
+                                A PROGRAM THAT PRINTS ITS INPUT ONE WORD PER
+                                LINE
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        #define IN 0
+                                        #define OUT 1
+
+                                        int main() {
+                                            int c, state = OUT;
+
+                                            while ((c = getchar()) != EOF) {
+                                                if(c == &apos; &apos; || c == &apos;\n&apos; || c == &apos;\t&apos;)
+                                                    state = OUT;
+                                                else
+                                                    if(state == OUT){
+                                                        printf(&quot;%c&quot;, &apos;\n&apos;);
+                                                        state = IN;
+                                                        printf(&quot;%c&quot;, c);
+                                                    }
+                                                    else{
+                                                        printf(&quot;%c&quot;, c);
+                                                    }
+                                            }
+
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
+                                A PROGRAM THAT PRINTS A HISTOGRAM OF THE LENGTHS
+                                OF WORDS
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        int main() {
+                                            int c, lw = 0, arr[1005], sz = 0;
+                                            while ((c = getchar()) != EOF) {
+                                                if(c == &apos; &apos;){
+                                                    if(lw){
+                                                        arr[++sz] = lw;
+                                                        lw = 0;
+                                                    }
+                                                }
+                                                else
+                                                    lw++;
+                                            }
+                                            for(int i = 1; i &lt;= sz; i++){
+                                                for(int j = 0; j &lt; arr[i]; j++)
+                                                    printf(&quot;%c&quot;, &apos;-&apos;);
+                                                printf(&quot;%c&quot;, &apos;\n&apos;);
+                                            }
+                                            return 0;
+                                        }
+                                    </code>
+                                </pre>
+                                A PROGRAM TO PRINT A HISTOGRAM OF THE FREQUENCES
+                                OF DIFFERENT CHARACTERS
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        int fv[1005];
+
+                                        int main(){
+                                            int c, low = -1, upper = -1;
+                                            while((c = getchar()) != &apos;\n&apos;){
+                                                fv[(int)(c)]++;
+                                                if(low == -1 || low &gt; (int)(c))
+                                                    low = (int)(c);
+                                                if(upper == -1 || upper &lt; (int)(c))
+                                                    upper = (int)(c);
+                                            }
+                                            for(int i = low; i &lt;= upper; i++)
+                                                if(fv[i] &gt; 0){
+                                                    printf(&quot;%c : &quot;, (char)(i));
+                                                    for(int j = 0; j &lt; fv[i]; j++)
+                                                        printf(&quot;%c&quot;, &apos;-&apos;);
+                                                    printf(&quot;%c&quot;, &apos;\n&apos;);
+                                                }
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
