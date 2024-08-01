@@ -410,6 +410,43 @@
                                         }
                                     </code>
                                 </pre>
+                                Write a program entab that replaces strings of
+                                blanks by the minimum nr. of tabs and blanks to
+                                achieve the same spacing.
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+                                        #define TAB_STOP 8
+
+                                        void entab();
+
+                                        int main(){
+                                            entab();
+                                            return 0;
+                                        }
+
+                                        void entab(){
+                                            int c, nb = 0;
+                                            while((c = getchar()) != EOF){
+                                                if(c == &apos; &apos;)
+                                                    nb++;
+                                                else{
+                                                    if(nb){
+                                                        int nt = nb / TAB_STOP;
+                                                        int ns = nb - TAB_STOP * nt;
+                                                    
+                                                        for(int i = 0; i &lt; nt; i++)
+                                                            putchar(&apos;\t&apos;);
+                                                        for(int i = 0; i &lt; ns; i++)
+                                                            putchar(&apos; &apos;);
+                                                        nb = 0;
+                                                    }
+                                                    putchar(c);
+                                                }
+                                            }
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
