@@ -371,6 +371,45 @@
                                         }
                                     </code>
                                 </pre>
+                                Write a C program detab that replaces tabs in
+                                the input with the proper number of blanks to
+                                space to the next tab stop. Assume a fixed set
+                                of tab stops, say every n columns.
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+                                        #define TAB_STOP 8  
+
+                                        void detab();
+
+                                        int main() {
+                                            detab();
+                                            return 0;
+                                        }
+
+                                        void detab() {
+                                            int c;
+                                            int column = 0;  
+
+                                            while ((c = getchar()) != EOF) {
+                                                if (c == &apos;\t&apos;) {
+                                                    int spaces = TAB_STOP - (column % TAB_STOP);  
+                                                    printf(&quot;SPACES : %d, COLUMNS : %d&quot;, spaces, column);
+                                                    for (int i = 0; i &lt; spaces; i++) {
+                                                        putchar(&apos; &apos;);
+                                                        column++;
+                                                    }
+                                                } else {
+                                                    putchar(c);
+                                                    column++;
+                                                    if (c == &apos;\n&apos;) {
+                                                        column = 0;  
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
