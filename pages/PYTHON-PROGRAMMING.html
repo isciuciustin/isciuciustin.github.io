@@ -48,6 +48,7 @@
                                 <pre>
                                 HELLO WORLD!
                                 <code>
+                                    #This program prints hello world to the console!
                                     print("Hello Python World")
                                 </code>
                                 Personal Message:
@@ -80,6 +81,123 @@ print(message)
                                         print(person_name.rstrip())
                                         print(person_name.lstrip())
                                         print(person_name.strip());
+                                    </code>
+                                    Number Eight:
+                                    <code>
+                                        print(5 + 3)
+                                        print(10 - 2)
+                                        print(4 * 2)
+                                        print(16 // 2)
+                                    </code>
+                                    Favorite Number:
+                                    <code>
+                                        favourite_number = 6
+                                        print("My favourite number is : " + str(favourite_number))
+                                    </code>
+                                    Names:
+                                    <code>
+                                        # Saving the names of a few friends in a list called names and display them
+
+                                        names = ["Razvan", "Petro", "Alex"];
+                                        print(names[0])
+                                        print(names[1])
+                                        print(names[2])
+                                    </code>
+                                    Greetings
+                                    <code>
+                                        # Printing a greeting to each friend
+
+                                        names = ["Razvan", "Petro", "Alex"];
+                                        print("Hello my dear friend: " + names[0])
+                                        print("Hello my dear friend: " + names[1])
+                                        print("Hello my dear friend: " + names[2])
+                                    </code>
+                                    Cars: 
+                                    <code>
+                                        cars = ["Lamborghini Revuelto", "MaseratiMC20", "Range Rover Sport"]
+                                        print("I will like to own a  " +  cars[0])
+                                        print("An wonderful car is  " + cars[1])
+                                        print("The greatest SUV in the marketplace today is  " + cars[2])
+                                    </code>
+                                    Guest List:
+                                    <code>
+                                        guest_list = ["Patrick Henry", "Jeff Bezos", "Elon Musk"];
+                                        print("Hello Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                    </code>
+                                    Changing Guest List:
+                                    <code>
+                                        print("Unfortunately Mr. " + guest_list[0] + " can't make it to the dinner");
+                                        guest_list[0] = "Jack Ma"
+                                        print("Hello Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                    </code>
+                                    More Guests:
+                                    <code>
+                                        guest_list.insert(0, "Bill Gates");
+                                        guest_list.insert(2, "Mark zuckerberg")
+                                        guest_list.append("Larry Ellison")
+                                        print("Hello Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[3] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[4] + " I would like to invite you to dinner!")
+                                        print("Hello Mr. " + guest_list[5] + " I would like to invite you to dinner!")
+                                    </code>
+                                    Shrinking Guest List:
+                                    <code>
+                                        print("Sorry, but I can invite only 2 people for dinner!")
+                                        uninvited_guest = guest_list.pop();
+                                        print("Sorry Mr. " + uninvited_guest + " I hope I can invite you another time!")
+                                        uninvited_guest = guest_list.pop();
+                                        print("Sorry Mr. " + uninvited_guest + " I hope I can invite you another time!")
+                                        uninvited_guest = guest_list.pop();
+                                        print("Sorry Mr. " + uninvited_guest + " I hope I can invite you another time!")
+                                        uninvited_guest = guest_list.pop();
+                                        print("Sorry Mr. " + uninvited_guest + " I hope I can invite you another time!")
+                                        print("Mr. " + guest_list[0] + " I have a place for you!") 
+                                        print("Mr. " + guest_list[1] + " I have a place for you!")
+                                        del(guest_list[1])
+                                        del(guest_list[0]) 
+                                        print(guest_list)
+                                    </code>
+                                    Seeing the World: 
+                                    <code>
+                                        favorite_locations = ["Cupertino Apple Park", "Miami", "Los Angeles", "Brasov", "New York"]
+                                        print(favorite_locations)
+                                        print(sorted(favorite_locations))
+                                        print(favorite_locations)
+                                        favorite_locations.reverse()
+                                        print(favorite_locations)
+                                        favorite_locations.reverse()
+                                        print(favorite_locations)
+                                        favorite_locations.sort()
+                                        print(favorite_locations)
+                                        favorite_locations.sort(reverse=True)
+                                        print(favorite_locations)
+                                    </code>
+                                    Dinner Guests:
+                                    <code>
+                                        guest_list = ["Patrick Henry", "Jeff Bezos", "Elon Musk"];
+                                        print("The number of people who are invited to dinner is : " + str(len(guest_list)))
+                                    </code>
+                                    Pizzas:
+                                    <code>
+                                        pizzas = ["Margherita", "Capriciosa", "Neapolitan"]
+
+                                        for pizza in pizzas:
+                                            print("I like : " + pizza + " pizza")
+                                        print("I really love pizza!")
+                                    </code>
+                                    Animals:
+                                    <code>
+                                        animals = ["cat", "dog", "penguin"]
+                                        for animal in animals:
+                                            print("A " + animal + " would make a great pet!")
+
+                                        print("Any of these animals would make a great pet!")
                                     </code>
                             </pre>
                             </b>
