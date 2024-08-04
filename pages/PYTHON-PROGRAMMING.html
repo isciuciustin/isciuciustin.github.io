@@ -234,6 +234,328 @@ print(message)
                                         for cube in cubes:
                                             print(cube)
                                     </code>
+                                    Slices:
+                                    <code>
+                                        cubes = [value ** 3 for value in range(1, 11)]
+                                        for cube in cubes:
+                                            print(cube)
+
+                                        print("The first three items in the list are: " + str(cubes[:3]))
+                                        print("Three items from the middle of the list are: " + str(cubes[4:7]))
+                                        print("The last three items in the list are: " + str(cubes[-3:]))
+                                    </code>
+                                    My Pizzas, Your Pizzas:
+                                    <code>
+                                        pizzas = ["Margherita", "Capriciosa", "Neapolitan"]
+
+                                        for pizza in pizzas:
+                                            print("I like : " + pizza + " pizza")
+                                        print("I really love pizza!")
+
+                                        friend_pizzas = pizzas[:]
+                                        pizzas.append("New York Style")
+                                        friend_pizzas.append("California Pizza")
+                                        print("My favorite pizzas are : ")
+                                        for pizza in pizzas:
+                                            print(pizza)
+                                        print("My friend’s favorite pizzas are: ")
+                                        for favorite_pizza in friend_pizzas:
+                                            print(favorite_pizza)
+                                    </code>
+                                    Buffet:
+                                    <code>
+                                        buffet_foods = ("pizza", "shaorma", "cheeseburger", "spaghetti", "salad")
+                                        for food in buffet_foods:
+                                            print(food)
+
+
+                                        buffet_foods =  ("pizza", "hot dog", "cheeseburger", "hamburger", "salad")
+                                        print("\nNew foods: ")
+                                        for food in buffet_foods:
+                                            print(food)
+                                    </code>
+                                    Alien Colors #1:
+                                    <code>
+                                        alien_color = "green"
+                                        if alien_color == "green":
+                                            print("Congratulations, you earned 5 points!")
+                                    </code>
+                                    Alien Colors #2:
+                                    <code>
+                                        alien_color = "red"
+                                        if alien_color == "green":
+                                            print("Congratulations, you earned 5 points!")
+                                        else:
+                                            print("Congratulations, you earned 10 points!")
+                                    </code>
+                                    Alien Colors #3: 
+                                    <code>
+                                        alien_color = "green"
+                                        if alien_color == "green":
+                                            print("Congratulations, you earned 5 points!")
+                                        elif alien_color == "yellow":
+                                            print("Congratulations, you earned 10 points!")
+                                        else:
+                                            print("Congratulations, you earned 15 points!")
+                                    </code>
+                                    Stages of Life:
+                                    <code>
+                                        age = 20
+                                        if age < 2:
+                                            print("Person is a baby!")
+                                        elif age >= 2 and age < 4:
+                                            print("Person is a toddler!")
+                                        elif age >= 4 and age < 13:
+                                            print("Person is a kid!")
+                                        elif age >= 13 and age < 20:
+                                            print("Person is a teenager!")
+                                        elif age >= 20 and age < 65:
+                                            print("Person is an adult!")
+                                        else:
+                                            print("Person is an elder!")
+                                    </code> 
+                                    Favorite Fruit: 
+                                    <code>
+                                        favorite_fruits = ["apple", "banana", "orange"]
+
+                                        if "pineapple" in favorite_fruits:
+                                            print("You really like pineapples!")
+                                        if "apple" in favorite_fruits:
+                                            print("You really like apples!")
+                                        if "orange" in favorite_fruits:
+                                            print("You really like oranges!")
+                                        if "pear" in favorite_fruits:
+                                            print("You really like pears!")
+                                        if "banana" in favorite_fruits:
+                                            print("You really like bananas!")
+                                    </code>
+                                    Hello Admin:
+                                    <code>
+                                        usernames = ["admin", "IsciucIustin01", "Razvan33", "John_White", "Bob"]
+                                        for username in usernames:
+                                            if username == "admin":
+                                                print("Hello admin, would you like to see a status report?")
+                                            else:
+                                                print("Hello " + username + ", thank you for logging in again")
+
+                                    </code>
+                                    No Users:
+                                    <code>
+                                        usernames = ["admin", "IsciucIustin01", "Razvan33", "John_White", "Bob"]
+                                        for username in usernames:
+                                            if username == "admin":
+                                                print("Hello admin, would you like to see a status report?")
+                                            else:
+                                                print("Hello " + username + ", thank you for logging in again")
+                                        if len(usernames) == 0:
+                                            print("We need to find some users!")
+                                    </code>
+                                    Checking Usernames:
+                                    <code>
+                                        current_users = ["admin", "IsciucIustin01", "Razvan33", "John_White", "Bob"]
+                                        new_users = ["Bob", "IsciucIustin01", "Guy", "Unknown", "No name"]
+
+                                        lower_current_users = []
+                                        for current_user in current_users:
+                                            lower_current_users.append(current_user.lower())
+
+                                        for new_username in new_users:
+                                            if new_username.lower() in lower_current_users:
+                                                print("The username " + new_username + " has been used!")
+                                            else:
+                                                print("The username " + new_username + " is available!")
+
+                                    </code>
+                                    Ordinal Numbers: 
+                                    <code>
+                                        ordinal_numbers = [number for number in range(1, 10)]
+                                        for ordinal_number in ordinal_numbers:
+                                            if ordinal_number == 1:
+                                                print(str(ordinal_number) + "st")
+                                            elif ordinal_number == 2:
+                                                print(str(ordinal_number) + "nd")
+                                            elif ordinal_number == 3:
+                                                print(str(ordinal_number) + "rd")
+                                            else:
+                                                print(str(ordinal_number) + "th")
+                                    </code>
+                                    Person:
+                                    <code>
+                                        personIknow = {
+                                            'first_name': "Razvan",
+                                            'last_name': "Cazacu",
+                                            'age': 21,
+                                            'city': "Nottingham, UK"
+                                        }
+                                        print(personIknow['first_name'])
+                                        print(personIknow['last_name'])
+                                        print(personIknow['age'])
+                                        print(personIknow['city'])
+                                    </code>
+                                    Favorite Numbers:
+                                    <code>
+                                        favorite_numbers = {
+                                            "John": 1,
+                                            "Alex": 5,
+                                            "White": 1943,
+                                            "Robert": 2,
+                                            "Daniel": 100
+                                        }
+                                        
+                                        for name in favorite_numbers:
+                                            print(name + " prefers : " + str(favorite_numbers[name]))
+                                    </code>
+                                    Rivers:
+                                    <code>
+                                        rivers = {
+                                            "The Amur River" : "Russia",
+                                            "Congo River" : "Congo",
+                                            "Parana River" : "Paraguay"
+                                        }
+                                        for name in rivers:
+                                            print(name)
+                                        for country in rivers.values():
+                                            print(country)
+                                    </code>
+                                    Polling:
+                                    <code>
+                                        favorite_languages = {
+                                            'jen': 'python',
+                                            'sarah': 'c',
+                                            'edward': 'ruby',
+                                            'phil': 'python',
+                                        }
+                                        people = ["bob", "arthur", "jen", "sarah"]
+                                        for person in people:
+                                            if person in people:
+                                                print("Thank you " + person + " for taking the poll!")
+                                            else:
+                                                print("Mr. " + person + " I invite you to take the poll!")
+                                        
+                                    </code>
+                                    People: 
+                                    <code>
+                                        personIknow = {
+                                            'first_name': "Razvan",
+                                            'last_name': "Cazacu",
+                                            'age': 21,
+                                            'city': "Nottingham, UK"
+                                        }
+                                        print(personIknow['first_name'])
+                                        print(personIknow['last_name'])
+                                        print(personIknow['age'])
+                                        print(personIknow['city'])
+                                        
+                                        personIdoNotknow = {
+                                            'first_name': "Bill",
+                                            'last_name': "Gates",
+                                            'age': 68,
+                                            'city': "Medina, Washington"
+                                        }
+                                        
+                                        personIwantToknow = {
+                                            'first_name': "Jeff",
+                                            'last_name': "Bezos",
+                                            'age': 60,
+                                            'city': "Miami, Florida"
+                                        }
+                                        
+                                        people = {
+                                            'first_person' : personIknow,
+                                            'second_person' : personIdoNotknow,
+                                            'third_person' : personIwantToknow,
+                                        }
+                                        
+                                        for person, info in people.items():
+                                            print("Info about " + person + " : " )
+                                            print("First name : " + info['first_name'])
+                                            print("Last name : " + info['last_name'])
+                                            print("Age : " + str(info['age']))
+                                            print("City : " + str(info['city']))
+                                    </code>
+                                    Pets:
+                                    <code>
+                                        dog = {
+                                            'kind_of_animal' : "mammal",
+                                            'owner_name' : "Bill"
+                                        }
+                                        
+                                        cat = {
+                                            'kind_of_animal' : "mammal",
+                                            'owner_name' : "James"
+                                        }
+                                        
+                                        parrot = {
+                                            'kind_of_animal' : "not mammal",
+                                            'owner_name' : "James"
+                                        }
+                                        
+                                        pets = {
+                                            'first_animal' : dog,
+                                            'second_animal' : cat,
+                                            'third_animal' : parrot
+                                        }
+                                        
+                                        for pet, info in pets.items():
+                                            print("Info about " + pet + " : ")
+                                            print("Kind of animal : " + info['kind_of_animal'])
+                                            print('Owner name : ' + info['owner_name'])
+                                    </code>
+                                    Favorite Places:
+                                    <code>
+                                        favorite_places = {
+                                            'John White' : ["Virginia", "Georgia"],
+                                            'Cazacu Razvan - Constantin' : ['Nottingham', 'Secuieni'],
+                                            'Isciuc Iustin - Constantin' :['Internet'],
+                                            'Bill Gates' : ['Washington', 'Minnesota']}
+                                        
+                                        for person, places in favorite_places.items():
+                                            print(person + " likes : " )
+                                            for place in places:
+                                                print(place)
+                                    </code>
+                                    Favorite Numbers:
+                                    <code>
+                                        favorite_numbers = {
+                                            "John": [1, 2, 3, 4, 5],
+                                            "Alex": [5, 102, 666],
+                                            "White": [1943, 1534],
+                                            "Robert": [2, 0, -12],
+                                            "Daniel": [100, 100322]
+                                        }
+                                        for name, numbers in favorite_numbers.items():
+                                            print(name + " prefers : ")
+                                            for number in numbers:
+                                                print(number)
+                                    </code>
+                                    Cities
+                                    <code>
+                                        cities = {
+                                            'New York' : {
+                                                'country' : "USA",
+                                                'population': 19469232,
+                                                'fact' : "The New York Public Library houses over 50 million books"
+                                            },
+                                            'Oslo' : {
+                                                'country': "Norway",
+                                                'population': 1100868,
+                                                'fact': "The Nobel Peace Prize is awarded in Oslo"
+                                            },
+                                            'Cupertino' : {
+                                                'country': "USA",
+                                                'population': 56343,
+                                                'fact': "It is known for being the home of Apple Inc., currently headquartered at Apple Park."
+                                            }
+                                        }
+                                        
+                                        for city, info in cities.items():
+                                            print("Info about " + city + " : ")
+                                            print("It is located in : " +  info['country'])
+                                            print("Aprox. population : " +  str(info['population']))
+                                            print("An interesting fact : " + info['fact'])
+                                        
+                                        
+                                    </code>
                             </pre>
                             </b>
                         </p>
