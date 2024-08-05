@@ -860,6 +860,60 @@ print(message)
                                         pm(unprinted_designs, completed_models)
                                         show_completed_models(completed_models)
                                     </code>
+                                    Restaurant:
+                                    <code>
+                                        class Restaurant():
+                                            """A model for a restaurant"""
+
+                                            def __init__(self, restaurant_name, cuisine_type):
+                                                """Initialize restaurant"""
+                                                self.restaurant_name = restaurant_name
+                                                self.cuisine_type = cuisine_type
+
+                                            def describe_restaurant(self):
+                                                print("Restaurant name is : " + self.restaurant_name)
+                                                print("Cuisine type is : " + self.cuisine_type)
+
+
+                                            def open_restaurant(self):
+                                                print("Restaurant is now open!") 
+
+
+                                        restaurant = Restaurant(restaurant_name="Iustin's restaurant", cuisine_type="Fast Food")
+                                        restaurant.describe_restaurant()
+                                        restaurant.open_restaurant()
+                                    </code>
+                                    Users: 
+                                    <code>
+                                        class User():
+                                        """A model that describes a user!"""
+
+                                        def __init__(self, first_name, last_name, **user_profile):
+                                            self.first_name = first_name
+                                            self.last_name = last_name
+                                            user_info = {}
+                                            for key, value in user_profile.items():
+                                                user_info[key] = value
+                                            self.user_info = user_info
+
+
+                                        def describe_user(self):
+                                            print("User's first name : " + self.first_name)
+                                            print("User's last_name : " + self.last_name)
+                                            print("User's has the following attributes! ")
+                                            for key, value in self.user_info.items():
+                                                print(str(key) + " : " + str(value))
+
+
+                                        def greet_user(self):
+                                            print("Hello " + self.first_name + " " + self.last_name)
+
+
+                                        new_user = User("Iustin", "Isciuc", age=20, fact="I like ice cream!")
+
+                                        new_user.describe_user()
+                                        new_user.greet_user()
+                                    </code>
                             </pre>
                             </b>
                         </p>
