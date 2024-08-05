@@ -556,6 +556,75 @@ print(message)
                                         
                                         
                                     </code>
+                                    Rental Car:
+                                    <code>
+                                        message = input("Tell me what kind of car you want : ")
+                                        part_of_message = 'an' if message[0].lower() == 'a' else 'a'
+                                        print("Let me see if I can find you " + part_of_message + " " + message )
+                                    </code>
+                                    Restaurant Seating:
+                                    <code>
+                                        number = int(input("How many people are in your dinner group : "))
+                                        if number > 8:
+                                            print("You will have to wait for a table!")
+                                        else:
+                                            print("Your table is ready!")
+                                    </code>
+                                    Multiples of Ten:
+                                    <code>
+                                        number = int(input("Tell me a lucky number : "))
+                                        if number % 10 == 0:
+                                            print("Your number is multiple of 10")
+                                        else:
+                                            print("Your number is not multiple of 10")
+                                    </code>
+                                    Pizza Toppings:
+                                    <code>
+                                        prompt = "Please enter a pizza topping"
+                                        prompt += "\nPress quit in order to finnish the program!"
+
+                                        while True:
+                                            pizza_topping = input(prompt)
+
+                                            if pizza_topping == "quit":
+                                                break
+                                            else:
+                                                print("I will add " + pizza_topping + " to your pizza!")
+                                    </code>
+                                    Movie Tickets:
+                                    <code>
+                                        prompt = "We need to know your age in order to tell you the cost"
+                                        prompt += "\n Please enter your age ! "
+                                        prompt += "\nPress -1 in order to finnish the program!"
+
+                                        while True:
+                                            age = int(input(prompt))
+                                            if age == -1:
+                                                break
+                                            if age < 3:
+                                                print("The ticket is free!")
+                                            elif age >= 3 and age <= 12:
+                                                print("The ticket is 10$")
+                                            elif age > 12:
+                                                print("The ticket is 15$") 
+                                    </code>
+                                    Exit using active:
+                                    <code>
+                                        prompt = "We need to know your age in order to tell you the cost"
+                                        prompt += "\n Please enter your age ! "
+                                        prompt += "\nPress -1 in order to finnish the program!"
+                                        active = True
+                                        while active == True:
+                                            age = int(input(prompt))
+                                            if age == -1:
+                                                active = False
+                                            if age < 3:
+                                                print("The ticket is free!")
+                                            elif age >= 3 and age <= 12:
+                                                print("The ticket is 10$")
+                                            elif age > 12:
+                                                print("The ticket is 15$") 
+                                    </code>
                             </pre>
                             </b>
                         </p>
