@@ -625,6 +625,241 @@ print(message)
                                             elif age > 12:
                                                 print("The ticket is 15$") 
                                     </code>
+                                    Deli:
+                                    <code>
+                                        sandwich_orders = ["Submarine", "Breakfast Sandwich", "Chicken Sandwich"]
+                                        finished_sandwiches = []
+                                        while sandwich_orders:
+                                            current_sandwich = sandwich_orders.pop()
+                                            print("I made your " + current_sandwich)
+                                            finished_sandwiches.append(current_sandwich)
+                                        for finished_sandwich in finished_sandwiches:
+                                            print(finished_sandwich + " was made!")
+                                    </code>
+                                    No Pastrami: 
+                                    <code>
+                                        sandwich_orders = ["Submarine","Pastrami",  "Breakfast Sandwich","Pastrami", "Chicken Sandwich", "Pastrami"]
+                                        print("Deli has run out of pastrami!")
+
+                                        while "Pastrami" in sandwich_orders:
+                                            sandwich_orders.remove("Pastrami")
+
+                                        finished_sandwiches = []
+                                        while sandwich_orders:
+                                            current_sandwich = sandwich_orders.pop()
+                                            print("I made your " + current_sandwich)
+                                            finished_sandwiches.append(current_sandwich)
+                                        for finished_sandwich in finished_sandwiches:
+                                            print(finished_sandwich + " was made!")
+
+
+                                        print(sandwich_orders)
+                                    </code>
+                                    Dream Vacation:
+                                    <code>
+                                        responses = {}
+
+                                        polling_active = True
+                                        while polling_active :
+                                            name = input("What is your name?")
+                                            response = input("Where you want to travel?")
+                                            responses[name] = response
+                                            repeat = input("Would you like to let another person respond? (yes/ no) ")
+                                            if repeat == "no":
+                                                polling_active = False
+
+                                        # Polling is complete. Show the results.
+                                        print("\n--- Poll Results ---")
+                                        for name, response in responses.items():
+                                        print(name + " would like to visit " + response + ".")
+                                    </code>
+                                    Message:
+                                    <code>
+                                        def display_message():
+                                        print("I am learning about functions in Python")
+
+                                        display_message()
+                                    </code>
+                                    Favorite Book:
+                                    <code>
+                                        def favorite_book(title):
+                                        print("My favorite book is : " + title.title())
+
+                                        favorite_book("Sapiens")
+                                    </code>
+                                    T-Shirt:
+                                    <code>
+                                        def make_shirt(size="XS", text=""):
+                                        print("The size of your shirt is " + size + " and the text printed on it is : " + text)
+
+                                        make_shirt("M", "BO$$")
+                                    </code>
+                                    Large Shirts:
+                                    <code>
+                                        def make_shirt(size="L", text="I love Python"):
+                                        print("The size of your shirt is " + size + " and the text printed on it is : " + "'" + text + "'")
+
+                                        make_shirt()
+                                    </code>
+                                    Cities:
+                                    <code>
+                                        def describe_city(city="", country=""):
+                                        print(city + " is located in " + country)
+
+                                        describe_city("New York", "USA")
+                                    </code>
+                                    City Names:
+                                    <code>
+                                        def city_country(city="", country=""):
+                                        return city + ", " + country
+
+                                        response = city_country("New York City", "USA")
+                                        print(response)
+                                        response = city_country("Medelin", "Columbia")
+                                        print(response)
+                                        response = city_country("Bangalore", "India")
+                                        print(response)
+                                    </code>
+                                    Album:
+                                    <code>
+                                        def make_album(artist_name="", album_title="", number_of_tracks=0):
+                                        if number_of_tracks > 0:
+                                            return {'artist_name' : artist_name, 'album_title' : album_title, 
+                                                    'number_of_tracks' : number_of_tracks }
+
+                                        return {'artist_name' : artist_name, 'album_title' : album_title }
+
+                                        response = make_album("Lil Pump", "Lil Pump", 15)
+                                        print(response)
+
+                                        response = make_album("Lil Pump", "Harverd Drop Out")
+                                        print(response)
+
+                                    </code>
+                                    User Albums:
+                                    <code>
+                                        def make_album(artist_name="", album_title="", number_of_tracks=0):
+                                        if number_of_tracks > 0:
+                                            return {'artist_name' : artist_name, 'album_title' : album_title, 
+                                                'number_of_tracks' : number_of_tracks }
+
+                                        return {'artist_name' : artist_name, 'album_title' : album_title }
+
+
+                                    while True:
+                                        print("Please enter your favorite artis and his greates albim title!")
+                                        print("\n Press q to quit the program!")
+
+                                        artist_name = input("Artist name : ")
+
+                                        if artist_name == "q":
+                                            break
+                                            
+                                        album_title = input("Album title : ")
+
+                                        if album_title == "q":
+                                            break
+
+                                        response = make_album(artist_name, album_title)
+                                        print(response)
+
+                                    </code>
+                                    Magicians:
+                                    <code>
+                                        def show_magicians(magician_names):
+                                        for magician_name in magician_names:
+                                            print(magician_name)
+                                        magician_names = ["Dynamo", "Cosentino", "Dai Vernon"]
+                                        show_magicians(magician_names)
+                                    </code>
+                                    Great Magicians: 
+                                    <code>
+                                        def show_magicians(magician_names):
+                                        for magician_name in magician_names:
+                                            print(magician_name)
+
+                                        def make_great(magician_names):
+                                            great_magicians = []
+                                            for magician_name in magician_names:
+                                                great_magicians.append("The Great " + magician_name)
+                                            return great_magicians
+                                            
+                                        magician_names = ["Dynamo", "Cosentino", "Dai Vernon"]
+
+                                        show_magicians(magician_names)
+
+                                        magician_names = make_great(magician_names)
+
+                                        show_magicians(magician_names)
+                                    </code>
+                                    Unchanged Magicians:
+                                    <code>
+                                        def show_magicians(magician_names):
+                                        for magician_name in magician_names:
+                                            print(magician_name)
+
+                                        def make_great(magician_names):
+                                            for i in range(0, len(magician_names)):
+                                                magician_names[i] = "The Great " + magician_names[i]
+                                            return magician_names
+
+                                        magician_names = ["Dynamo", "Cosentino", "Dai Vernon"]
+
+                                        show_magicians(magician_names)
+
+                                        great_magicians = make_great(magician_names[:])
+
+                                        show_magicians(magician_names)
+                                        show_magicians(great_magicians)
+                                    </code>
+                                    Sandwiches:
+                                    <code>
+                                        def make_sandwich(*things):
+                                        print("Your sandwich will contain : ")
+                                            for thing in things:
+                                                print(thing)
+
+                                        make_sandwich('pepperoni')
+                                        make_sandwich('pepperoni', 'pepper')
+                                    </code>
+                                    User Profile:
+                                    <code>
+                                        def build_profile(first_name="", last_name="", **user_info):
+                                            profile = {}
+                                            profile['first_name'] = first_name
+                                            profile['last_name'] = last_name
+                                            for key, value in user_info.items():
+                                                profile[key] = value
+                                            return profile
+
+                                        my_profile = build_profile("Iustin", "Isciuc", location='Internet')
+
+                                        print(my_profile)
+                                    </code>
+                                    Cars:
+                                    <code>
+                                        def make_car(name="", model="", **car_info):
+                                            car = {}
+                                            car['name'] = name
+                                            car['model'] = model
+                                            for key, value in car_info.items():
+                                                car[key] = value
+                                            return car
+
+                                        car_info = make_car("Range Rover", "Sport", color="orange", custom="massage")
+
+                                        print(car_info)
+                                    </code>
+                                    Imports: 
+                                    <code>
+                                        from printing_functions import print_models as pm
+                                        from printing_functions import show_completed_models
+                                        unprinted_designs = ['iphone case', 'robot pendant', 'dodecahedron']
+                                        completed_models = []
+
+                                        pm(unprinted_designs, completed_models)
+                                        show_completed_models(completed_models)
+                                    </code>
                             </pre>
                             </b>
                         </p>
