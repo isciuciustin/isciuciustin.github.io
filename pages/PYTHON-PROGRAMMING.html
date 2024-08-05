@@ -914,6 +914,82 @@ print(message)
                                         new_user.describe_user()
                                         new_user.greet_user()
                                     </code>
+                                    Number Served:
+                                    <code>
+                                        class Restaurant():
+                                        """A model for a restaurant"""
+                                    
+                                        def __init__(self, restaurant_name, cuisine_type):
+                                            """Initialize restaurant"""
+                                            self.restaurant_name = restaurant_name
+                                            self.cuisine_type = cuisine_type
+                                            self.number_served = 0
+                                    
+                                        def describe_restaurant(self):
+                                            print("Restaurant name is : " + self.restaurant_name)
+                                            print("Cuisine type is : " + self.cuisine_type)
+                                    
+                                    
+                                        def open_restaurant(self):
+                                            print("Restaurant is now open!") 
+                                    
+                                        def set_number_served(self, new_number_served):
+                                            self.number_served = new_number_served
+                                    
+                                        def increment_number_served(self, number):
+                                            self.number_served += number
+                                    
+                                    restaurant = Restaurant(restaurant_name="Iustin's restaurant", cuisine_type="Fast Food")
+                                    print(restaurant.number_served)
+                                    restaurant.set_number_served(1)
+                                    print(restaurant.number_served)
+                                    restaurant.increment_number_served()
+                                    print(restaurant.number_served)
+                                    </code>
+                                    Login Attempts:
+                                    <code>
+                                        class User():
+                                            """A model that describes a user!"""
+
+                                            def __init__(self, first_name, last_name, **user_profile):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                                user_info = {}
+                                                for key, value in user_profile.items():
+                                                    user_info[key] = value
+                                                self.user_info = user_info
+                                                self.login_attempts = 0
+
+
+                                            def describe_user(self):
+                                                print("User's first name : " + self.first_name)
+                                                print("User's last_name : " + self.last_name)
+                                                print("User's has the following attributes! ")
+                                                for key, value in self.user_info.items():
+                                                    print(str(key) + " : " + str(value))
+
+
+                                            def greet_user(self):
+                                                print("Hello " + self.first_name + " " + self.last_name)
+
+
+                                            def increment_login_attempts(self):
+                                                self.login_attempts += 1
+
+
+                                            def reset_login_attempts(self):
+                                                self.login_attempts = 0
+
+                                        new_user = User("Iustin", "Isciuc", age=20, fact="I like ice cream!")
+
+                                        new_user.increment_login_attempts()
+                                        new_user.increment_login_attempts()
+                                        new_user.increment_login_attempts()
+                                        new_user.increment_login_attempts()
+                                        print(new_user.login_attempts)
+                                        new_user.reset_login_attempts()
+                                        print(new_user.login_attempts)
+                                    </code>
                             </pre>
                             </b>
                         </p>
