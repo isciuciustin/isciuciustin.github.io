@@ -990,6 +990,390 @@ print(message)
                                         new_user.reset_login_attempts()
                                         print(new_user.login_attempts)
                                     </code>
+                                    Ice Cream Stand:
+                                    <code>
+                                        class Restaurant():
+                                            """A model for a restaurant"""
+
+                                            def __init__(self, restaurant_name, cuisine_type):
+                                                """Initialize restaurant"""
+                                                self.restaurant_name = restaurant_name
+                                                self.cuisine_type = cuisine_type
+                                                self.number_served = 0
+
+                                            def describe_restaurant(self):
+                                                print("Restaurant name is : " + self.restaurant_name)
+                                                print("Cuisine type is : " + self.cuisine_type)
+
+
+                                            def open_restaurant(self):
+                                                print("Restaurant is now open!") 
+
+                                            def set_number_served(self, new_number_served):
+                                                self.number_served = new_number_served
+
+                                            def increment_number_served(self, number):
+                                                self.number_served += number
+
+
+                                        class IceCreamStand(Restaurant):
+
+                                            def __init__(self, restaurant_name, cuisine_type, flavors):
+                                                super().__init__(restaurant_name, cuisine_type)
+                                                self.flavors = flavors[:]
+
+
+                                            def display_flavors(self):
+                                                print("Your flavors: ")
+                                                for i in range(0, len(self.flavors)):
+                                                    print(self.flavors[i])
+
+                                        ice_cream = IceCreamStand(restaurant_name="Iustin's Ice Cream", cuisine_type="Ice Cream Stand", flavors=["vanilla", "coffe", "Strawberry"])
+
+                                        ice_cream.display_flavors()
+                                    </code>
+                                    Admin:
+                                    <code>
+                                        class User():
+                                        """A model that describes a user!"""
+
+                                        def __init__(self, first_name, last_name, **user_profile):
+                                            self.first_name = first_name
+                                            self.last_name = last_name
+                                            user_info = {}
+                                            for key, value in user_profile.items():
+                                                user_info[key] = value
+                                            self.user_info = user_info
+
+
+                                        def describe_user(self):
+                                            print("User's first name : " + self.first_name)
+                                            print("User's last_name : " + self.last_name)
+                                            print("User's has the following attributes! ")
+                                            for key, value in self.user_info.items():
+                                                print(str(key) + " : " + str(value))
+
+
+                                        def greet_user(self):
+                                            print("Hello " + self.first_name + " " + self.last_name)
+
+
+                                    class Admin(User):
+
+                                        def __init__(self, first_name, last_name, **user_profile):
+                                            super().__init__(first_name, last_name, **user_profile)
+
+                                            self.privileges = ["can add post", "can ban user", "can delete post"]
+
+                                        def show_privileges(self):
+                                            print("These are the admin privileges : ")
+                                            for i in range(0, len(self.privileges)):
+                                                print(self.privileges[i])
+
+
+                                    admin = Admin("Iustin", "Isciuc", status="The Youngest Flexer!")
+
+                                    admin.show_privileges()
+                                    </code>
+                                    Privileges:
+                                    <code>
+                                        class User():
+                                            """A model that describes a user!"""
+
+                                            def __init__(self, first_name, last_name, **user_profile):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                                user_info = {}
+                                                for key, value in user_profile.items():
+                                                    user_info[key] = value
+                                                self.user_info = user_info
+
+
+                                            def describe_user(self):
+                                                print("User's first name : " + self.first_name)
+                                                print("User's last_name : " + self.last_name)
+                                                print("User's has the following attributes! ")
+                                                for key, value in self.user_info.items():
+                                                    print(str(key) + " : " + str(value))
+
+
+                                            def greet_user(self):
+                                                print("Hello " + self.first_name + " " + self.last_name)
+
+
+                                        class Privileges(User):
+
+                                            def __init__(self):
+                                                self.privileges = ["can add post", "can ban user", "can delete post"]
+
+
+                                            def show_privileges(self):
+                                                print("These are the admin privileges : ")
+                                                for i in range(0, len(self.privileges)):
+                                                    print(self.privileges[i])
+
+
+                                        class Admin(User):
+
+                                            def __init__(self, first_name, last_name, **user_profile):
+                                                super().__init__(first_name, last_name, **user_profile)
+                                                self.privileges = Privileges()
+
+
+
+
+
+                                        admin = Admin("Iustin", "Isciuc", status="The Youngest Flexer!")
+
+                                        admin.privileges.show_privileges()
+                                    </code>
+                                    Battery Upgrade:
+                                    <code>
+                                        class Car():
+                                            """A simple attempt to represent a car."""
+                                            def __init__(self, make, model, year):
+                                                self.make = make
+                                                self.model = model
+                                                self.year = year
+                                                self.odometer_reading = 0
+
+                                            def get_descriptive_name(self):
+                                                long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+                                                return long_name.title()
+
+                                            def read_odometer(self):
+                                                print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+                                            def update_odometer(self, mileage):
+                                                if mileage >= self.odometer_reading:
+                                                    self.odometer_reading = mileage
+                                                else:
+                                                    print("You can't roll back an odometer!")
+
+                                            def increment_odometer(self, miles):
+                                                self.odometer_reading += miles
+
+
+                                        class Battery():
+                                            """A simple attempt to model a battery for an electric car."""
+
+                                            def __init__(self, battery_size=70):
+                                                """Initialize the battery's attributes."""
+                                                self.battery_size = battery_size
+
+                                            def describe_battery(self):
+                                                """Print a statement describing the battery size."""
+                                                print("This car has a " + str(self.battery_size) + "-kWh battery.") 
+
+                                            def get_range(self):
+                                                """Print a statement about the range this battery provides."""
+                                                if self.battery_size == 70:
+                                                    range = 240
+                                                elif self.battery_size == 85:
+                                                    range = 270
+
+                                                message = "This car can go approximately " + str(range)
+                                                message += " miles on a full charge."
+                                                print(message)
+
+                                            def upgrade_battery(self):
+                                                self.battery_size = 85
+
+
+                                        class ElectricCar(Car):
+                                            """Represent aspects of a car, specific to electric vehicles."""
+                                        
+                                            def __init__(self, make, model, year):
+                                                """Initialize attributes of the parent class."""
+                                                super().__init__(make, model, year)
+                                                self.battery = Battery()
+
+
+                                        my_tesla = ElectricCar('tesla', 'model s', 2016)
+                                        print(my_tesla.get_descriptive_name())
+                                        my_tesla.battery.describe_battery()
+                                        my_tesla.battery.get_range()
+                                        my_tesla.battery.upgrade_battery()
+                                        my_tesla.battery.get_range()
+                                    </code>
+                                    Dice:
+                                    <code>
+                                        from random import randint
+
+                                        class Die():
+
+
+                                            def __init__(self, sides=6):
+                                                self.sides = sides
+
+
+                                            def roll_die(self):
+                                                print("The roled side is : ")
+                                                print(randint(1, self.sides))
+
+
+                                        dice = Die(6)
+
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+
+                                        dice = Die(10)
+
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                    </code>
+                                    Learning Python:
+                                    <code>
+                                        filename = "learning_python.txt"
+
+
+                                        with open(filename) as file_object:
+                                        contents = file_object.read()
+                                        print(contents)
+
+                                        with open(filename) as file_object:
+                                            for line in file_object:
+                                                print(line.rstrip())
+
+                                        with open(filename) as file_object:
+                                            lines = file_object.readlines()
+
+                                        for line in lines:
+                                            print(line.rstrip())
+                                    </code>
+                                    Learning Javascript:
+                                    <code>
+                                        filename = "learning_python.txt"
+
+                                        with open(filename) as file_object:
+                                            for line in file_object:
+                                                print(line.rstrip().replace("Python", "Javascript"))
+                                    </code>
+                                    Guest:
+                                    <code>
+                                        filename = "guest.txt"
+
+                                        name = input("Sir, enter your name pls!")
+
+                                        with open(filename, 'w') as file_object:
+                                            file_object.write("Your name is : " + name )
+                                    </code>
+                                    Guest Book: 
+                                    <code>
+                                        filename = "guest.txt"
+
+                                        while True:
+
+                                            name = input("Sir, enter your name pls! \n Press 'quit' to finish the program \n")
+
+                                            if name == "quit":
+                                                break
+
+                                            print("Hello Mr. " + name)
+
+                                            with open(filename, 'a') as file_object:
+                                                file_object.write(name + " was recorded as a visitor!")
+
+                                    </code>
+                                    Count Words:
+                                    <code>
+                                    def count_words(filename):
+                                        """Count the approximate number of words in a file."""
+                                        try:
+                                            with open(filename) as file_object:
+                                                file = file_object.read()
+                                        except FileNotFoundError:
+                                            msg = "Sorry, the file " + filename + " does not exist."
+                                            print(msg)
+                                        else:
+                                            words = file.split()
+                                            num_words = len(words)
+                                            print("The aprox number of words in Seneca dialouges is : " + str(num_words))
+                                    
+                                    
+                                    filename = 'pg64576-images.html'
+                                    count_words(filename)
+                                    </code>
+                                    Addition:
+                                    <code>
+                                        try:
+                                            message = "Please enter 2 numbers to sum up!\n"
+                                            message += "First number: "
+                                            first_number = int(input(message))
+                                            message = "Second number : "
+                                            second_number = int(input(message))
+                                            print("The sum is : " + str(first_number + second_number))
+                                        except ValueError:
+                                            print("You didn't enter 2 numbers correctly!")
+                                    </code>
+                                    Addition Calculator:
+                                    <code>
+                                        while True:
+                                        try:
+                                            message = "Please enter 2 numbers to sum up!\n"
+                                            message += "First number: "
+                                            first_number = int(input(message))
+                                            message = "Second number : "
+                                            second_number = int(input(message))
+                                            print("The sum is : " + str(first_number + second_number))
+                                            quit = input("You want to quit ? (yes / no) \n")
+                                            if 'y' in quit:
+                                                break 
+                                        except ValueError:
+                                            pass
+                                    </code>
+                                    Verify User:
+                                    <code>
+                                        import json
+
+                                        def get_stored_username():
+                                            """Get stored username if available"""
+                                            filename = "username.json"
+                                            try:
+                                                with open(filename) as file_object:
+                                                    username = json.load(file_object)
+
+                                            except FileNotFoundError:
+                                                return None
+
+                                            else:
+                                                return username
+
+
+                                        def get_new_username():
+                                            """Prompt for a new username."""
+                                            username = input("What is your username? \n")
+                                            filename = 'username.json'
+                                            with open(filename, 'w') as f_obj:
+                                                json.dump(username, f_obj)
+                                            return username
+
+
+                                        def greet_user(filename):
+                                            """Greet the user by name."""
+                                            username = get_stored_username()
+                                            if username:
+                                                while True:
+                                                    your_name = input("Enter your username pls! \n")
+                                                    if your_name == 'q':
+                                                        break
+                                                    if your_name == username:
+                                                        print("Welcome back, " + username + "!")
+                                                        break
+                                                    else:
+                                                        print("Your username could not be found\n Please enter it again or press 'q' to quit\n")
+                                            else:
+                                                username = get_new_username()
+                                                print("We'll remember you when you come back, " + username + "!")
+
+
+                                        filename = 'username.json'
+                                        greet_user(filename)
+                                    </code>
                             </pre>
                             </b>
                         </p>
