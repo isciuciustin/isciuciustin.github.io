@@ -1374,6 +1374,102 @@ print(message)
                                         filename = 'username.json'
                                         greet_user(filename)
                                     </code>
+                                    City, Country:
+                                    <code>
+                                        #Code in city_country.py
+
+                                        def city_country(city_name, country_name):
+                                            """Print city, country"""
+                                            formatted_text = city_name.title() + ', ' + country_name.title()
+                                            return formatted_text
+
+                                        # Code in test.py
+                                        import unittest
+                                        from city_country import city_country
+
+                                        class TestCityCountry(unittest.TestCase):
+                                            """Tests for city_country """
+                                            def test_city_country(self):
+                                                """Does santiego, chile work? ?"""
+
+                                                formatted_text = city_country('santiego', 'chile')
+                                                self.assertEqual(formatted_text, 'Santiego, Chile')
+
+                                        unittest.main()
+                                    </code>
+                                    Population:
+                                    <code>
+                                        #Code in city_country.py
+                                        def city_country(city_name, country_name, population=0):
+                                            """Print city, country"""
+                                            if population:
+                                                formatted_text = city_name.title() + ', ' + country_name.title() + ' -population ' + str(population)
+                                            else:
+                                                formatted_text = city_name.title() + ', ' + country_name.title()
+
+                                            return formatted_text
+
+                                        # Code in test.py
+                                        import unittest
+                                        from city_country import city_country
+
+                                        class TestCityCountry(unittest.TestCase):
+                                            """Tests for city_country """
+                                            def test_city_country(self):
+                                                """Does santiego, chile work? ?"""
+
+                                                formatted_text = city_country('santiego', 'chile')
+                                                self.assertEqual(formatted_text, 'Santiego, Chile')
+
+                                            def test_city_country_population(self):
+                                                """Does santiego, chile, work? ?"""
+
+                                                formatted_text = city_country('santiego', 'chile', population=5000000)
+                                                self.assertEqual(formatted_text, 'Santiego, Chile -population 5000000')
+
+                                        unittest.main()
+                                    </code>
+                                    <code>
+                                        #Code in employee.py
+
+                                        class Employee:
+                                        """Info about an employee"""
+
+                                        def __init__(self, first_name, last_name, annual_salary):
+                                            self.first_name = first_name
+                                            self.last_name = last_name
+                                            self.annual_salary = annual_salary
+
+                                        def give_raise(self,raise_amount=5000):
+                                            self.annual_salary += raise_amount
+                                            return self.annual_salary
+                                        
+                                        #Code in test.py
+
+                                        import unittest
+                                        from employee import Employee
+
+
+                                        class TestGiveRaise(unittest.TestCase):
+
+                                            def setUp(self):
+                                                """Create a standard employee"""
+                                                self.employee = Employee("Iustin", "Isciuc", 1000000000)
+                                                self.responses = [1000005000, 1000000002]
+
+                                            def test_give_default_raise(self):
+                                                new_salary = self.employee.give_raise()
+                                                self.assertEqual(new_salary, self.responses[0])
+
+                                            def  test_give_custom_raise(self):
+                                                new_salary = self.employee.give_raise(2)
+                                                self.assertEqual(new_salary, self.responses[1])
+
+
+
+                                        unittest.main()
+
+                                    </code>
                             </pre>
                             </b>
                         </p>
