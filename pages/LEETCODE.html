@@ -65,6 +65,34 @@
                                         return False;
                             </pre
                                 >
+                                <a
+                                    href="https://leetcode.com/problems/valid-anagram/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >242. Valid Anagram</a
+                                >
+                                <pre>
+                                class Solution:
+                                def isAnagram(self, s: str, t: str) -> bool:
+                                    hash_table = {}
+                                    for ch in s:
+                                        if ch not in hash_table:
+                                            hash_table[ch] = 1
+                                        else:
+                                            hash_table[ch] = hash_table[ch] + 1
+
+                                    for ch in t:
+                                        if ch not in hash_table:
+                                            return False
+                                        else:
+                                            hash_table[ch] = hash_table[ch] - 1
+
+                                    for code in range(ord('a'), ord('z') + 1):
+                                        if chr(code) in hash_table and hash_table[chr(code)] != 0:
+                                            return False
+                                    return True
+                            </pre
+                                >
                             </b>
                         </p>
                     </ul>
