@@ -93,6 +93,25 @@
                                     return True
                             </pre
                                 >
+                                <a
+                                    href="https://leetcode.com/problems/two-sum/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >1. Two Sum</a
+                                >
+                                <pre>
+                                from typing import List
+                                class Solution:
+                                    def twoSum(self, nums: List[int], target: int) -> List[int]:
+                                        hash_table = {}
+                                        for i in range(0, len(nums)):
+                                            remainder = target - nums[i]
+                                            if remainder in hash_table.keys():
+                                                return [hash_table[remainder], i]
+                                            hash_table[nums[i]] = i
+                                        return []
+                            </pre
+                                >
                             </b>
                         </p>
                     </ul>
