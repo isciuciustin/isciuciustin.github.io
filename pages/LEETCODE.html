@@ -137,6 +137,35 @@
 
                                             return sol 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/top-k-frequent-elements/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >347. Top K Frequent Elements</a
+                                >
+                                <pre>
+                                    import heapq
+                                    from typing import List
+
+                                    class Solution:
+                                        def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+                                            hash_table = {}
+                                            for x in nums:
+                                                if x not in hash_table:
+                                                    hash_table[x] = 1
+                                                else:
+                                                    hash_table[x] = hash_table[x] + 1
+                                            pq = []
+
+                                            for key in hash_table.keys():
+                                                heapq.heappush(pq, (hash_table[key], key))
+
+                                            sol = []
+
+                                            for x in heapq.nlargest(iterable=pq, n=k):
+                                                sol.append(x[1])
+                                            return sol
+                                </pre>
                             </b>
                         </p>
                     </ul>
