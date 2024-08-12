@@ -166,6 +166,31 @@
                                                 sol.append(x[1])
                                             return sol
                                 </pre>
+                                Better approach (Bucket Sort)
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+                                            hash_table = {}
+                                            for i in range(0, len(nums)):
+                                                if nums[i] not in hash_table:
+                                                    hash_table[nums[i]] = 1
+                                                else:
+                                                    hash_table[nums[i]] = hash_table[nums[i]] + 1
+                                    
+                                            count = [[] for i in range(0, len(nums) + 1)]
+                                    
+                                            for key, val in hash_table.items():
+                                                count[val].append(key)
+                                    
+                                            sol = []
+                                    
+                                            for i in range(len(count) - 1, 0, -1):
+                                                for x in count[i]:
+                                                    sol.append(x)
+                                                    if len(sol) == k:
+                                                        return sol                                    
+                                </pre>
                             </b>
                         </p>
                     </ul>
