@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1"
+        />
+        <title> Isciuc Iustin - Constantin </title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="../style.css"
+        />
+        <link
+            rel="icon"
+            href="../images/code.svg"
+        />
+    </head>
+    <body>
+        <nav class="navbar bg-body-tertiary fixed-top shadow">
+            <div class="container-fluid d-flex justify-content-center">
+                <span class="navbar-brand mx-auto h1">
+                    <b>
+                        <a
+                            href="../index.html"
+                            class="text-reset text-decoration-none"
+                            >Isciuc Iustin - Constantin</a
+                        >
+                    </b>
+                </span>
+            </div>
+        </nav>
+        <main>
+            <div class="container min-vh-100 py-5">
+                <div class="d-flex justify-content-center my-3">
+                    <i> These are my solutions to Leetcode 150: </i>
+                </div>
+                <div class="d-flex justify-content-start my-3">
+                    <ul>
+                        <p>
+                            <b>
+                                <a
+                                    href="https://leetcode.com/problems/contains-duplicate/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >217. Contains Duplicate</a
+                                >
+                                <pre>
+                                from typing import List
+                                class Solution:
+
+                                    def containsDuplicate(self, nums: List[int]) -&gt; bool:
+                                        new_set = set();
+                                        for i in range(0, len(nums)):
+                                            if nums[i] not in new_set:
+                                                new_set.add(nums[i])
+                                            else:
+                                                return True;
+                                        return False;
+                            </pre
+                                >
+                            </b>
+                        </p>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </body>
+    <footer>
+        <nav class="navbar bg-body-tertiary sticky-bottom">
+            <div class="container-fluid d-flex justify-content-center">
+                <p>
+                    <b>
+                        <i>Better Than Yesterday</i>
+                    </b>
+                </p>
+            </div>
+        </nav>
+    </footer>
+</html>
