@@ -357,6 +357,30 @@
 
                                             return longest
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/valid-parentheses/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >20. Valid Parentheses</a
+                                >
+                                <pre>
+                                    class Solution:
+                                    def isValid(self, s: str) -> bool:
+                                        st = []
+                                        for ch in s:  
+                                            top = st[len(st) - 1] if len(st) > 0 else -1
+                                            if  ch == '(' or ch == '[' or  ch == '{':
+                                                st.append(ch)
+                                            elif ch == ')' and top == '(' or ch == ']' and top == '[' or ch == '}' and top == '{':
+                                                st.pop()
+                                            else:
+                                                return False
+
+                                        if len(st) != 0:
+                                            return False
+                                        return True
+
+                                </pre>
                             </b>
                         </p>
                     </ul>
