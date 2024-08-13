@@ -381,6 +381,57 @@
                                         return True
 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/min-stack/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >155. Min Stack</a
+                                >
+                                <pre>
+                                    class MinStack:
+
+                                    def __init__(self):
+                                        self.st = []
+
+                                    def push(self, val: int) -> None:
+                                        self.st.append(val)
+
+                                    def pop(self) -> None:
+                                        self.st.pop()
+
+                                    def top(self) -> int:
+                                        return  self.st[-1] 
+
+                                    def getMin(self) -> int:
+                                        minim = self.st[-1]
+                                        for x in self.st:
+                                            if minim > x:
+                                                minim = x
+                                        return minim
+                                </pre>
+                                Better approach (Two Stacks)
+                                <pre>
+                                    class MinStack:
+
+                                    def __init__(self):
+                                        self.st = []
+                                        self.min_stack = []
+
+                                    def push(self, val: int) -> None:
+                                        self.min_stack.append(min(val, self.min_stack[-1] if len(self.min_stack) > 0 else val))
+                                        self.st.append(val)
+
+                                    def pop(self) -> None:
+                                        self.st.pop()
+                                        self.min_stack.pop()
+
+
+                                    def top(self) -> int:
+                                        return  self.st[-1] 
+
+                                    def getMin(self) -> int:
+                                        return self.min_stack[-1]
+                                </pre>
                             </b>
                         </p>
                     </ul>
