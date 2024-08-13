@@ -191,7 +191,12 @@
                                                     if len(sol) == k:
                                                         return sol                                    
                                 </pre>
-                                String Encode and Decode
+                                <a
+                                    href="https://neetcode.io/problems/string-encode-and-decode"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >String Encode and Decode</a
+                                >
                                 <pre>
                                     from typing import List
                                     class Solution:
@@ -218,7 +223,12 @@
                                                 
                                             return sol
                                 </pre>
-                                238. Product of Array Except Self
+                                <a
+                                    href="https://leetcode.com/problems/product-of-array-except-self/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >238. Product of Array Except Self</a
+                                >
                                 <pre>
                                     from typing import List
                                     class Solution:
@@ -251,7 +261,12 @@
                                             return sol
 
                                 </pre>
-                                36. Valid Sudoku
+                                <a
+                                    href="https://leetcode.com/problems/valid-sudoku/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >36. Valid Sudoku</a
+                                >
                                 <pre>
                                     from typing import List
                                     class Solution:
@@ -321,6 +336,24 @@
                                                     current = 1
                                                 if longest < current:
                                                     longest = current
+
+                                            return longest
+                                </pre>
+                                Better approach (Using Set())
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def longestConsecutive(self, nums: List[int]) -> int:
+                                            nSet = set(nums)
+                                            longest = 0
+                                            current = 0
+                                            for x in nums:
+                                                if (x - 1) not in nSet:
+                                                    current = 1
+                                                    while (x + current) in nSet:
+                                                        current += 1
+                                                    if longest < current:
+                                                        longest = current 
 
                                             return longest
                                 </pre>
