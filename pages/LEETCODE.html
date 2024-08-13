@@ -251,6 +251,53 @@
                                             return sol
 
                                 </pre>
+                                36. Valid Sudoku
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def isValidSudoku(self, board: List[List[str]]) -> bool:
+                                            
+                                            for i in range(0, 9):
+                                                sodoku_set = set()
+                                                for j in range(0, 9):
+                                                    if board[i][j] in sodoku_set:
+                                                        return False
+                                                    elif board[i][j] != ".":
+                                                        print(board[i][j])
+                                                        sodoku_set.add(board[i][j])
+
+                                            for j in range(0, 9):
+                                                sudoku_set = set()
+                                                for i in range(0, 9):
+                                                    if board[i][j] in sudoku_set:
+                                                        return False
+                                                    elif board[i][j] != ".":
+                                                        sudoku_set.add(board[i][j])
+
+                                            ist = 0
+                                            jst = 0
+
+                                            while True:
+                                                sudoku_set = set()
+
+                                                for i in range(ist, ist + 3):
+                                                    for j in range(jst, jst + 3):
+                                                        if board[i][j] in sudoku_set:
+                                                            return False
+                                                        elif board[i][j] != ".":
+                                                            sudoku_set.add(board[i][j])
+
+                                                jst += 3
+
+                                                if jst == 9:
+                                                    jst = 0 
+                                                    ist += 3
+
+                                                if ist == 9:
+                                                    break
+
+                                            return True
+                                </pre>
                             </b>
                         </p>
                     </ul>
