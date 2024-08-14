@@ -432,6 +432,37 @@
                                     def getMin(self) -> int:
                                         return self.min_stack[-1]
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/evaluate-reverse-polish-notation/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >150. Evaluate Reverse Polish Notation</a
+                                >
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def evalRPN(self, tokens: List[str]) -> int:
+                                            operators = {'+', '-', '*', '/'}
+                                            st = []
+
+                                            for t in tokens:
+                                                if t in operators:
+                                                    s_item = int(st.pop())
+                                                    f_item = int(st.pop())
+                                                    if t == '+':
+                                                        res = f_item + s_item
+                                                    elif t == '-':
+                                                        res = f_item - s_item
+                                                    elif t == '*':
+                                                        res = f_item * s_item
+                                                    else:
+                                                        res = int(f_item / s_item)
+                                                    st.append(res)
+                                                else:
+                                                    st.append(t)
+
+                                            return int(st.pop())
+                                </pre>
                             </b>
                         </p>
                     </ul>
