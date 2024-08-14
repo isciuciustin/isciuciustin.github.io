@@ -463,6 +463,49 @@
 
                                             return int(st.pop())
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/generate-parentheses/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >22. Generate Parentheses</a
+                                >
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def __init__(self):
+                                            self.sol = []
+                                    
+                                        def isValid(self, s : List[str]) -> bool:
+                                            st = []
+                                            for p in s:
+                                                if p == '(':
+                                                    st.append(p)
+                                                elif p == ')':
+                                                    top = 0 if len(st) == 0 else st[-1]
+                                                    if top == '(':
+                                                        st.pop()
+                                                    else:
+                                                        return False
+                                            if len(st) > 0:
+                                                return False
+                                           
+                                            return True
+                                    
+                                        def bkt(self, n : int, s: List[str], index : int) -> None:
+                                            par = {'(', ')'}
+                                            for p in par:
+                                                s[index] = p 
+                                                if index == (2 * n - 1) and self.isValid(s) == True:
+                                                    self.sol.append(''.join(s))
+                                                elif index < (2 * n - 1):
+                                                    self.bkt(n, s, index + 1)
+                                    
+                                        def generateParenthesis(self, n: int) -> List[str]:
+                                            s = [0] * 2 * n 
+                                            self.bkt(n, s, 0)
+                                            return self.sol 
+                                    
+                                </pre>
                             </b>
                         </p>
                     </ul>
