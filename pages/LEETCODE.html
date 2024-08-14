@@ -506,6 +506,35 @@
                                             return self.sol 
                                     
                                 </pre>
+                                Better approach
+                                <pre>
+                                    from typing import List
+
+                                    class Solution:
+
+                                        def __init__(self):
+                                            self.stack = []
+                                            self.sol = []
+
+                                        def bkt(self, openP: int, closeP: int, n: int) -> None:
+                                            if openP == closeP == n:
+                                                self.sol.append(''.join(self.stack))
+                                                return None
+
+                                            if openP < n:
+                                                self.stack.append("(")
+                                                self.bkt(openP=openP + 1, closeP=closeP, n=n)
+                                                self.stack.pop()
+
+                                            if closeP < openP:
+                                                self.stack.append(")")
+                                                self.bkt(openP=openP, closeP=closeP + 1, n=n)
+                                                self.stack.pop()
+
+                                        def generateParenthesis(self, n: int) -> List[str]:
+                                            self.bkt(openP=0, closeP=0, n=n)
+                                            return self.sol
+                                </pre>
                             </b>
                         </p>
                     </ul>
