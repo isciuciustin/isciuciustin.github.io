@@ -580,6 +580,35 @@
                                             return len(st)
 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/largest-rectangle-in-histogram/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >84. Largest Rectangle in Histogram</a
+                                >
+                                <pre>
+                                    from typing import List
+
+                                    class Solution:
+                                        def largestRectangleArea(self, heights: List[int]) -> int:
+                                            maxArea = 0
+                                            st = []
+
+                                            for i, h in enumerate(heights):
+                                                start = i 
+                                                while len(st) > 0 and st[-1][1] > h:
+                                                    index , height = st.pop()
+                                                    maxArea = max(maxArea, height * (i - index))
+                                                    start = index
+
+                                                st.append((start, h))
+
+                                            for i, h in st:
+                                                maxArea = max(maxArea, h * (len(heights) - i))
+
+                                            return maxArea
+
+                                </pre>
                             </b>
                         </p>
                     </ul>
