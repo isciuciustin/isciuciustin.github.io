@@ -661,6 +661,46 @@
 
                                             return []
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/3sum/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >15. 3Sum</a
+                                >
+                                <pre>
+                                    from typing import List
+
+                                    class Solution:
+                                        def __init__(self):
+                                            self.sol = []
+
+                                        def twoSum(self, nums: List[int], target: int, k: int,i : int, j: int ) -> List[int]:
+                                            while i < j:
+                                                s = nums[i] + nums[j]
+                                                if s < target or i == k:
+                                                    i += 1
+                                                elif s > target or j == k:
+                                                    j -= 1
+                                                else:
+                                                    cand = [nums[i], nums[j], nums[k]]
+                                                    self.sol.append(cand)
+                                                    i += 1
+                                                    while nums[i] == nums[i - 1] and i < j:
+                                                        i += 1
+
+                                            return []
+
+                                        def threeSum(self, nums: List[int]) -> List[List[int]]:
+                                            nums.sort()
+
+                                            for k in range(0, len(nums) - 2):
+                                                if k > 0 and nums[k] == nums[k - 1]:
+                                                    continue
+                                                print(nums[k])
+                                                self.twoSum(nums,(nums[k] * -1), k,  k + 1,len(nums) - 1)
+
+                                            return self.sol
+                                </pre>
                             </b>
                         </p>
                     </ul>
