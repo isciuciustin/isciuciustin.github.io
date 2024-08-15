@@ -609,6 +609,33 @@
                                             return maxArea
 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/valid-palindrome/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >125. Valid Palindrome</a
+                                >
+                                <pre>
+                                    class Solution:
+                                    def isPalindrome(self, s: str) -> bool:
+                                        new_s = ""
+                                        for c in s:
+                                            c = c.lower()
+                                            if c >= 'a' and c <= 'z' or c >= '0' and c <= '9':
+                                                new_s += c 
+
+
+                                        i = 0 
+                                        j = len(new_s) - 1
+                                        while i < j :
+                                            if new_s[i] != new_s[j]:
+                                                return False
+
+                                            i += 1
+                                            j -= 1
+
+                                        return True 
+                                </pre>
                             </b>
                         </p>
                     </ul>
