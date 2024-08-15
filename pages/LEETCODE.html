@@ -557,6 +557,29 @@
 
                                             return ans
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/car-fleet/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >853. Car Fleet</a
+                                >
+                                <pre>
+                                    from typing import List
+
+                                    class Solution:
+                                        def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+                                            pair = [[p, s] for p, s in zip(position, speed)]
+                                            st = []
+
+
+                                            for p, s in sorted(pair)[::-1]:
+                                                st.append((target - p) / s)
+                                                if len(st) >= 2 and st[-1] <= st[-2]:
+                                                    st.pop()
+
+                                            return len(st)
+
+                                </pre>
                             </b>
                         </p>
                     </ul>
