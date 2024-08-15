@@ -535,6 +535,28 @@
                                             self.bkt(openP=0, closeP=0, n=n)
                                             return self.sol
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/daily-temperatures/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >739. Daily Temperatures</a
+                                >
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def dailyTemperatures(self, temp: List[int]) -> List[int]:
+                                            ans = [0] * len(temp)
+                                            st = []
+
+                                            for i in range(0, len(temp)):
+                                                while len(st) > 0 and temp[st[-1]] < temp[i]:
+                                                    ans[st[-1]] = i - st[-1]
+                                                    st.pop()
+
+                                                st.append(i)
+
+                                            return ans
+                                </pre>
                             </b>
                         </p>
                     </ul>
