@@ -793,6 +793,34 @@
                                             return w
 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >121. Best Time to Buy and Sell Stock</a
+                                >
+                                <pre>
+                                    from typing import List
+
+                                    class Solution:
+                                        def maxProfit(self, p: List[int]) -> int:
+                                            i = 0
+                                            j = 1
+                                            max_profit = 0
+
+                                            while j < len(p):
+                                                while p[j] >= p[i]: 
+                                                    if max_profit < p[j] - p[i]:
+                                                        max_profit = p[j] - p[i]
+                                                    j += 1
+
+                                                    if j == len(p):
+                                                        break
+                                                i = j 
+                                                j = i + 1
+
+                                            return max_profit
+                                </pre>
                             </b>
                         </p>
                     </ul>
