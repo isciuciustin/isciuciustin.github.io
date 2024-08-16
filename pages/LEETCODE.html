@@ -701,6 +701,32 @@
 
                                             return self.sol
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/container-with-most-water/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >11. Container With Most Water</a
+                                >
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def maxArea(self, height: List[int]) -> int:
+                                            max_area = -1
+                                            i = 0
+                                            j = len(height) - 1
+                                            while i < j :
+                                                c_area = min(height[i], height[j]) * (j - i)
+                                                if c_area > max_area or max_area == -1:
+                                                    max_area = c_area
+
+                                                if height[i] < height[j]:
+                                                    i += 1
+                                                else:
+                                                    j -= 1
+
+                                            return max_area
+
+                                </pre>
                             </b>
                         </p>
                     </ul>
