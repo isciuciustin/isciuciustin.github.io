@@ -727,6 +727,38 @@
                                             return max_area
 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/trapping-rain-water/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >42. Trapping Rain Water</a
+                                >
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def trap(self, h: List[int]) -> int:
+                                            diff = [0] * len(h)
+                                            maxim = 0
+
+                                            for i in range(0, len(h)):
+                                                if maxim < h[i]:
+                                                    maxim = h[i]
+                                                    diff[i] = 0
+                                                else:
+                                                    diff[i] = maxim - h[i]
+
+                                            w = 0
+                                            maxim = 0
+
+                                            for i in range(len(h) - 1, -1, -1):
+                                                if maxim < h[i]:
+                                                    maxim = h[i]
+                                                else:
+                                                    diff[i] = min(diff[i], maxim - h[i])
+                                                    w += diff[i]
+
+                                            return w
+                                </pre>
                             </b>
                         </p>
                     </ul>
