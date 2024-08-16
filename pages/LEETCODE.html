@@ -759,6 +759,40 @@
 
                                             return w
                                 </pre>
+                                Better approach (Two Pointers)
+                                <pre>
+                                    from typing import List
+                                    class Solution:
+                                        def trap(self, h: List[int]) -> int:
+                                            i = 0
+                                            j = len(h) - 1
+                                            w = 0
+                                            maxL = 0
+                                            maxR = 0
+
+                                            while i < j:
+                                                if maxL < h[i]:
+                                                    maxL = h[i]
+
+                                                if maxR < h[j]:
+                                                    maxR = h[j]
+
+                                                maxMin = min(maxL, maxR)
+
+                                                if maxMin > h[i]:
+                                                    w += maxMin - h[i]
+
+                                                if maxMin > h[j]:
+                                                    w += maxMin - h[j]
+
+                                                if maxL < maxR:
+                                                    i += 1
+                                                else:
+                                                    j -= 1
+
+                                            return w
+
+                                </pre>
                             </b>
                         </p>
                     </ul>
