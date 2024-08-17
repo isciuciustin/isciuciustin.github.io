@@ -1,0 +1,5 @@
+theme: jekyll-theme-minimal
+title: Isciuc Iustin - Constantin
+description: This is my personal webiste
+permissions:
+    id-token: write
