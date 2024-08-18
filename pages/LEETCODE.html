@@ -885,6 +885,63 @@
 
                                         return longest
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/permutation-in-string/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >567. Permutation in String</a
+                                >
+                                <pre>
+                                from typing import List
+                                class Solution:
+                                    def checkInclusion(self, s1: str, s2: str) -> bool:
+                                        if len(s2) < len(s1):
+                                            return False
+                                        hash_s1 = {}
+                                        hash_s2 = {}
+
+                                        for k in range(ord('a'), ord('z') + 1):
+                                            c = chr(k)
+                                            hash_s1[c] = 0
+                                            hash_s2[c] = 0
+
+
+                                        for c in s1:
+                                            hash_s1[c] += 1
+
+                                        i = 0
+                                        j = len(s1) -  1
+
+                                        for x in range(i, j):
+                                            hash_s2[s2[x]] += 1
+
+
+                                        while j < len(s2):
+                                            hash_s2[s2[j]] += 1
+
+                                            ok = True
+
+                                            for k in range(ord('a'), ord('z') + 1):
+                                                c = chr(k)
+
+                                                if (c in hash_s1) != (c in hash_s2):
+                                                    ok = False
+
+                                                if (c in hash_s1 ) and ( c in hash_s2):
+                                                    if hash_s1[c] != hash_s2[c]:
+                                                        ok = False
+
+                                            if ok == True:
+                                                return True
+
+                                            hash_s2[s2[i]] -= 1
+
+                                            i += 1
+                                            j += 1
+
+                                        return False
+
+                                </pre>
                             </b>
                         </p>
                     </ul>
