@@ -1123,6 +1123,39 @@
                                                     return True 
                                             return False 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/koko-eating-bananas/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >875. Koko Eating Bananas</a
+                                >
+                                <pre>
+                                    import math 
+                                    from typing import List
+                                    class Solution:
+                                        def minEatingSpeed(self, piles: List[int], h: int) -> int:
+                                            l = 1
+                                            r = max(piles)
+
+                                            sol = float("infinity")
+
+                                            while l <= r:
+                                                k = (l + r) // 2
+                                                print(k)
+                                                h_e = 0
+
+                                                for i in range(len(piles)):
+                                                    h_e += math.ceil(piles[i] / k)
+
+                                                if h_e <=  h:
+                                                    sol = k 
+                                                    r = k - 1
+                                                else:
+                                                    l = k + 1
+
+                                            return sol
+
+                                </pre>
                             </b>
                         </p>
                     </ul>
