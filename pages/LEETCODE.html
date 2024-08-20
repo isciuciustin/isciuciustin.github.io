@@ -990,6 +990,48 @@
 
                                         return s[l : r + 1] if resLen != float("infinity") else ""
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/sliding-window-maximum/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >239. Sliding Window Maximum</a
+                                >
+                                <pre>
+                                    from collections import deque
+                                    from typing import List
+
+
+                                    class Solution:
+                                        def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+                                            sol = []
+                                            dq = deque()
+
+                                            l = 0
+                                            r = l + k - 1
+
+                                            for x in range(r + 1):
+                                                while len(dq) > 0 and nums[x] > dq[-1]:
+                                                    dq.pop()
+
+                                                dq.append(nums[x])
+                                            
+                                            sol.append(dq[0])
+
+                                            while r < (len(nums) - 1):
+                                                if nums[l] == dq[0]:
+                                                    dq.popleft()
+
+                                                l += 1
+
+                                                r += 1
+
+                                                while len(dq) > 0 and nums[r] > dq[-1]:
+                                                    dq.pop()
+                                                dq.append(nums[r])
+                                                sol.append(dq[0])
+
+                                            return sol 
+                                </pre>
                             </b>
                         </p>
                     </ul>
