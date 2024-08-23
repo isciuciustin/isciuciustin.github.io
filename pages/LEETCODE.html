@@ -1216,6 +1216,46 @@
 
                                             return -1 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/time-based-key-value-store/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >981. Time Based Key-Value Store</a
+                                >
+                                <pre>
+                                    class TimeMap:
+
+                                    def __init__(self):
+                                        self.hash = {}
+
+                                    def set(self, key: str, value: str, timestamp: int) -> None:
+                                        if key not in self.hash:
+                                            self.hash[key] = { "v" : [], "t" : []}
+
+                                        self.hash[key]["v"].append(value)
+                                        self.hash[key]["t"].append(timestamp)
+
+                                    def get(self, key: str, timestamp: int) -> str:
+                                        if key not in self.hash:
+                                            return ""
+                                        arr = self.hash[key]["t"]
+
+                                        l , r = 0, len(arr) - 1 
+                                        index = float("infinity")
+                                        while l <= r:
+                                            m = (l + r) // 2 
+                                            if arr[m] <= timestamp:
+                                                index = m
+                                                if arr[m] == timestamp:
+                                                    break
+                                                else:
+                                                    l = m + 1 
+                                            else:
+                                                r = m - 1
+                                        if index != float("infinity"):
+                                            return self.hash[key]["v"][index]
+                                        return ""
+                                </pre>
                             </b>
                         </p>
                     </ul>
