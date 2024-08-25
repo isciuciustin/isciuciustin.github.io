@@ -1773,6 +1773,36 @@ print(message)
                                             forward_traversal(head)
 
                                     </code>
+                                    Floyd's Cycle-Finding Algorithm
+                                    <code>
+                                        class Node:
+                                        def __init__(self, new_data):
+                                            self.data = new_data
+                                            self.next = None
+
+                                        def hasALoop(head):
+                                            slow_p = head
+                                            fast_p = head
+
+                                            while slow_p and fast_p and fast_p.next:
+                                                slow_p = slow_p.next
+                                                fast_p = fast_p.next.next
+
+                                                if slow_p == fast_p:
+                                                    return True 
+                                            return False
+
+
+                                        head = Node(1)
+                                        head.next = Node(2)
+                                        head.next.next = Node(3)
+                                        head.next.next.next = Node(4)
+                                        head.next.next.next.next = Node(5)
+
+                                        head.next.next.next.next.next = head.next
+
+                                        print(hasALoop(head))
+                                    </code>
                             </pre>
                             </b>
                         </p>
