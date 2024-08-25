@@ -1470,7 +1470,7 @@ print(message)
                                         unittest.main()
 
                                     </code>
-                                    Singly Linked List
+                                    Singly Linked List:
                                     <code>
                                         class Node:
                                         def __init__(self, data):
@@ -1598,6 +1598,180 @@ print(message)
                                     s_l_list = s_l_list.remove_at_position(0)
                                     
                                     s_l_list.traverse_linked_list()
+                                    </code>
+                                    Doubly Linked List:
+                                    <code>
+                                        class Node:
+  
+                                        def __init__(self, data):
+                                            self.data = data
+                                            self.prev = None
+                                            self.next = None
+
+                                        def forward_traversal(head):
+                                            current = head 
+
+                                            while current is not None:
+                                                print(current.data)
+                                                current = current.next
+
+                                            print()
+
+                                        def backward_traversal(tail):
+                                            current = tail 
+
+                                            while current is not None:
+                                                print(current.data)
+                                                current = current.prev
+
+                                            print()
+
+                                        def find_length(head):
+                                            length = 0
+                                            current = head
+
+                                            while current is not None:
+                                                length += 1
+                                                current = current.next
+
+                                            return length
+
+                                        def insertBegin(head, data):
+                                            new_node = Node(data)
+                                            new_node.next = head
+
+                                            if head is not None:
+                                                head.prev = new_node
+
+                                            return new_node
+                                        def insertEnd(head, data):
+                                            new_node = Node(data)
+
+                                            if head is None:
+                                                head = new_node
+                                            else:
+                                                current = head
+                                                while current.next is not None:
+                                                    current = current.next
+
+                                                current.next = new_node
+                                                new_node.prev = current
+
+                                            return head
+
+                                        def insertAtPosition(head, pos, data):
+                                            new_node = Node(data)
+
+                                            if pos == 0:
+                                                new_node.next = head
+                                                head.prev = new_node
+                                                head = new_node
+                                                return head
+                                                pos -= 1
+                                            current = head
+
+                                            while pos >= 0 and current is not None:
+                                                if pos == 0 :
+                                                    current.prev.next = new_node
+                                                    new_node.prev = current.prev
+                                                    new_node.next = current
+                                                    current.prev = new_node
+                                                    
+                                                pos -= 1 
+                                                current = current.next
+
+                                            if pos == 0 and  current is None:
+                                                head = insertEnd(head, data)
+
+                                            return head
+
+                                        def delHead(head):
+                                            if head is None:
+                                                return None 
+
+                                            temp = head
+                                            head = head.next
+                                            temp = None
+
+                                            if head is not None:
+                                                head.prev = None
+
+                                            return head
+
+                                        def delLast(head):
+                                            if head is  None:
+                                                return head
+                                            if head.next is  None:
+                                                return head
+
+                                            current = head
+
+                                            while current.next is not None:
+                                                current = current.next
+
+                                            current.prev.next = None 
+                                            current = None 
+                                            return head
+
+                                        def delAtPos(head, pos):
+                                            if head is None:
+                                                return head
+
+                                            if pos == 0:
+                                                head = delHead(head)
+                                            else: 
+                                                current = head
+
+                                                while pos >= 0 and current is not None:
+                                                    if pos == 0:
+                                                        temp = current 
+                                                        current = current.next
+                                                        if temp.prev is not None:
+                                                            temp.prev.next = current
+
+                                                        if current is not None:
+                                                            current.prev = temp.prev
+                                                            
+
+                                                        temp = None
+
+                                                    pos -= 1
+                                                    if current is not None:
+                                                        current = current.next
+                                                if pos == 0:
+                                                    head = delLast(head)
+
+                                            return head
+
+
+
+                                        if __name__ == "__main__":
+                                            head = Node("A")
+                                            second = Node("B")
+                                            third = Node("C")
+
+                                            head.next = second
+                                            second.prev = head
+                                            second.next = third
+                                            third.prev = second
+
+                                            forward_traversal(head)
+
+                                            backward_traversal(third)
+
+                                            print(find_length(head))
+
+                                            print()
+
+                                            head = insertBegin(head,"D")
+                                            head = insertEnd(head,"E")
+                                            head = insertAtPosition(head, 4, "Z")
+                                            head = delHead(head)
+                                            head = delLast(head)
+                                            head = delAtPos(head, 4)
+
+                                            forward_traversal(head)
+
                                     </code>
                             </pre>
                             </b>
