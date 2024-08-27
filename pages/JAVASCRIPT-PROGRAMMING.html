@@ -286,7 +286,7 @@
                                     console.log(result)
 
                                 </code>
-                                
+
                                 Rewrite if..else using multiple ternary operators '?'.
                                 For readability, it’s recommended to split the code into multiple lines.
 
@@ -295,6 +295,81 @@
 
                                     message = login == "Employee" ? "Hello" : login == "Director" ? "Greetings" : login == '' ? "No login" : ""
 
+                                </code>
+                                Write an if condition to check that age is between 14 and 90 inclusively.
+
+                                “Inclusively” means that age can reach the edges 14 or 90.
+                                
+                                <code>
+                                    let age = 20
+
+                                    if(age >= 14 && age <= 90){
+                                        console.log("It is!")
+                                    }else{
+                                        console.log("Not")
+                                    }
+                                </code>
+                                Write an if condition to check that age is NOT between 14 and 90 inclusively.
+
+                                Create two variants: the first one using NOT !, the second one – without it.
+
+                                <code>
+                                    let age = 20
+
+                                    if( !(age >= 14 && age <= 90)){
+                                        console.log("It is!")
+                                    }
+
+                                    De Morgan's laws
+                                    if(age < 14 || age > 90)){
+                                        console.log("It is!")
+                                    }
+                                </code>
+                                Check the login
+
+                                <code>
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html lang=&quot;en&quot;&gt;
+                                    &lt;head&gt;
+                                        &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                        &lt;title&gt;Document&lt;/title&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        &lt;pre&gt;
+                                            &lt;p&gt;
+                                                Write the code which asks for a login with prompt.
+
+                                                If the visitor enters &quot;Admin&quot;, then prompt for a password, if the input is an empty line or Esc – show “Canceled”, if it’s another string – then show “I don’t know you”.
+                                                
+                                                The password is checked as follows:
+                                                
+                                                If it equals “TheMaster”, then show “Welcome!”,
+                                                Another string – show “Wrong password”,
+                                                For an empty string or cancelled input, show “Canceled”
+                                            &lt;/p&gt;
+                                        &lt;/pre&gt;
+                                    
+                                    &lt;/body&gt;
+                                    &lt;script&gt;
+                                        userName = prompt(&quot;Who&apos;s there?&quot;);
+                                        alert(userName)
+                                        if(userName === &quot;Admin&quot;){
+                                            password = prompt(&quot;Enter password pls!&quot;)
+                                            if(password === &quot;TheMaster&quot;){
+                                                alert(&quot;Welcome!&quot;)
+                                            }else if(password === &quot;&quot; || password === null){
+                                                alert(&quot;Canceld!&quot;)
+                                            }else{
+                                                alert(&quot;Wrong password!&quot;)
+                                            }
+                                        }else if(userName === &quot;&quot; || userName == null){
+                                            alert(&quot;Canceld!&quot;)
+                                        }else{
+                                            alert(&quot;I don&apos;t know you!&quot;)
+                                        }
+                                    &lt;/script&gt;
+                                    &lt;/html&gt;
                                 </code>
                                 </pre>
                             </b>
