@@ -208,6 +208,94 @@
                                     console.log(null == "\n0\n") // false
                                     console.log(null === +"\n0\n") // false
                                 </code>
+                                The name of Javascript
+
+                                <code>
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html lang=&quot;en&quot;&gt;
+                                    &lt;head&gt;
+                                        &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                        &lt;title&gt;Document&lt;/title&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        Using the if..else construct, write the code which asks: ‘What is the “official” name of JavaScript?’
+                                    
+                                    If the visitor enters “ECMAScript”, then output “Right!”, otherwise – output: “You don’t know? ECMAScript!”
+                                    &lt;/body&gt;
+                                    &lt;script&gt;
+                                       question = &quot;What is the “official” name of JavaScript?&quot;
+                                       let res = prompt(question)
+                                       if(res == &quot;ECMAScript&quot;){
+                                        alert(&quot;Right!&quot;)
+                                       }else{
+                                        alert(&quot;You don’t know? ECMAScript!&quot;)
+                                       }
+                                    &lt;/script&gt;
+                                    &lt;/html&gt;
+                                </code>
+                                Show the sign!
+
+                                <code>
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html lang=&quot;en&quot;&gt;
+                                    &lt;head&gt;
+                                    &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                    &lt;title&gt;Document&lt;/title&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        &lt;pre&gt;
+                                            &lt;p&gt;
+                                            Using if..else, write the code which gets a number via prompt and then shows in alert:
+
+                                            1, if the value is greater than zero,
+                                            -1, if less than zero,
+                                            0, if equals zero.
+                                            In this task we assume that the input is always a number.
+                                            &lt;/p&gt;
+                                        &lt;/pre&gt;
+                                    
+                                    &lt;/body&gt;
+                                    &lt;script&gt;
+                                    question = &quot;Write a number pls!&quot;
+                                    let res = prompt(question)
+                                    if(res &gt; 0){
+                                        alert(1)
+                                    }else if(res &lt; 0){
+                                        alert(-1)
+                                    }else{
+                                        alert(0)
+                                    }
+                                    &lt;/script&gt;
+                                    &lt;/html&gt;
+                                </code>
+                                Rewrite this if using the conditional operator '?':
+
+                                let result;
+
+                                if (a + b < 4) {
+                                result = 'Below';
+                                } else {
+                                result = 'Over';
+                                }
+
+                                <code>
+                                    let result;
+                                    result = a + b < 4 ? "Below" : "Over"
+                                    console.log(result)
+
+                                </code>
+                                
+                                Rewrite if..else using multiple ternary operators '?'.
+                                For readability, it’s recommended to split the code into multiple lines.
+
+                                <code>
+                                    let message;
+
+                                    message = login == "Employee" ? "Hello" : login == "Director" ? "Greetings" : login == '' ? "No login" : ""
+
+                                </code>
                                 </pre>
                             </b>
                         </p>
