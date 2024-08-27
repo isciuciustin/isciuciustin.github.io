@@ -42,17 +42,6 @@
                     <i> These are some cool Javascript programs: </i>
                 </div>
                 <div class="d-flex justify-content-start my-3">
-                    <!-- <ol>
-                        <p>
-                            <b>
-                                <pre>
-                                    <li>1</li>
-                                </pre>
-                            </b>
-                        </p>
-
-                        <li>2</li>
-                    </ol> -->
                     <ol>
                         <p>
                             <b>
@@ -121,7 +110,7 @@
                                     &lt;head&gt;
                                         &lt;meta charset=&quot;UTF-8&quot;&gt;
                                         &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-                                        &lt;title&gt;Document&lt;/title&gt;
+                                        &lt;title&gt;Title :)&lt;/title&gt;
                                     &lt;/head&gt;
                                     &lt;body&gt;
                                         What&apos;s your name page
@@ -129,6 +118,82 @@
                                     &lt;script&gt;
                                         name = prompt(&quot;What&apos;s your name sir?&quot;)
                                         alert(`Your name is ${name}!`)
+                                    &lt;/script&gt;
+                                    &lt;/html&gt;
+                                </code>
+                                What are the final values of all variables a, b, c and d after the code below?
+
+                                <code>
+                                    let a = 1, b = 1;
+
+                                    let c = ++a; // ?
+                                    let d = b++; // ?
+
+
+                                    console.log(a, b, c, d)
+                                    /* 
+                                    a == 2
+                                    b == 2
+                                    c == 2
+                                    d == 1
+                                    */
+                                </code>
+
+                                What are the values of a and x after the code below?
+
+                                <code>
+                                    let a = 2;
+
+                                    let x = 1 + (a *= 2);
+
+                                    /* 
+                                    a == 4 
+                                    x == 5
+                                    */
+                                </code>
+                                What are results of these expressions?
+
+                                <code>
+                                    console.log("" + 1 + 0) // 10
+                                    console.log("" - 1 + 0) // -1
+                                    console.log(true + false) // 1
+                                    console.log(6 / "3") // 2
+                                    console.log("2" * "3") // 6
+                                    console.log(4 + 5 + "px") // 9px
+                                    console.log("$" + 4 + 5) // $45
+                                    console.log("4" - 2) // 2
+                                    console.log("4px" - 2) // NaN
+                                    console.log("  -9  " + 5) // -9 5
+                                    console.log("  -9  " - 5) // -14
+                                    console.log(null + 1) // 1
+                                    console.log(undefined + 1) // NaN
+                                    console.log(" \t \n" - 2) // -2
+                                </code>
+                                Here’s a code that asks the user for two numbers and shows their sum.
+
+                                It works incorrectly. The output in the example below is 12 (for default prompt values).
+                                let a = prompt("First number?", 1);
+                                let b = prompt("Second number?", 2);
+
+                                alert(a + b); // 12
+                                Why? Fix it. The result should be 3.
+
+                                <code>
+                                    &lt;!DOCTYPE html&gt;
+                                    &lt;html lang=&quot;en&quot;&gt;
+                                    &lt;head&gt;
+                                        &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                        &lt;title&gt;Document&lt;/title&gt;
+                                    &lt;/head&gt;
+                                    &lt;body&gt;
+                                        What&apos;s your name page
+                                    &lt;/body&gt;
+                                    &lt;script&gt;
+                                        let a = prompt(&quot;First number?&quot;, 1);
+                                        let b = prompt(&quot;Second number?&quot;, 2);
+
+                                        alert(+a + +b); // I converted both strings to numbers and then add them toghether! 
                                     &lt;/script&gt;
                                     &lt;/html&gt;
                                 </code>
