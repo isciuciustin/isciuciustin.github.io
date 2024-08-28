@@ -371,6 +371,75 @@
                                     &lt;/script&gt;
                                     &lt;/html&gt;
                                 </code>
+
+
+                                Today I made a JS script to create a json file with the KEY, SYN, ANT for the following book:
+
+                                <a target="_blank" href="../BOOKS/SYNANT.html">A COMPLETE DICTIONARY OF Synonyms and Antonyms, 1898 BY The Rt. Rev. Samuel Fallows, A.M., B.D.</a>
+
+                                Script:
+                                <code>
+                                    const fs = require('fs');
+                                    const readline = require('readline');
+                                    const fileStream = fs.createReadStream('SYNANT.html');
+
+                                    const rl = readline.createInterface({
+                                        input: fileStream,
+                                        crlfDelay: Infinity 
+                                    });
+
+                                    let SYNANT = {}
+
+                                    let lastKeyIndex = -1, index = -1, Key, Syn, Ant
+
+                                    rl.on('line', (line) => {
+                                        index += 1
+                                        if(line.includes("KEY: ")){
+                                            lastKeyIndex = index
+                                        }
+                                        if(lastKeyIndex == index){
+                                            Key = generateValue(line)
+                                            Key.replace(/[^a-zA-Z]/g, '')
+                                        }else if(lastKeyIndex + 1 == index){
+                                            Syn = generateValue(line)
+
+                                        }else if(lastKeyIndex + 2 == index){
+                                            Ant = generateValue(line)
+                                            
+                                            SYNANT[Key] = {SYN : Syn, ANT: Ant}
+                                        }
+                                    });
+
+                                    rl.on('close', () => {
+                                        let json = JSON.stringify(SYNANT, null, 4);
+                                        fs.writeFile(
+                                            "SYNANT.json",
+                                            json,
+                                            err => {
+                                                if (err) throw err;
+                                            }); 
+
+                                        console.log("Done writing");
+                                    });
+
+                                    function generateValue(line){
+                                        let key = ""
+                                        let add = false
+
+                                        for(let i = 1; i < line.length; i++){
+                                            if(line[i - 1] == " ")
+                                            add = true
+                                            if(line[i] == ".")
+                                                add = false
+                                            if(add)
+                                                key += line[i]
+                                        }
+                                        return key.trim()
+
+                                    }
+                                </code>
+
+                                <a href="../RESOURCES/SYNANT.json">RESULT</a>
                                 </pre>
                             </b>
                         </p>
