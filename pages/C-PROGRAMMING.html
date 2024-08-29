@@ -233,307 +233,59 @@
                                         }
                                     </code>
                                 </pre>
-                                A PROGRAM THAT COPIES ITS INPUT TO ITS OUTPUT
-                                AND REPLACES \t, \b and \\
+                                COUNT LINES WORDS AND CHARACTERS
                                 <pre>
                                     <code>
                                         #include &lt;stdio.h&gt;
 
-                                        /* 
-                                            write a program to that copies its input to its output, 
-                                            replacing each tab by \t,each backspace by \b, 
-                                            and each backslash by \\.
-                                        */
+                                        /* count lines, words and characters in input */ 
 
-                                        int main() {
-                                            int c;
+                                        #define IN 1
+                                        #define OUT 0
 
-                                            while ((c = getchar()) != EOF) {
-                                                if (c == &apos;\t&apos;) {
-                                                    putchar(&apos;\\&apos;);
-                                                    putchar(&apos;t&apos;);
-                                                } else if (c == &apos;\b&apos;) {
-                                                    putchar(&apos;\\&apos;);
-                                                    putchar(&apos;b&apos;);
-                                                } else if (c == &apos;\\&apos;) {
-                                                    putchar(&apos;\\&apos;);
-                                                    putchar(&apos;\\&apos;);
-                                                } else {
-                                                    putchar(c);
+                                        int main(){
+                                            int c, nl, nw, nc, state;
+                                            state = OUT; 
+                                            nl = nw = nc = 0;
+
+                                            while((c = getchar()) != EOF){
+                                                ++nc; 
+                                                if(c == &apos;\n&apos;){
+                                                    if(nl == 0)
+                                                        nl = 2;
+                                                    else
+                                                        nl++;
                                                 }
-                                            }
-
-                                            return 0;
-                                        }
-                                    </code>
-                                </pre>
-                                A PROGRAM THAT PRINTS ITS INPUT ONE WORD PER
-                                LINE
-                                <pre>
-                                    <code>
-                                        #include &lt;stdio.h&gt;
-
-                                        #define IN 0
-                                        #define OUT 1
-
-                                        int main() {
-                                            int c, state = OUT;
-
-                                            while ((c = getchar()) != EOF) {
                                                 if(c == &apos; &apos; || c == &apos;\n&apos; || c == &apos;\t&apos;)
                                                     state = OUT;
-                                                else
-                                                    if(state == OUT){
-                                                        printf(&quot;%c&quot;, &apos;\n&apos;);
-                                                        state = IN;
-                                                        printf(&quot;%c&quot;, c);
-                                                    }
-                                                    else{
-                                                        printf(&quot;%c&quot;, c);
-                                                    }
-                                            }
-
-                                            return 0;
-                                        }
-                                    </code>
-                                </pre>
-                                A PROGRAM THAT PRINTS A HISTOGRAM OF THE LENGTHS
-                                OF WORDS
-                                <pre>
-                                    <code>
-                                        #include &lt;stdio.h&gt;
-
-                                        int main() {
-                                            int c, lw = 0, arr[1005], sz = 0;
-                                            while ((c = getchar()) != EOF) {
-                                                if(c == &apos; &apos;){
-                                                    if(lw){
-                                                        arr[++sz] = lw;
-                                                        lw = 0;
-                                                    }
+                                                else if(state == OUT){
+                                                    state = IN;
+                                                    nw++;
                                                 }
-                                                else
-                                                    lw++;
                                             }
-                                            for(int i = 1; i &lt;= sz; i++){
-                                                for(int j = 0; j &lt; arr[i]; j++)
-                                                    printf(&quot;%c&quot;, &apos;-&apos;);
-                                                printf(&quot;%c&quot;, &apos;\n&apos;);
-                                            }
-                                            return 0;
-                                        }
+
+                                            printf(&quot;\n %d %d %d \n&quot;, nc, nw, nl);
+                                        }   
                                     </code>
                                 </pre>
-                                A PROGRAM TO PRINT A HISTOGRAM OF THE FREQUENCES
-                                OF DIFFERENT CHARACTERS
+                                PRINT ONE WORD PER LINE
                                 <pre>
                                     <code>
                                         #include &lt;stdio.h&gt;
 
-                                        int fv[1005];
+                                        /* print one word per line */
 
                                         int main(){
-                                            int c, low = -1, upper = -1;
-                                            while((c = getchar()) != &apos;\n&apos;){
-                                                fv[(int)(c)]++;
-                                                if(low == -1 || low &gt; (int)(c))
-                                                    low = (int)(c);
-                                                if(upper == -1 || upper &lt; (int)(c))
-                                                    upper = (int)(c);
-                                            }
-                                            for(int i = low; i &lt;= upper; i++)
-                                                if(fv[i] &gt; 0){
-                                                    printf(&quot;%c : &quot;, (char)(i));
-                                                    for(int j = 0; j &lt; fv[i]; j++)
-                                                        printf(&quot;%c&quot;, &apos;-&apos;);
-                                                    printf(&quot;%c&quot;, &apos;\n&apos;);
-                                                }
-                                        }
-                                    </code>
-                                </pre>
-                                A PROGRAM THAT DETERMINES THE LONGEST LINE OF
-                                TEXT
-                                <pre>
-                                    <code>
-                                        #include &lt;stdio.h&gt;
-                                        #define MAXLINE 10005
-
-                                        int getLine(char s[MAXLINE]);
-                                        void copy(char to[], char from[]);
-
-                                        int main(){
-                                            int len;
-                                            int max;
-                                            char line[MAXLINE];
-                                            char longest[MAXLINE];
-
-                                            max = 0;
-                                            
-                                            while((len = getLine(line)) &gt; 0){
-                                                if(len &gt; max){
-                                                    max = len;
-                                                    copy(longest, line);
-                                                }
-                                            
-                                            }
-                                            if(max &gt; 0){
-                                                printf(&quot;Longest string : %s&quot;, longest);   
-                                            }
-                                            return 0;
-                                        }
-
-                                        void copy(char to[], char from[]){
-                                            int i = 0;
-                                            while((to[i] = from[i]) != &apos;\0&apos;)
-                                                i++;
-                                        }
-
-                                        int getLine(char s[MAXLINE]){
-                                            int c, i;
-
-                                            for(i = 0; i &lt; MAXLINE - 1 &amp;&amp; (c = getchar()) != EOF &amp;&amp; c != &apos;\n&apos;; i++){
-                                                s[i] = c;
-                                            }
-                                            if(c == &apos;Z&apos;)
-                                                return 0;
-                                            if(c == &apos;\n&apos;)
-                                                s[i] = c;
-
-                                            s[++i] = &apos;\0&apos;;
-                                            return i;
-                                        }
-                                    </code>
-                                </pre>
-                                USING EXTERN VARIABLES
-                                <pre>
-                                    <code>
-                                        #include &lt;stdio.h&gt;
-                                        #define MAXLINE 10005
-
-                                        int len;
-                                        int max;
-                                        char line[MAXLINE];
-                                        char longest[MAXLINE];
-
-                                        int getLine(void);
-                                        void copy(void);
-
-                                        int main(){
-                                            extern char line[];
-                                            extern char longest[];
-
-                                            max = 0;
-                                            
-                                            while((len = getLine()) &gt; 0){
-                                                if(len &gt; max){
-                                                    max = len;
-                                                    copy();
-                                                }
-                                            
-                                            }
-                                            if(max &gt; 0){
-                                                printf(&quot;Longest string : %s&quot;, longest);   
-                                            }
-                                            return 0;
-                                        }
-
-                                        void copy(void){
-                                            extern char line[], longest[];
-                                            int i = 0;
-                                            while((longest[i] = line[i]) != &apos;\0&apos;)
-                                                i++;
-                                        }
-
-                                        int getLine(void){
-                                            int c, i;
-                                            extern char line[];
-                                            for(i = 0; i &lt; MAXLINE - 1 &amp;&amp; (c = getchar()) != &apos;Z&apos; &amp;&amp; c != &apos;\n&apos;; i++){
-                                                line[i] = c;
-                                            }
-                                            if(c == &apos;Z&apos;)
-                                                return 0;
-                                            if(c == &apos;\n&apos;)
-                                                line[i] = c;
-
-                                            line[++i] = &apos;\0&apos;;
-                                            return i;
-                                        }
-                                    </code>
-                                </pre>
-                                Write a C program detab that replaces tabs in
-                                the input with the proper number of blanks to
-                                space to the next tab stop. Assume a fixed set
-                                of tab stops, say every n columns.
-                                <pre>
-                                    <code>
-                                        #include &lt;stdio.h&gt;
-                                        #define TAB_STOP 8  
-
-                                        void detab();
-
-                                        int main() {
-                                            detab();
-                                            return 0;
-                                        }
-
-                                        void detab() {
                                             int c;
-                                            int column = 0;  
 
-                                            while ((c = getchar()) != EOF) {
-                                                if (c == &apos;\t&apos;) {
-                                                    int spaces = TAB_STOP - (column % TAB_STOP);  
-                                                    printf(&quot;SPACES : %d, COLUMNS : %d&quot;, spaces, column);
-                                                    for (int i = 0; i &lt; spaces; i++) {
-                                                        putchar(&apos; &apos;);
-                                                        column++;
-                                                    }
-                                                } else {
-                                                    putchar(c);
-                                                    column++;
-                                                    if (c == &apos;\n&apos;) {
-                                                        column = 0;  
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    </code>
-                                </pre>
-                                Write a program entab that replaces strings of
-                                blanks by the minimum nr. of tabs and blanks to
-                                achieve the same spacing.
-                                <pre>
-                                    <code>
-                                        #include &lt;stdio.h&gt;
-                                        #define TAB_STOP 8
-
-                                        void entab();
-
-                                        int main(){
-                                            entab();
-                                            return 0;
-                                        }
-
-                                        void entab(){
-                                            int c, nb = 0;
                                             while((c = getchar()) != EOF){
-                                                if(c == &apos; &apos;)
-                                                    nb++;
-                                                else{
-                                                    if(nb){
-                                                        int nt = nb / TAB_STOP;
-                                                        int ns = nb - TAB_STOP * nt;
-                                                    
-                                                        for(int i = 0; i &lt; nt; i++)
-                                                            putchar(&apos;\t&apos;);
-                                                        for(int i = 0; i &lt; ns; i++)
-                                                            putchar(&apos; &apos;);
-                                                        nb = 0;
-                                                    }
-                                                    putchar(c);
+                                                if(c == &apos; &apos; || c == &apos;\n&apos; || c == &apos;\t&apos;){
+                                                    c = &apos;\n&apos;;
                                                 }
+                                                printf(&quot;%c&quot;, c);
                                             }
-                                        }
+
+                                        }   
                                     </code>
                                 </pre>
                             </b>
