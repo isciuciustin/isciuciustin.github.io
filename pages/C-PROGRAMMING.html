@@ -127,20 +127,109 @@
                                         }
                                     </code>
                                 </pre>
+                                COPY INPUT TO OUTPUT 1ST VERSION
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* copy input to output 1st version */
+                                        
+                                        
+                                        int main(){
+                                            char c;
+                                            c = getchar();
+                                            while(c != EOF){
+                                                putchar(c);
+                                                c = getchar();
+                                            }
+                                        }
+                                    </code>
+                                </pre>
+                                COPY INPUT TO OUTPUT 2ND VERSION
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* copy input to output 2nd version */
+                                        
+                                        
+                                        int main(){
+                                            char c;
+                                            while((c = getchar()) != EOF){
+                                                putchar(c);
+                                            }
+                                        }
+                                    </code>
+                                </pre>
+                                COUNT CHARACTERS IN INPUT 1ST VERSION
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* count characters in input 1st version */
+
+                                        int main(){
+                                            long nc = 0;
+                                            while(getchar() != EOF){
+                                                nc++;
+                                            }
+                                            printf(&quot;\n%ld\n&quot;, nc);
+
+                                        }
+                                    </code>
+                                </pre>
+                                COUNT CHARACTERS IN INPUT 2ND VERSION
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* count characters in input 2nd version */
+
+                                        int main(){
+                                            double nc = 0;
+                                            for(nc = 0; getchar() != EOF; nc++)
+                                                ;
+                                            printf(&quot;\n%.0f\n&quot;, nc);
+
+                                        }
+                                    </code>
+                                </pre>
+                                COUNT LINES IN INPUT
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* count lines in input */ 
+
+                                        int main(){
+                                            int nl = 0, c;
+                                            while((c = getchar()) != EOF){
+                                                if (c == &apos;\n&apos;)
+                                                    nl++;
+                                            }
+                                            printf(&quot;%d\n&quot;, nl);
+                                        }
+                                    </code>
+                                </pre>
                                 A PROGRAM TO COUNT TABS, BLANKS AND NEWLINES
                                 <pre>
                                     <code>
                                         #include &lt;stdio.h&gt;
 
-                                        // count lines in input 
+                                        /* count blanks, newlines and tabs */ 
 
                                         int main(){
-                                            int c, nl;
-                                            nl = 0;
-                                            while((c = getchar()) != EOF)
-                                                if(c == &apos; &apos; || c == &apos;\t&apos; || c == &apos;\n&apos;)
-                                                    ++nl;
-                                            printf(&quot;%d\n&quot;, nl);
+                                            int blanks = 0, newlines = 0, tabs = 0, c;
+                                            while((c = getchar()) != EOF){
+                                                if (c == &apos; &apos;)
+                                                    blanks += 1;
+                                                else if(c == &apos;\n&apos;)
+                                                    newlines += 1;
+                                                else if(c == &apos;\t&apos;)
+                                                    tabs += 1;
+                                                
+                                            }
+                                            printf(&quot;\n%d\t%d\t%d\n&quot;, blanks, newlines, tabs);
                                         }
                                     </code>
                                 </pre>
