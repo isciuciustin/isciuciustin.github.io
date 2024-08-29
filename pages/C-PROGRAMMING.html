@@ -349,6 +349,35 @@
                                         }
                                     </code>
                                 </pre>
+                                SHOW A HISTOGRAM OF FREQUENCIES OF DIFFERENT
+                                CHARACTERS IN ITS INPUT
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                            /* Show a histogram to print the frequencies of different characters in its input */
+                                            
+                                            
+                                            int main(){
+                                                int fq[1005], c;
+                                            
+                                                for(int i = 0; i &lt; 130; i++)
+                                                    fq[i] = 0;
+                                                while((c = getchar()) != EOF){
+                                                    fq[c]++;
+                                                }
+                                                printf(&quot;%c&quot;, &apos;\n&apos;);
+                                                for(int i = 0; i &lt; 130; i++){
+                                                    if(fq[i] &gt; 0){
+                                                        printf(&quot;frequency of %c = &quot;, i);
+                                                        for(int j = 0; j &lt; fq[i]; j++)
+                                                            printf(&quot;%c&quot;, &apos;-&apos;);
+                                                        printf(&quot;%c&quot;, &apos;\n&apos;);
+                                                    }
+                                                }
+                                            }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
