@@ -288,6 +288,36 @@
                                         }   
                                     </code>
                                 </pre>
+                                COUNT DIGITS, WHITE SPACE AND OTHER
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* count digits, white space, others */
+
+                                        int main(){
+                                            int c, i, nwhite, nother;
+                                            int ndigit[10];
+                                            nwhite = nother = 0;
+
+                                            for(i = 0; i &lt; 10; i++)
+                                                ndigit[i] = 0;
+                                            
+                                            while((c = getchar()) != EOF){
+                                                if(c &gt;= &apos;0&apos; &amp;&amp; c &lt;= &apos;9&apos;)
+                                                    ndigit[c - &apos;0&apos;] ++;
+                                                else if(c == &apos; &apos; || c == &apos;\t&apos; || c == &apos;\n&apos;)
+                                                    nwhite++;
+                                                else
+                                                    nother++;
+                                            }   
+                                            printf(&quot;digits= &quot;);
+                                            for(i = 0; i &lt; 10; i++)
+                                                printf(&quot;%d &quot;, ndigit[i]);
+                                            printf(&quot;, white space = %d, other = %d&quot;, nwhite, nother);
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
