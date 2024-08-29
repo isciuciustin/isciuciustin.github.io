@@ -318,6 +318,37 @@
                                         }
                                     </code>
                                 </pre>
+                                SHOW HISTOGRAM OF THE LENGTHS OF WORDS
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        /* Show a histogram of the lengths of words in its input */
+
+                                        #define IN 1
+                                        #define OUT 0
+
+                                        int main(){
+                                            int nc = 0, c, state;
+                                            state = OUT;
+
+                                            while((c = getchar()) != EOF){
+                                                if(c == &apos; &apos; || c == &apos;\n&apos; || c == &apos;\t&apos;){
+                                                    state = OUT;
+                                                    for(int i = 0; i &lt; nc; i++)
+                                                        printf(&quot;%c&quot;, &apos;-&apos;);
+                                                    printf(&quot;%c&quot;, &apos;\n&apos;);
+                                                }else if(state == OUT){
+                                                    state = IN;
+                                                    nc = 1;
+                                                }else{
+                                                    nc += 1;
+                                                }
+                                            
+                                            }
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
