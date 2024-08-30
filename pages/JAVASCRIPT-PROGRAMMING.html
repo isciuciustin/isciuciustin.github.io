@@ -60,68 +60,151 @@
                                 <pre>
 
                          
-                                <code>
-                                    const fs = require('fs');
-                                    const readline = require('readline');
-                                    const fileStream = fs.createReadStream('SYNANT.html');
+                                    <code>
+                                        const fs = require('fs');
+                                        const readline = require('readline');
+                                        const fileStream = fs.createReadStream('SYNANT.html');
 
-                                    const rl = readline.createInterface({
-                                        input: fileStream,
-                                        crlfDelay: Infinity 
-                                    });
+                                        const rl = readline.createInterface({
+                                            input: fileStream,
+                                            crlfDelay: Infinity 
+                                        });
 
-                                    let SYNANT = {}
+                                        let SYNANT = {}
 
-                                    let lastKeyIndex = -1, index = -1, Key, Syn, Ant
+                                        let lastKeyIndex = -1, index = -1, Key, Syn, Ant
 
-                                    rl.on('line', (line) => {
-                                        index += 1
-                                        if(line.includes("KEY: ")){
-                                            lastKeyIndex = index
+                                        rl.on('line', (line) => {
+                                            index += 1
+                                            if(line.includes("KEY: ")){
+                                                lastKeyIndex = index
+                                            }
+                                            if(lastKeyIndex == index){
+                                                Key = generateValue(line)
+                                                Key.replace(/[^a-zA-Z]/g, '')
+                                            }else if(lastKeyIndex + 1 == index){
+                                                Syn = generateValue(line)
+
+                                            }else if(lastKeyIndex + 2 == index){
+                                                Ant = generateValue(line)
+                                                
+                                                SYNANT[Key] = {SYN : Syn, ANT: Ant}
+                                            }
+                                        });
+
+                                        rl.on('close', () => {
+                                            let json = JSON.stringify(SYNANT, null, 4);
+                                            fs.writeFile(
+                                                "SYNANT.json",
+                                                json,
+                                                err => {
+                                                    if (err) throw err;
+                                                }); 
+
+                                            console.log("Done writing");
+                                        });
+
+                                        function generateValue(line){
+                                            let key = ""
+                                            let add = false
+
+                                            for(let i = 1; i < line.length; i++){
+                                                if(line[i - 1] == " ")
+                                                add = true
+                                                if(line[i] == ".")
+                                                    add = false
+                                                if(add)
+                                                    key += line[i]
+                                            }
+                                            return key.trim()
+
                                         }
-                                        if(lastKeyIndex == index){
-                                            Key = generateValue(line)
-                                            Key.replace(/[^a-zA-Z]/g, '')
-                                        }else if(lastKeyIndex + 1 == index){
-                                            Syn = generateValue(line)
-
-                                        }else if(lastKeyIndex + 2 == index){
-                                            Ant = generateValue(line)
-                                            
-                                            SYNANT[Key] = {SYN : Syn, ANT: Ant}
-                                        }
-                                    });
-
-                                    rl.on('close', () => {
-                                        let json = JSON.stringify(SYNANT, null, 4);
-                                        fs.writeFile(
-                                            "SYNANT.json",
-                                            json,
-                                            err => {
-                                                if (err) throw err;
-                                            }); 
-
-                                        console.log("Done writing");
-                                    });
-
-                                    function generateValue(line){
-                                        let key = ""
-                                        let add = false
-
-                                        for(let i = 1; i < line.length; i++){
-                                            if(line[i - 1] == " ")
-                                            add = true
-                                            if(line[i] == ".")
-                                                add = false
-                                            if(add)
-                                                key += line[i]
-                                        }
-                                        return key.trim()
-
-                                    }
-                                </code>
-                            </pre>
+                                    </code>
+                                </pre>
                                 <a href="../RESOURCES/SYNANT.json">RESULT</a>
+                                <br />
+                                <br />
+                                I'M JAVASCRIPT!
+                                <pre>
+                                    <code>
+                                        &lt;!DOCTYPE html&gt;
+                                        &lt;html lang=&quot;en&quot;&gt;
+                                        &lt;head&gt;
+                                            &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                            &lt;title&gt;Document&lt;/title&gt;
+                                        &lt;/head&gt;
+                                        &lt;body&gt;
+                                            I&apos;M JAVASCRIPT
+                                        &lt;/body&gt;
+                                        &lt;/html&gt;
+                                        &lt;script&gt;
+                                            alert(&quot;I AM JAVASCRIPT!&quot;)
+                                        &lt;/script&gt;
+                                    </code>
+                                </pre>
+
+                                I'M JAVASCRIPT WITH EXTERNAL
+                                <br />
+                                INDEX.HTML
+                                <pre>
+                                    <code>
+                                        &lt;!DOCTYPE html&gt;
+                                        &lt;html lang=&quot;en&quot;&gt;
+                                        &lt;head&gt;
+                                            &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                            &lt;title&gt;Document&lt;/title&gt;
+                                        &lt;/head&gt;
+                                        &lt;body&gt;
+                                            I&apos;M JAVASCRIPT
+                                        &lt;/body&gt;
+                                        &lt;/html&gt;
+                                        &lt;script src=&quot;./index.js&quot;&gt;
+                                        &lt;/script&gt;
+                                    </code>
+                                </pre>
+                                INDEX.JS
+                                <pre>
+                                    <code>
+                                        alert("I AM JAVASCRIPT")
+                                    </code>
+                                </pre>
+
+                                WORKING WITH LETTERS
+                                <pre>
+                                    <code>
+                                        let newName = 'John';
+                                        let admin = newName;
+                                        console.log(admin)
+                                    </code>
+                                </pre>
+
+                                GIVING THE RIGHT NAME
+                                <pre>
+                                    <code>
+                                        // Create a variable with the name of our planet. How would you name such a variable?
+                                        let ourPlanet = "Earth";
+                                        // Create a variable to store the name of a current visitor to a website. How would you name that variable?
+                                        let newVisitor = "John"
+                                    </code>
+                                </pre>
+
+                                UPPERCASE OR CONST?
+
+                                <pre>
+                                    <code>
+                                        // Here we have a constant birthday for the date, and also the age constant.
+
+                                        // The age is calculated from birthday using someCode(), which means a function call that we didn’t explain yet (we will soon!), but the details don’t matter here, the point is that age is calculated somehow based on the birthday.
+
+                                        // Would it be right to use upper case for birthday? For age? Or even for both?
+
+                                        const BIRTHDAY = '18.04.1982'; // make birthday uppercase because it's a known value
+
+                                        const AGE = someCode(BIRTHDAY); // make age camelCase because its value is'nt know before execution?
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ol>
