@@ -403,6 +403,31 @@
                                         }
                                     </code>
                                 </pre>
+                                CONVERT FAHRENHEIT TO CELSIUS WITH A FUNCTION
+
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+ 
+                                        /* print Celsius-Farenheit table 
+                                            for celsius - 0, 20, ..., 300 with a function */
+
+                                        #define LOWER 0
+                                        #define UPPER 300
+                                        #define STEP 20
+                                                                                
+
+                                        int conversion(int fahr){
+                                            int celsius = (5 * (fahr - 32) / 9);
+                                            return celsius;
+                                        }
+
+                                        int main(){
+                                            for(int i = LOWER; i &lt;= UPPER; i += STEP)
+                                                printf(&quot;%d %d \n&quot;, i, conversion(i));
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
