@@ -378,6 +378,31 @@
                                             }
                                     </code>
                                 </pre>
+                                POWER FUNCTION
+
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        int power(int n, int m);
+
+                                        int main(){
+                                            int i;
+                                            for(i = 0; i &lt; 10; i++)
+                                                printf(&quot;%d %d %d \n&quot;, i, power(2, i), power(-3, i));
+                                        }
+
+                                        /* power raise base to n-th power */
+
+                                        int power(int base, int n){
+                                            int i, p;
+                                            p = 1;
+                                            for(i = 1; i &lt;= n; i++)
+                                                p *= base;
+                                            return p;
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
