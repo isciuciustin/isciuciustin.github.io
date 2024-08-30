@@ -428,6 +428,58 @@
                                         }
                                     </code>
                                 </pre>
+                                PRINT LONGEST INPUT LINE
+
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+                                        #define MAXLINE 5
+
+                                        int getLine(char line[], int maxline);
+                                        void copy(char to[], char from[]);
+
+                                        /* print longest input line */
+
+                                        int main(){
+                                            int len;
+                                            int max;
+
+                                            char line[MAXLINE];
+                                            char longest[MAXLINE];
+
+                                            max = 0;
+
+                                            while( (len = getLine(line, MAXLINE)) &gt; 0){
+                                                if(len &gt; max){
+                                                    max = len;
+                                                    copy(longest, line);
+                                                }
+                                            
+                                            }
+                                            if(max &gt; 0){
+                                                printf(&quot;%s\n&quot;, longest);   
+                                            }
+                                            return 0;
+                                        }
+
+                                        int getLine(char s[], int lim){
+                                            int c, i;
+
+                                            for(i = 0; i &lt; lim &amp;&amp; (c = getchar()) != EOF &amp;&amp; c != &apos;\n&apos;; i++){
+                                                s[i] = c;
+                                            }
+                                            s[i] = &apos;\0&apos;;
+                                            return i;
+                                        }
+
+
+                                        void copy(char to[], char from[]){
+                                            int i = 0;
+                                            while((to[i] = from[i]) != &apos;\0&apos;)
+                                                i++;
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
