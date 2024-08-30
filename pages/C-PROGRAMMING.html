@@ -480,6 +480,62 @@
                                         }
                                     </code>
                                 </pre>
+                                IN CASE THAT THE LINE IS GREATER THAN THE
+                                MAXIMUM
+
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        #define MAXLINE 1000
+
+                                        int get_line(char line[]);
+                                        void copy(char from[], char to[]);
+
+                                        int main(){
+                                            int len, maxLen = 0;
+
+                                            char line[MAXLINE];
+                                            char maxLine[MAXLINE];
+
+                                            while((len = get_line(line)) &gt; 0){
+                                                if(maxLen &lt; len){
+                                                    maxLen = len;
+                                                    copy(line , maxLine);
+                                                }
+                                                printf(&quot;line_length: %d\n&quot;, len);
+                                            }
+
+                                            printf(&quot;%s\n&quot;, maxLine);
+                                            return 0;
+                                        }
+
+                                        int get_line(char line[]){
+                                            int c, i;
+                                            for(i = 0; i &lt; MAXLINE &amp;&amp; (c = getchar()) != EOF &amp;&amp; c != &apos;\n&apos;; i++)
+                                                line[i] = c;
+                                            if (c == &apos;\n&apos;){
+                                                line[i] = c;
+                                                ++i;
+                                            }
+
+                                            line[i] = &apos;\0&apos;;
+
+                                            /* In case that the line is longer than the maximum */
+                                            while(c != EOF &amp;&amp; c != &apos;\n&apos;){
+                                                i++;
+                                                c = getchar();
+                                            }
+                                            return i;
+                                        }
+
+                                        void copy(char from[], char to[]){
+                                            int i = 0;
+                                            while((to[i] = from[i]) != &apos;\0&apos;)
+                                                i++;
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
