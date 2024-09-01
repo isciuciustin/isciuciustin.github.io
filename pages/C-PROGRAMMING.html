@@ -674,6 +674,67 @@
                                         }
                                     </code>
                                 </pre>
+                                LOGEST LINE WITH EXTERN VARIABLES
+
+                                <pre>
+                                    <code>
+                                        #include &lt;stdio.h&gt;
+
+                                        #define MAXLINE 1000
+
+                                        int maximum;
+                                        char line[MAXLINE];
+                                        char longest[MAXLINE];
+
+                                        int get_line(void);
+                                        void copy(void);
+
+                                        int main(){
+                                            int len;
+                                            extern int maximum;
+                                            extern char longest[];
+
+                                            maximum = 0;
+
+                                            while((len = get_line()) &gt; 0){
+                                                if(len &gt; maximum){
+                                                    maximum = len;
+                                                    copy();
+                                                }
+                                                printf(&quot;%d\n&quot;, maximum);
+                                            }
+
+                                            if(maximum &gt; 0){
+                                                printf(&quot;%s&quot;, longest);
+                                            }
+
+                                            return 0;
+                                        }
+
+                                        int get_line(void){
+                                            int c, i;
+                                            extern char line[];
+                                            for(i = 0; i &lt; MAXLINE - 1 &amp;&amp; (c = getchar()) != EOF &amp;&amp; c != &apos;\n&apos;; i++)
+                                                line[i] = c;
+
+                                            if(c == &apos;\n&apos;){
+                                                line[i] = c; 
+                                                i++;
+                                            }
+                                            return i;
+                                        }
+
+                                        void copy(void){
+                                            int i;
+                                            extern char line[], longest[];
+
+                                            i = 0;
+
+                                            while((longest[i] = line[i]) != &apos;\0&apos;)
+                                                i++;
+                                        }
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
