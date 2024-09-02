@@ -1292,6 +1292,55 @@
                                                 else:
                                                     l = i + 1
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/reverse-linked-list/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >206. Reverse Linked List</a
+                                >
+                                <br />
+                                ITERATIVE APPROACH:
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, val=0, next=None):
+                                        #         self.val = val
+                                        #         self.next = next
+                                        class Solution:
+                                            def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+                                                current = head;
+                                                prev = None;
+                                                if current == None:
+                                                    return current
+                                                while current.next != None:
+                                                    next_node = current.next
+                                                    current.next = prev
+                                                    prev = current
+                                                    current = next_node
+                                                current.next = prev
+                                                return current
+                                    </code>
+                                </pre>
+                                RECURSIVE APPROACH:
+
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, val=0, next=None):
+                                        #         self.val = val
+                                        #         self.next = next
+                                        class Solution:
+                                            def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+                                                def recursive(ll, rl):
+                                                    if not ll:
+                                                        return rl
+                                                    return recursive(ll.next, ListNode(ll.val, rl))
+                                                
+                                                return recursive(head, None)
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
