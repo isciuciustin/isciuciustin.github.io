@@ -1341,6 +1341,58 @@
                                                 return recursive(head, None)
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/merge-two-sorted-lists/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                    >21. Merge Two Sorted Lists</a
+                                >
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, val=0, next=None):
+                                        #         self.val = val
+                                        #         self.next = next
+                                        class Solution:
+                                            def mergeTwoLists(self, list1, list2):
+                                                head = None
+                                                current = None
+                                                
+                                                while list1 != None and list2 != None:
+                                                    new_node = ListNode()
+                                                    if list1.val < list2.val:
+                                                        new_node.val = list1.val
+                                                        list1 = list1.next
+                                                    else:
+                                                        new_node.val = list2.val
+                                                        list2 = list2.next
+                                                    if head == None:
+                                                        head = new_node
+                                                        current = head
+                                                    else:
+                                                        current.next = new_node
+                                                        current = new_node
+
+                                                if list1 != None:
+                                                    if current == None:
+                                                        head = list1
+                                                    else:
+                                                        current.next = list1
+                                                if list2 != None:
+                                                    if current == None:
+                                                        head = list2
+                                                    else:
+                                                        current.next = list2
+
+                                                current = head
+                                                while current != None:
+                                                    current = current.next
+                                                
+                                                return head
+                                                
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
