@@ -123,6 +123,160 @@
                                         print("Hello Python World!")
                                     </code>
                                 </pre>
+                                NAMES
+                                <pre>
+                                    <code>
+                                        names = ["Razvan", "Petronel", "Sebastian"]
+
+                                        print(names[0])
+                                        print(names[1])
+                                        print(names[2])
+                                    </code>
+                                </pre>
+                                Greetings
+                                <pre>
+                                    <code>
+                                        names = ["Razvan", "Petronel", "Sebastian"]
+
+                                        print("Hello my dear friend " + names[0])
+                                        print("Hello my dear friend " + names[1])
+                                        print("Hello my dear friend " + names[2])
+                                    </code>
+                                </pre>
+                                YOUR OWN LIST
+                                <pre>
+                                    <code>
+                                        cars = ["Lamborghini Revuelto", "Maserati Mc20", "Range Rover Sport"]
+
+                                        print("I would like to own a " + cars[0])
+                                        print("The best Maserati is " + cars[1])
+                                        print("My favorite SUV is " + cars[2])
+                                    </code>
+                                </pre>
+                                GUEST LIST
+                                <pre>
+                                    <code>
+                                        guest_list = ["Jeff Beszos", "John White", "Jim Rohn"]
+
+                                        print("Hy Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                    </code>
+                                </pre>
+                                GUEST LIST
+                                <pre>
+                                    <code>
+                                        guest_list = ["Jeff Beszos", "John White", "Jim Rohn"]
+
+                                        print("Hy Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+
+                                        print("Hy Mr. " + guest_list[0] + " can't attend the dinner!")
+
+                                        guest_list.pop(0)
+                                        guest_list.insert(0, "George Washington")
+
+                                        print("Hy Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+
+                                        guest_list.insert(0, "Dorian Popa")
+                                        guest_list.insert(2, "Allen Turing")
+                                        guest_list.append("Jesus Christ")
+
+                                        print("Hy Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[3] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[4] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[5] + " I would like to invite you to dinner!")
+
+                                        print("Hy unfortunately I found out that I can invite only 2 people to dinner")
+
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+
+                                        print("Hy Mr. " + guest_list[0] + " you are still invited to dinner")
+                                        print("Hy Mr. " + guest_list[1] + " you are still invited to dinner")
+
+                                        del guest_list[0]
+                                        del guest_list[0]
+
+                                        print(guest_list)
+                                    </code>
+                                </pre>
+                                SEEING THE WORLD
+                                <pre>
+                                    <code>
+                                        locations = ["Apple Park Cupertino", "Brasv Romania", "White House", "Capitol", "Times Square NYC"]
+
+                                        print(locations)
+                                        print(sorted(locations))
+                                        print(locations)
+                                        print(sorted(locations, reverse=True))
+                                        print(locations)
+                                        locations.reverse()
+                                        print(locations)
+                                        locations.reverse()
+                                        print(locations)
+                                        locations.sort()
+                                        print(locations)
+                                        locations.sort(reverse=True)
+                                        print(locations)
+                                    </code>
+                                </pre>
+                                DINNER GUESTS
+                                <pre>
+                                    <code>
+                                        guest_list = ["Jeff Beszos", "John White", "Jim Rohn"]
+
+                                        print("Hy Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                        print("I invite " + str(len(guest_list)) + " guests to dinner" )
+                                        print("Hy Mr. " + guest_list[0] + " can't attend the dinner!")
+
+                                        guest_list.pop(0)
+                                        guest_list.insert(0, "George Washington")
+
+                                        print("Hy Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                        print("I invite " + str(len(guest_list)) + " guests to dinner" )
+
+
+                                        guest_list.insert(0, "Dorian Popa")
+                                        guest_list.insert(2, "Allen Turing")
+                                        guest_list.append("Jesus Christ")
+
+                                        print("Hy Mr. " + guest_list[0] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[1] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[2] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[3] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[4] + " I would like to invite you to dinner!")
+                                        print("Hy Mr. " + guest_list[5] + " I would like to invite you to dinner!")
+                                        print("I invite " + str(len(guest_list)) + " guests to dinner" )
+
+                                        print("Hy unfortunately I found out that I can invite only 2 people to dinner")
+
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+                                        print("Hy Mr. " + guest_list.pop() + " I can't invite you to the dinner!")
+
+                                        print("Hy Mr. " + guest_list[0] + " you are still invited to dinner")
+                                        print("Hy Mr. " + guest_list[1] + " you are still invited to dinner")
+                                        print("I invite " + str(len(guest_list)) + " guests to dinner" )
+
+                                        del guest_list[0]
+                                        del guest_list[0]
+
+                                        print(guest_list)
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
