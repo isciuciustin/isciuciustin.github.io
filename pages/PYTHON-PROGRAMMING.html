@@ -503,6 +503,167 @@
                                             print(ordinal)
                                     </code>
                                 </pre>
+                                PERSON
+                                <pre>
+                                    <code>
+                                        # Use a dictionary to store information about a person you know.
+                                        # Store their first name, last name, age, and the city in which they live. You
+                                        # should have keys such as first_name, last_name, age, and city. Print each
+                                        # piece of information stored in your dictionary.
+
+                                        person = {
+                                            "first_name" : "Razvan",
+                                            "last_name" : "Cazacu",
+                                            "age" : 21,
+                                            "city" : "Nottingham"
+                                        }
+                                        print(person)
+                                    </code>
+                                </pre>
+                                FAVORITE NUMBERS
+                                <pre>
+                                    <code>
+                                        # Use a dictionary to store people’s favorite numbers.
+                                        # Think of five names, and use them as keys in your dictionary. Think of a favorite
+                                        # number for each person, and store each as a value in your dictionary. Print
+                                        # each person’s name and their favorite number. For even more fun, poll a few
+                                        # friends and get some actual data for your program
+
+                                        favorite_numbers = {
+                                            "Razvan" : 1,
+                                            "Alex" : 5,
+                                            "Iustin" : 6,
+                                            "Noe" : 666,
+                                            "Petronel" : 7
+                                        }
+
+                                        print(favorite_numbers)
+                                    </code>
+                                </pre>
+                                Rivers
+                                <pre>
+                                    <code>
+                                        # Make a dictionary containing three major rivers and the country
+                                        # each river runs through. One key-value pair might be 'nile': 'egypt'.
+                                        # •	 Use a loop to print a sentence about each river, such as The Nile runs
+                                        # through Egypt
+
+                                        rivers = {
+                                            "Amazon" : "Brazil",
+                                            "Nile" : "Egypt",
+                                            "Volga" : "Russian Federation"
+                                        }
+
+                                        for river, country in rivers.items():
+                                            print("The " + river + " runs through " + country)
+                                    </code>
+                                </pre>
+                                POLLING
+                                <pre>
+                                    <code>
+                                        # Make a list of people who should take the favorite languages poll. Include
+                                        # some names that are already in the dictionary and some that are not.
+                                        # •	 Loop through the list of people who should take the poll. If they have
+                                        # already taken the poll, print a message thanking them for responding.
+                                        # If they have not yet taken the poll, print a message inviting them to take
+                                        # the poll.
+
+                                        favorite_languages = {
+                                        'jen': 'python',
+                                        'sarah': 'c',
+                                        'edward': 'ruby',
+                                        'phil': 'python',
+                                        }
+
+                                        required_people = ["iustin", "razvan", "sarah", "edward"]
+
+                                        for required_person in required_people:
+                                            if required_person in favorite_languages.keys():
+                                                print("Thank you " + required_person + " for taking the poll!")
+                                            else:
+                                                print("Hy! " + required_person + " please take the poll!")
+                                    </code>
+                                </pre>
+                                PETS
+                                <pre>
+                                    <code>
+                                        # Make several dictionaries, where the name of each dictionary is the
+                                        # name of a pet. In each dictionary, include the kind of animal and the owner’s
+                                        # name. Store these dictionaries in a list called pets. Next, loop through your list
+                                        # and as you do print everything you know about each pet.
+
+                                        rex = {
+                                            "kind_of_animal" : "dog",
+                                            "owner_name" : "iustin"
+                                        }
+
+                                        garfield = {
+                                            "kind_of_animal" : "dog",
+                                            "owner_name" : "iustin"
+                                        }
+
+                                        pets = []
+                                        pets.append(rex)
+                                        pets.append(garfield)
+
+                                        for pet in pets:
+                                            print("Pet name : " + str(pet))
+                                    </code>
+                                </pre>
+                                FAVORITE PLACES
+                                <pre>
+                                    <code>
+                                        # Make a dictionary called favorite_places. Think of three
+                                        # names to use as keys in the dictionary, and store one to three favorite places
+                                        # for each person. To make this exercise a bit more interesting, ask some friends
+                                        # to name a few of their favorite places. Loop through the dictionary, and print
+                                        # each person’s name and their favorite places.
+
+                                        favorite_places = {
+                                            "iustin" : ["Apple Park Cupertino", "NYC", "Hollywood Hills California"],
+                                            "razvan" : ["London", "Paris", "Chicago"],
+                                            "alex" : ["home", "school", "library"]
+                                        }
+
+                                        for  name , favorite_places in favorite_places.items():
+                                            print(str(name) + " favorite places are " + str(favorite_places) )
+                                    </code>
+                                </pre>
+                                CITIES
+                                <pre>
+                                    <code>
+                                        # Make a dictionary called cities. Use the names of three cities as
+                                        # keys in your dictionary. Create a dictionary of information about each city and
+                                        # include the country that the city is in, its approximate population, and one fact
+                                        # about that city. The keys for each city’s dictionary should be something like
+                                        # country, population, and fact. Print the name of each city and all of the information you have stored about it.
+
+                                        cities = {
+                                            'New York' : {
+                                                'country' : "USA",
+                                                'population': 19469232,
+                                                'fact' : "The New York Public Library houses over 50 million books"
+                                            },
+                                            'Oslo' : {
+                                                'country': "Norway",
+                                                'population': 1100868,
+                                                'fact': "The Nobel Peace Prize is awarded in Oslo"
+                                            },
+                                            'Cupertino' : {
+                                                'country': "USA",
+                                                'population': 56343,
+                                                'fact': "It is known for being the home of Apple Inc., currently headquartered at Apple Park."
+                                            }
+                                        }
+
+                                        for city, info in cities.items():
+                                            print("Info about " + city + " : ")
+                                            print("It is located in : " +  info['country'])
+                                            print("Aprox. population : " +  str(info['population']))
+                                            print("An interesting fact : " + info['fact'])
+
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
