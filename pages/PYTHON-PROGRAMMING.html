@@ -844,6 +844,224 @@
                                             print(name + " would like to visit " + place)
                                     </code>
                                 </pre>
+                                MESSAGE
+                                <pre>
+                                    <code>
+                                        # Write a function called display_message() that prints one sentence 
+                                        # telling everyone what you are learning about in this chapter. 
+                                        # Call the function, and make sure the message displays correctly.
+
+                                        def display_message():
+                                            print("I am learning about functions!")
+
+                                        display_message()
+                                    </code>
+                                </pre>
+                                FAVORITE BOOK
+                                <pre>
+                                    <code>
+                                        # Write a function called favorite_book() that accepts one
+                                        # parameter, title.
+                                        # The function should print a message, such as One of my
+                                        # favorite books is Alice in Wonderland. Call the function, making sure to
+                                        # include a book title as an argument in the function call.
+
+                                        def favorite_book(title):
+                                            print("One of my favorite books is " + title)
+
+                                        favorite_book("Fram, The Polar Bear by Cezar Petrescu")
+                                    </code>
+                                </pre>
+                                T-SHIRT
+                                <pre>
+                                    <code>
+                                        # Write a function called make_shirt() that accepts a size and the
+                                        # text of a message that should be printed on the shirt. 
+                                        # The function should print a sentence summarizing the size of the shirt
+                                        #  and the message printed on it.
+                                        # Call the function once using positional arguments to make a shirt. 
+                                        # Call the function a second time using keyword arguments.
+
+                                        def make_shirt(size, message):
+                                            print("Your shirt is of size " + size + " and the message " + message)
+
+                                        make_shirt('M', "RockStar")
+                                        make_shirt(size="XXL", message="Banana")
+                                    </code>
+                                </pre>
+                                LARGE SHIRTS
+                                <pre>
+                                    <code>
+                                        # Modify the make_shirt() function so that shirts are large
+                                        # by default with a message that reads I love Python. Make a large shirt and a
+                                        # medium shirt with the default message, and a shirt of any size with a different
+                                        # message.
+
+                                        def make_shirt(size="L", message="I love Python"):
+                                            print("Your shirt is of size " + size + " and the message " + message)
+
+                                        make_shirt()
+                                        make_shirt("M")
+                                        make_shirt(size="XXL", message="Banana")
+                                    </code>
+                                </pre>
+                                CITIES
+                                <pre>
+                                    <code>
+                                        # Write a function called describe_city() that accepts the name of
+                                        # a city and its country. The function should print a simple sentence, such as
+                                        # Reykjavik is in Iceland. Give the parameter for the country a default value.
+                                        # Call your function for three different cities, at least one of which is not in the
+                                        # default country
+
+                                        def describe_city(city, country="USA"):
+                                            print(city.title() + " is in " + country.title())
+
+                                        describe_city("NYC")
+                                        describe_city("London", "UK")
+                                        describe_city("Brasov", "Romania")
+                                    </code>
+                                </pre>
+                                CITY NAMES
+                                <pre>
+                                    <code>
+                                        # Write a function called city_country() that takes in the name
+                                        # of a city and its country. The function should return a string formatted like this:
+                                        # "Santiago, Chile"
+                                        # Call your function with at least three city-country pairs, and print the value
+                                        # that’s returned.
+
+                                        def city_country(city, country):
+                                            return city + ", " + country
+
+                                        print(city_country("NYC", "USA")) 
+                                        print(city_country("Bangalore", "India")) 
+                                        print(city_country("Rome", "Italy")) 
+                                    </code>
+                                </pre>
+                                ALBUM
+                                <pre>
+                                    <code>
+                                        # Write a function called make_album() that builds a dictionary
+                                        # describing a music album. The function should take in an artist name and an
+                                        # album title, and it should return a dictionary containing these two pieces of
+                                        # information. Use the function to make three dictionaries representing different
+                                        # albums. Print each return value to show that the dictionaries are storing the
+                                        # album information correctly.
+                                        # Add an optional parameter to make_album() that allows you to store the
+                                        # number of tracks on an album. If the calling line includes a value for the number of tracks, add that value to the album’s dictionary. Make at least one new
+                                        # function call that includes the number of tracks on an album.
+
+                                        def make_album(artist_name, album_title, number_of_tracks=''):
+                                            if number_of_tracks:
+                                                return {"artist_name": artist_name, "album_title": album_title, "number_of_tracks" : number_of_tracks}
+                                            return {"artist_name": artist_name, "album_title": album_title}
+
+                                        print(make_album("Lil Pump", "Lil Pump", 9))
+                                        print(make_album("Lil Pump", "Harverd Dropout"))
+                                        print(make_album("Lil Pumo", "Lil Pump 2"))
+                                    </code>
+                                </pre>
+                                USER ALBUMS
+                                <pre>
+                                    <code>
+                                        # Start with your program from Exercise 8-7. Write a while
+                                        # loop that allows users to enter an album’s artist and title. Once you have that
+                                        # information, call make_album() with the user’s input and print the dictionary
+                                        # that’s created. Be sure to include a quit value in the while loop.
+
+                                        def make_album(artist_name, album_title, number_of_tracks=''):
+                                            if number_of_tracks:
+                                                return {"artist_name": artist_name, "album_title": album_title, "number_of_tracks" : number_of_tracks}
+                                            return {"artist_name": artist_name, "album_title": album_title}
+
+                                        print(make_album("Lil Pump", "Lil Pump", 9))
+                                        print(make_album("Lil Pump", "Harverd Dropout"))
+                                        print(make_album("Lil Pumo", "Lil Pump 2"))
+
+
+                                        while True:
+                                            artist_name = input("Please add an artist name!\n")
+                                            album_title = input("Please add the album title!\n")
+
+                                            print(make_album(artist_name=artist_name, album_title=album_title))
+                                            you_want_to_quit = input("Press 'quit' if you want to quit!\n")
+                                            if you_want_to_quit == 'quit':
+                                                break
+                                    </code>
+                                </pre>
+                                MAGICIANS
+                                <pre>
+                                    <code>
+                                        #  Make a list of magician’s names. Pass the list to a function
+                                        # called show_magicians(), which prints the name of each magician in the list.
+
+                                        magigians = ["David Blaine", "Harry Houdini", "Teller", "Penn Jillette"]
+
+                                        def show_magicians(magicians):
+                                            for magician in magicians:
+                                                print(magician)
+
+                                        show_magicians(magicians=magigians[:])
+                                    </code>
+                                </pre>
+                                GREAT MAGICIANS
+                                <pre>
+                                    <code>
+                                        # Start with a copy of your program from Exercise 8-9.
+                                        # Write a function called make_great() that modifies the list of magicians by 
+                                        # adding the phrase the Great to each magician’s name. Call show_magicians() to
+                                        # see that the list has actually been modified.
+
+                                        magicians = ["David Blaine", "Harry Houdini", "Teller", "Penn Jillette"]
+
+                                        def show_magicians(magicians):
+                                            if magicians:
+                                                for magician in magicians:
+                                                    print(magician)
+
+                                        show_magicians(magicians=magicians[:])
+
+                                        def make_great(magicians):
+                                            for i in range(0, len(magicians)):
+                                                magicians[i] = "the Great " + magicians[i]
+                                            
+                                        make_great(magicians=magicians)
+
+                                        show_magicians(magicians=magicians)
+                                    </code>
+                                </pre>
+                                UNCHANGED MAGICIANS
+                                <pre>
+                                    <code>
+                                        # Start with your work from Exercise 8-10. Call the
+                                        # function make_great() with a copy of the list of magicians’ names. Because the
+                                        # original list will be unchanged, return the new list and store it in a separate list.
+                                        # Call show_magicians() with each list to show that you have one list of the 
+                                        # original names and one list with the Great added to each magician’s name.
+
+                                        magicians = ["David Blaine", "Harry Houdini", "Teller", "Penn Jillette"]
+
+                                        def show_magicians(magicians):
+                                            if magicians:
+                                                for magician in magicians:
+                                                    print(magician)
+
+                                        show_magicians(magicians=magicians[:])
+
+                                        def make_great(magicians):
+                                            for i in range(0, len(magicians)):
+                                                magicians[i] = "Great " + magicians[i]
+                                            return magicians
+                                            
+                                        great_magicians = make_great(magicians=magicians[:])
+
+                                        print("The original list: ")
+                                        show_magicians(magicians=magicians)
+                                        print("The modified list: ")
+                                        show_magicians(magicians=great_magicians)
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
