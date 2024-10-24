@@ -1277,6 +1277,664 @@
                                         show_magicians(magicians=great_magicians)
                                     </code>
                                 </pre>
+                                SANDWITCHES
+                                <pre>
+                                    <code>
+                                        # Write a function that accepts a list of items a person wants
+                                        # on a sandwich. The function should have one parameter that collects as many
+                                        # items as the function call provides, and it should print a summary of the 
+                                        # sandwich that is being ordered. Call the function three times, using a different 
+                                        # number of arguments each time.
+
+                                        def make_sandwitch(ingredients):
+                                            print("Your sandwitch will contain : ")
+                                            for ingredient in ingredients:
+                                                print(ingredient)
+
+                                        make_sandwitch(["sweet bread rolls", "cup mayonnaise", "cup prepared mustard",
+                                                        "pound thinly sliced cooked ham", "pound thinly sliced fully cooked pork"])
+
+
+                                        make_sandwitch(["tablespoon butter, softened", "hot dog buns or kaiser rolls, split",
+                                                        "lettuce leaves", "tablespoons mayonnaise","teaspoon fresh lime juice"])
+                                    </code>
+                                </pre>
+                                USER PROFILE
+                                <pre>
+                                    <code>
+                                        #  Start with a copy of user_profile.py from page 153. Build
+                                        # a profile of yourself by calling build_profile(), using your first and last names
+                                        # and three other key-value pairs that describe you.
+
+                                        def build_profile(first, last, **user_info):
+                                            """Build a dictionary containing everything we know about a user."""
+                                            profile = {}
+                                            profile['first_name'] = first
+                                            profile['last_name'] = last
+                                            for key, value in user_info.items():
+                                                profile[key] = value
+                                            return profile
+
+                                        user_profile = build_profile('IUSTIN', 'ISCIUC',
+                                        location='INTERNET',
+                                        field='INFORMATICS')
+
+                                        print(user_profile)
+                                    </code>
+                                </pre>
+                                CARS
+                                <pre>
+                                    <code>
+                                        # Write a function that stores information about a car in a dictionary. The function should always receive a manufacturer and a model name. It
+                                        # should then accept an arbitrary number of keyword arguments. Call the function with the required information and two other name-value pairs, such as a
+                                        # color or an optional feature. Your function should work for a call like this one:
+                                        # car = make_car('subaru', 'outback', color='blue', tow_package=True)
+                                        # Print the dictionary that’s returned to make sure all the information was
+                                        # stored correctly
+
+                                        def make_car(manufacturer, model, **car_info):
+                                            """Build a dictionary containing everything we know about a car."""
+                                            car = {}
+                                            car['manufacturer'] = manufacturer
+                                            car['model'] = model
+                                            for key, value in car_info.items():
+                                                car[key] = value
+                                            return car
+
+                                        car = make_car('AUDI', 'Q8',
+                                        color='WHITE',
+                                        tow_package=True)
+
+                                        print(car)
+                                    </code>
+                                </pre>
+                                RESTAURANT
+                                <pre>
+                                    <code>
+                                        # Make a class called Restaurant. The __init__() method for
+                                        # Restaurant should store two attributes: a restaurant_name and a cuisine_type.
+                                        # Make a method called describe_restaurant() that prints these two pieces of
+                                        # information, and a method called open_restaurant() that prints a message indicating that the restaurant is open.
+                                        # Make an instance called restaurant from your class. Print the two attributes individually, and then call both methods.
+
+                                        class Restaurant():
+                                            """A class to model a Restaurant"""
+
+                                            def __init__(self, restaurant_name, cuisine_type):
+                                                self.restaurant_name = restaurant_name
+                                                self.cuisine_type = cuisine_type
+                                            
+                                            def describe_restaurant(self):
+                                                print("The restaurant is called : " + self.restaurant_name +
+                                                    " and it offers " + self.cuisine_type)
+                                            def open_restaurant(self):
+                                                print("The restaurant is open!")
+
+
+                                        first_restaurant = Restaurant("Iustin's Pizza House", "Pizzeria")
+
+                                        print(first_restaurant.restaurant_name)
+                                        print(first_restaurant.cuisine_type)
+                                        first_restaurant.describe_restaurant()
+                                        first_restaurant.open_restaurant()
+                                    </code>
+                                </pre>
+                                USERS
+                                <pre>
+                                    <code>
+                                        #  Make a class called User. Create two attributes called first_name
+                                        # and last_name, and then create several other attributes that are typically stored
+                                        # in a user profile. Make a method called describe_user() that prints a summary
+                                        # of the user’s information. Make another method called greet_user() that prints
+                                        # a personalized greeting to the user.
+                                        # Create several instances representing different users, and call both methods
+                                        # for each user.
+
+                                        class User():
+                                            def __init__(self, first_name, last_name):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                            
+                                            def describe_user(self):
+                                                print("The user is called " + self.first_name + " " + self.last_name)
+
+                                            def greet_user(self):
+                                                print("Hy! " + self.first_name + " " + self.last_name + " good to see you!")
+
+                                        first_user = User("Iustin", "Isciuc")
+                                        first_user.describe_user()
+                                        first_user.greet_user()
+
+                                        last_user = User("Razvan", "Cazacu")
+                                        last_user.describe_user()
+                                        last_user.greet_user()
+                                    </code>
+                                </pre>
+                                NUMBER SERVED
+                                <pre>
+                                    <code>
+                                        # Start with your program from Exercise 9-1 (page 166).
+                                        # Add an attribute called number_served with a default value of 0. Create an
+                                        # instance called restaurant from this class. Print the number of customers the
+                                        # restaurant has served, and then change this value and print it again.
+                                        # Add a method called set_number_served() that lets you set the number
+                                        # of customers that have been served. Call this method with a new number and
+                                        # print the value again.
+                                        # Add a method called increment_number_served() that lets you increment
+                                        # the number of customers who’ve been served. Call this method with any number you like that could represent how many customers were served in, say, a
+                                        # day of business.
+
+                                        class Restaurant():
+                                            """A class to model a Restaurant"""
+
+                                            def __init__(self, restaurant_name, cuisine_type):
+                                                self.restaurant_name = restaurant_name
+                                                self.cuisine_type = cuisine_type
+                                                self.number_served = 0
+
+                                            def describe_restaurant(self):
+                                                print("The restaurant is called : " + self.restaurant_name +
+                                                    " and it offers " + self.cuisine_type)
+                                            def open_restaurant(self):
+                                                print("The restaurant is open!")
+
+                                            def set_number_served(self, new_number):
+                                                self.number_served = new_number
+                                            
+                                            def increment_number_served(self,increment_value):
+                                                self.set_number_served(self.number_served + increment_value)
+
+                                        first_restaurant = Restaurant("Iustin's Pizza House", "Pizzeria")
+
+                                        print(first_restaurant.restaurant_name)
+                                        print(first_restaurant.cuisine_type)
+                                        first_restaurant.describe_restaurant()
+                                        first_restaurant.open_restaurant()
+
+                                        print(first_restaurant.number_served)
+                                        first_restaurant.number_served = 10
+                                        print(first_restaurant.number_served)
+                                        first_restaurant.set_number_served(20)
+                                        print(first_restaurant.number_served)
+                                        first_restaurant.increment_number_served(10)
+                                        print(first_restaurant.number_served)
+                                    </code>
+                                </pre>
+                                LOGIN ATTEMPTS
+                                <pre>
+                                    <code>
+                                        # Add an attribute called login_attempts to your User
+                                        # class from Exercise 9-3 (page 166). Write a method called increment_
+                                        # login_attempts() that increments the value of login_attempts by 1. Write
+                                        # another method called reset_login_attempts() that resets the value of login_
+                                        # attempts to 0.
+                                        # Make an instance of the User class and call increment_login_attempts()
+                                        # several times. Print the value of login_attempts to make sure it was incremented
+                                        # properly, and then call reset_login_attempts(). Print login_attempts again to
+                                        # make sure it was reset to 0.
+
+                                        class User():
+                                            def __init__(self, first_name, last_name):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                                self.login_attempts = 0
+                                            
+                                            def describe_user(self):
+                                                print("The user is called " + self.first_name + " " + self.last_name)
+
+                                            def greet_user(self):
+                                                print("Hy! " + self.first_name + " " + self.last_name + " good to see you!")
+
+                                            def increment_login_attempts(self):
+                                                self.login_attempts = self.login_attempts + 1
+                                            
+                                            def reset_login_attempts(self):
+                                                self.login_attempts = 0
+
+                                        first_user = User("Iustin", "Isciuc")
+                                        first_user.describe_user()
+                                        first_user.greet_user()
+
+                                        last_user = User("Razvan", "Cazacu")
+                                        last_user.describe_user()
+                                        last_user.greet_user()
+
+                                        last_user.increment_login_attempts()
+                                        last_user.increment_login_attempts()
+                                        last_user.increment_login_attempts()
+                                        print(last_user.login_attempts)
+                                        last_user.reset_login_attempts()
+                                        print(last_user.login_attempts)
+                                    </code>
+                                </pre>
+                                ICE CREAM STAND
+                                <pre>
+                                    <code>
+                                        # An ice cream stand is a specific kind of restaurant. Write
+                                        # a class called IceCreamStand that inherits from the Restaurant class you wrote
+                                        # in Exercise 9-1 (page 166) or Exercise 9-4 (page 171). Either version of
+                                        # the class will work; just pick the one you like better. Add an attribute called
+                                        # flavors that stores a list of ice cream flavors. Write a method that displays
+                                        # these flavors. Create an instance of IceCreamStand, and call this method.
+
+                                        class Restaurant():
+                                            """A class to model a Restaurant"""
+
+                                            def __init__(self, restaurant_name, cuisine_type):
+                                                self.restaurant_name = restaurant_name
+                                                self.cuisine_type = cuisine_type
+                                                self.number_served = 0
+
+                                            def describe_restaurant(self):
+                                                print("The restaurant is called : " + self.restaurant_name +
+                                                    " and it offers " + self.cuisine_type)
+                                            def open_restaurant(self):
+                                                print("The restaurant is open!")
+
+                                            def set_number_served(self, new_number):
+                                                self.number_served = new_number
+                                            
+                                            def increment_number_served(self,increment_value):
+                                                self.set_number_served(self.number_served + increment_value)
+
+                                        first_restaurant = Restaurant("Iustin's Pizza House", "Pizzeria")
+
+                                        class IceCreamStand(Restaurant):
+                                            def __init__(self):
+                                                self.flavors = ["Neapolitan", "Cherry", "Rum Raisin", "Cookie Dough"]
+
+                                            def display_flavors(self):
+                                                print(self.flavors)
+
+                                        ice_cream_stand = IceCreamStand();
+                                        ice_cream_stand.display_flavors()
+                                    </code>
+                                </pre>
+                                ADMIN
+                                <pre>   
+                                    <code>
+                                        #  An administrator is a special kind of user. Write a class called
+                                        # Admin that inherits from the User class you wrote in Exercise 9-3 (page 166)
+                                        # or Exercise 9-5 (page 171). Add an attribute, privileges, that stores a list
+                                        # of strings like "can add post", "can delete post", "can ban user", and so on.
+                                        # Write a method called show_privileges() that lists the administrator’s set of
+                                        # privileges. Create an instance of Admin, and call your method.
+
+                                        class User():
+                                            def __init__(self, first_name, last_name):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                                self.login_attempts = 0
+                                            
+                                            def describe_user(self):
+                                                print("The user is called " + self.first_name + " " + self.last_name)
+
+                                            def greet_user(self):
+                                                print("Hy! " + self.first_name + " " + self.last_name + " good to see you!")
+
+                                            def increment_login_attempts(self):
+                                                self.login_attempts = self.login_attempts + 1
+                                            
+                                            def reset_login_attempts(self):
+                                                self.login_attempts = 0
+
+                                        first_user = User("Iustin", "Isciuc")
+                                        first_user.describe_user()
+                                        first_user.greet_user()
+
+
+                                        class Admin(User):
+                                            def __init__(self):
+                                                self.privileges = ["can add post", "can delete post", "can ban user"]
+                                            
+                                            def show_privileges(self):
+                                                print(self.privileges)
+
+                                        admin = Admin()
+
+                                        admin.show_privileges()
+                                    </code>
+                                </pre>
+                                PRIVILEGES
+                                <pre>
+                                    <code>
+                                        # Write a separate Privileges class. The class should have one
+                                        # attribute, privileges, that stores a list of strings as described in Exercise 9-7.
+                                        # Move the show_privileges() method to this class. Make a Privileges instance
+                                        # as an attribute in the Admin class. Create a new instance of Admin and use your
+                                        # method to show its privileges.
+
+                                        class User():
+                                            def __init__(self, first_name, last_name):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                                self.login_attempts = 0
+                                            
+                                            def describe_user(self):
+                                                print("The user is called " + self.first_name + " " + self.last_name)
+
+                                            def greet_user(self):
+                                                print("Hy! " + self.first_name + " " + self.last_name + " good to see you!")
+
+                                            def increment_login_attempts(self):
+                                                self.login_attempts = self.login_attempts + 1
+                                            
+                                            def reset_login_attempts(self):
+                                                self.login_attempts = 0
+
+                                        first_user = User("Iustin", "Isciuc")
+                                        first_user.describe_user()
+                                        first_user.greet_user()
+
+
+                                        class Admin(User):
+                                            def __init__(self):
+                                                self.privilege =  Privileges()
+                                            
+
+
+
+                                        class Privileges(Admin):
+                                            def __init__(self):
+                                                self.privileges = ["can add post", "can delete post", "can ban user"]
+                                            
+                                            def show_privileges(self):
+                                                print(self.privileges)
+
+                                        admin = Admin()
+
+                                        print(admin.privilege.show_privileges())
+                                    </code>
+                                </pre>
+                                BATTERY UPGRADE
+                                <pre>
+                                    <code>
+                                        #  Use the final version of electric_car.py from this section.
+                                        # Add a method to the Battery class called upgrade_battery(). This method
+                                        # should check the battery size and set the capacity to 85 if it isn’t already.
+                                        # Make an electric car with a default battery size, call get_range() once, and
+                                        # then call get_range() a second time after upgrading the battery. You should
+                                        # see an increase in the car’s range.
+
+                                        class Car():
+                                            """A simple attempt to represent a car."""
+                                            def __init__(self, make, model, year):
+                                                self.make = make
+                                                self.model = model
+                                                self.year = year
+                                                self.odometer_reading = 0
+
+                                            def get_descriptive_name(self):
+                                                long_name = str(self.year) + ' ' + self.make + ' ' + self.model
+                                                return long_name.title()
+
+                                            def read_odometer(self):
+                                                print("This car has " + str(self.odometer_reading) + " miles on it.")
+
+                                            def update_odometer(self, mileage):
+                                                if mileage >= self.odometer_reading:
+                                                    self.odometer_reading = mileage
+                                                else:
+                                                    print("You can't roll back an odometer!")
+
+                                            def increment_odometer(self, miles):
+                                                self.odometer_reading += miles
+
+                                        class Battery():
+                                            """A simple attempt to model a battery for an electric car."""
+
+                                            def __init__(self, battery_size=70):
+                                                """Initialize the battery's attributes."""
+                                                self.battery_size = battery_size
+                                            
+                                            def describe_battery(self):
+                                                """Print a statement describing the battery size."""
+                                                print("This car has a " + str(self.battery_size) + "-kWh battery.")
+                                            
+                                            def get_range(self):
+                                                """Print a statement about the range this battery provides."""
+                                                if self.battery_size == 70:
+                                                    range = 240
+                                                elif self.battery_size == 85:
+                                                    range = 270
+
+                                                message = "This car can go approximately " + str(range)
+                                                message += " miles on a full charge."
+                                                print(message)
+                                            
+                                            def upgrade_battery(self):
+                                                if self.battery_size != 85:
+                                                    self.battery_size = 85
+
+                                        class ElectricCar(Car):
+                                            """Represent aspects of a car, specific to electric vehicles."""
+                                            def __init__(self, make, model, year):
+                                                """
+                                                Initialize attributes of the parent class.
+                                                Then initialize attributes specific to an electric car.
+                                                """
+                                                super().__init__(make, model, year)
+                                                self.battery = Battery()
+
+                                        my_tesla = ElectricCar('tesla', 'model s', 2016)
+                                        print(my_tesla.get_descriptive_name())
+                                        my_tesla.battery.describe_battery()
+                                        my_tesla.battery.upgrade_battery()
+                                        my_tesla.battery.describe_battery()
+
+                                    </code>
+                                </pre>
+                                IMPORTED RESTAURANT
+                                <pre>
+                                    <code>
+                                        restaurant.py 
+
+                                        class Restaurant():
+                                        """A class to model a Restaurant"""
+
+                                        def __init__(self, restaurant_name, cuisine_type):
+                                            self.restaurant_name = restaurant_name
+                                            self.cuisine_type = cuisine_type
+                                            self.number_served = 0
+
+                                        def describe_restaurant(self):
+                                            print("The restaurant is called : " + self.restaurant_name +
+                                                " and it offers " + self.cuisine_type)
+                                        def open_restaurant(self):
+                                            print("The restaurant is open!")
+
+                                        def set_number_served(self, new_number):
+                                            self.number_served = new_number
+                                        
+                                        def increment_number_served(self,increment_value):
+                                            self.set_number_served(self.number_served + increment_value)
+
+                                        test.py 
+
+                                        # Using your latest Restaurant class, store it in a module. Make a separate 
+                                        # file that imports Restaurant. Make a Restaurant instance,
+                                        # and call one of Restaurant’s methods to show that the import statement 
+                                        # is working properly
+
+                                        import restaurant
+
+                                        new_restaurant = restaurant.Restaurant("Iustin's Pizzeria", "Pizza")
+
+                                        new_restaurant.describe_restaurant()
+
+                                    </code>
+                                </pre>
+
+                                <pre>
+                                    <code>
+                                        user.py 
+
+                                        class User():
+                                            def __init__(self, first_name, last_name):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                                self.login_attempts = 0
+                                            
+                                            def describe_user(self):
+                                                print("The user is called " + self.first_name + " " + self.last_name)
+
+                                            def greet_user(self):
+                                                print("Hy! " + self.first_name + " " + self.last_name + " good to see you!")
+
+                                            def increment_login_attempts(self):
+                                                self.login_attempts = self.login_attempts + 1
+                                            
+                                            def reset_login_attempts(self):
+                                                self.login_attempts = 0
+
+
+                                        class Admin(User):
+                                            def __init__(self):
+                                                self.privilege =  Privileges()
+                                            
+
+
+                                        test.py 
+
+                                        class Privileges(Admin):
+                                            def __init__(self):
+                                                self.privileges = ["can add post", "can delete post", "can ban user"]
+                                            
+                                            def show_privileges(self):
+                                                print(self.privileges)
+                                        
+
+                                                # Start with your work from Exercise 9-8 (page 178).
+                                                # Store the classes User, Privileges, and Admin in one module.
+                                                # Create a separate file, make an Admin instance, and call show_privileges() 
+                                                # to show that everything is working correctly.
+                                                
+                                                import user
+                                                
+                                                admin = user.Admin()
+                                                
+                                                print(admin.privilege.show_privileges())
+                                    </code>
+                                </pre>
+
+                                <pre>
+                                    <code>
+                                        user.py 
+
+                                        class User():
+                                            def __init__(self, first_name, last_name):
+                                                self.first_name = first_name
+                                                self.last_name = last_name
+                                                self.login_attempts = 0
+                                            
+                                            def describe_user(self):
+                                                print("The user is called " + self.first_name + " " + self.last_name)
+
+                                            def greet_user(self):
+                                                print("Hy! " + self.first_name + " " + self.last_name + " good to see you!")
+
+                                            def increment_login_attempts(self):
+                                                self.login_attempts = self.login_attempts + 1
+                                            
+                                            def reset_login_attempts(self):
+                                                self.login_attempts = 0
+
+                                        admin.py 
+
+                                        import user
+
+                                        class Admin(user.User):
+                                            def __init__(self):
+                                                self.privilege =  Privileges()
+                                            
+
+
+
+                                        class Privileges(Admin):
+                                            def __init__(self):
+                                                self.privileges = ["can add post", "can delete post", "can ban user"]
+                                            
+                                            def show_privileges(self):
+                                                print(self.privileges)
+
+                                        test.py 
+
+                                        #  Store the User class in one module, and store the
+                                        # Privileges and Admin classes in a separate module. In a separate file, create
+                                        # an Admin instance and call show_privileges() to show that everything is still
+                                        # working correctly
+                                        
+                                        import admin
+                                        
+                                        admin = admin.Admin()
+                                        
+                                        print(admin.privilege.show_privileges())
+                                    </code>
+                                </pre>
+                                DICE
+                                <pre>
+                                    <code>
+                                        # The module random contains functions that generate random numbers in a variety of ways. 
+                                        # The function randint() returns an integer in the
+                                        # range you provide. The following code returns a number between 1 and 6:
+                                        # from random import randint
+                                        # x = randint(1, 6)
+                                        # Make a class Die with one attribute called sides, which has a default
+                                        # value of 6. Write a method called roll_die() that prints a random number
+                                        # between 1 and the number of sides the die has. Make a 6-sided die and roll
+                                        # it 10 times.
+                                        # Make a 10-sided die and a 20-sided die. Roll each die 10 times.
+
+                                        from random import randint
+
+                                        class Die:
+                                            def __init__(self, sides=6):
+                                                self.sides = sides
+                                            
+                                            def roll_die(self):
+                                                print(randint(1, self.sides))
+
+                                        print("6 sides dice")
+                                        dice = Die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+
+                                        print("10 sides dice")
+                                        dice = Die(10)
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+
+
+                                        print("20 sides dice")
+                                        dice = Die(20)
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                        dice.roll_die()
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
