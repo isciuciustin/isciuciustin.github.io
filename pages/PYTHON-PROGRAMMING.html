@@ -2041,7 +2041,7 @@
                                                 break;
                                     </code>
                                 </pre>
-                                Addition
+                                ADDITION
                                 <pre>
                                     <code>
                                         #  One common problem when prompting for numerical input
@@ -2071,7 +2071,7 @@
                                                 print(answer)
                                     </code>
                                 </pre>
-                                Cats and Dogs:
+                                CATS AND DOGS:
                                 <pre>
                                     <code>
                                         # Make two files, cats.txt and dogs.txt. Store at least three
@@ -2091,6 +2091,146 @@
                                             except FileNotFoundError:
                                                 msg = "Sorry, the file " + filename + " does was not found."
                                                 print(msg)
+                                    </code>
+                                </pre>
+                                COMMON WORDS
+                                <pre>
+                                    <code>
+                                        #  Visit Project Gutenberg (http://gutenberg.org/ )
+                                        # and find a few texts you’d like to analyze. Download the text files for these
+                                        # works, or copy the raw text from your browser into a text file on your
+                                        # computer.
+                                        # You can use the count() method to find out how many times a word or
+                                        # phrase appears in a string. For example, the following code counts the number
+                                        # of times 'row' appears in a string:
+                                        # >>> line = "Row, row, row your boat"
+                                        # >>> line.count('row')
+                                        # 2
+                                        # >>> line.lower().count('row')
+                                        # 3
+                                        # Notice that converting the string to lowercase using lower() catches
+                                        # all appearances of the word you’re looking for, regardless of how it’s
+                                        # formatted.
+                                        # Write a program that reads the files you found at Project Gutenberg and
+                                        # determines how many times the word 'the' appears in each text.
+
+
+                                        filename = './LETTERS-SENECA.html'
+
+                                        try:
+                                            with open(filename) as f_obj:
+                                                contents = f_obj.read()
+                                                print(contents.count('the'))
+                                        except FileNotFoundError:
+                                            msg = "Sorry, the file " + filename + " does was not found."
+                                            print(msg)
+
+                                        #I saved the Minor Dialogues, Together With the Dialogue on Clemency by Lucius Annaeus Seneca as ./LETTERS-SENECA.html
+                                    </code>
+                                </pre>
+                                FAVORITE NUMBER
+                                <pre>
+                                    <code>
+                                        #  Write a program that prompts for the user’s favorite
+                                        # number. Use json.dump() to store this number in a file. Write a separate program that reads in this value and prints the message, “I know your favorite
+                                        # number! It’s _____.”
+
+
+                                        write_number.py 
+
+                                        import json 
+
+                                        favorite_number = input("What is your favorite number?\n")
+
+                                        filename = 'favorite_number.json'
+
+                                        with open(filename, 'w') as f_obj:
+                                            json.dump(favorite_number, f_obj)
+                                            print("I will remember that your favorite number is : " + favorite_number)
+
+                                        read_number.py 
+
+                                        import json
+
+                                        filename = './favorite_number.json'
+                                        
+                                        with open(filename) as f_obj:
+                                            favorite_number = json.load(f_obj)
+                                            print("Your favorite number is : " + favorite_number)
+                                    </code>
+                                </pre>
+                                FAVORITE NUMBER REMEMBERED
+                                <pre>
+                                    <code>
+                                        #  Combine the two programs from
+                                        # Exercise 10-11 into one file. If the number is already stored, report the favorite
+                                        # number to the user. If not, prompt for the user’s favorite number and store it in a
+                                        # file. Run the program twice to see that it works.
+
+                                        import json 
+
+                                        filename = 'favorite_number.json'
+
+                                        try:
+                                            with open(filename) as f_obj:
+                                                favorite_number = json.load(f_obj)
+                                                print("Your favorite number is : " + favorite_number)
+                                        except FileNotFoundError:
+                                            favorite_number = input("What is your favorite number\n");
+                                            with open(filename, 'w') as f_obj:
+                                                json.dump(favorite_number, f_obj)
+                                                print("We will remeber that your favorite number is : " + favorite_number)
+                                    </code>
+                                </pre>
+                                VERIFY USER
+                                <pre>
+                                    <code>
+                                        # The final listing for remember_me.py assumes either that the
+                                        # user has already entered their username or that the program is running for the
+                                        # first time. We should modify it in case the current user is not the person who
+                                        # last used the program.
+                                        # Before printing a welcome back message in greet_user(), ask the user if
+                                        # this is the correct username. If it’s not, call get_new_username() to get the correct
+                                        # username.
+
+                                        import json
+
+                                        def get_stored_username():
+                                            """Get stored username if available."""
+                                            filename = 'username.json'
+                                            try:
+                                                with open(filename) as f_obj:
+                                                    username = json.load(f_obj) 
+                                            except FileNotFoundError:
+                                                return None
+                                            else:
+                                                return username
+
+
+                                        def get_new_username():
+                                            """Prompt for a new username."""
+                                            username = input("What is your name?\n")
+                                            filename = 'username.json'
+                                            with open(filename, 'w') as f_obj:
+                                                json.dump(username, f_obj)
+                                            return username
+
+                                        def greet_user():
+                                            """Greet the user by name."""
+                                            username = get_stored_username()
+                                            if username:
+                                                last_username = input("Hy! the last username used is : " + username + " (yes/no)\n")
+                                                if last_username == 'no':
+                                                    username = get_new_username()
+                                                    print("We'll remember you when you come back, " + username + "!")
+                                                else:
+                                                    print("Welcome back, " + username + "!")
+                                            else:
+                                                username = get_new_username()
+                                                print("We'll remember you when you come back, " + username + "!")
+
+
+                                        greet_user()
                                     </code>
                                 </pre>
                             </b>
