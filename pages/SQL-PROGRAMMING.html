@@ -57,6 +57,68 @@
                                         SELECT DISTINCT CITY FROM STATION WHERE REGEXP_LIKE(CITY, '[aeiou]$');
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-8/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    WEATHER OBSERVATION STATION 8</a
+                                >
+                                <pre>
+                                    <code>
+                                        SELECT DISTINCT CITY FROM STATION WHERE REGEXP_LIKE(CITY, '^[aeiou].*[aeiou]$');
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-8/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    WEATHER OBSERVATION STATION 9</a
+                                >
+                                <pre>
+                                    <code>
+                                        SELECT DISTINCT CITY FROM STATION WHERE NOT REGEXP_LIKE(CITY, '^[aeiou]');
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-10/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    WEATHER OBSERVATION STATION 10</a
+                                >
+                                <pre>
+                                    <code>
+                                        SELECT DISTINCT CITY FROM STATION WHERE CITY NOT REGEXP '[aeiou]$'
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-11/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    WEATHER OBSERVATION STATION 11</a
+                                >
+                                <pre>
+                                    <code>
+                                        SELECT DISTINCT CITY FROM STATION  WHERE CITY NOT REGEXP '^[aeiou].*[aeiou]$';
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-11/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    WEATHER OBSERVATION STATION 12</a
+                                >
+                                <pre>
+                                    <code>
+                                        SELECT DISTINCT CITY FROM STATION  WHERE CITY NOT REGEXP '[aeiou]$'  AND CITY NOT REGEXP '^[aeiou]';
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
