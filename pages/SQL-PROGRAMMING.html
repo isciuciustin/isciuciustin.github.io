@@ -50,6 +50,18 @@
                                     target="_blank"
                                     style="text-decoration: none"
                                 >
+                                    WEATHER OBSERVATION STATION 6</a
+                                >
+                                <pre>
+                                    <code>
+                                        SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP '^[aeiou]';
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-7/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
                                     WEATHER OBSERVATION STATION 7</a
                                 >
                                 <pre>
@@ -119,6 +131,77 @@
                                         SELECT DISTINCT CITY FROM STATION  WHERE CITY NOT REGEXP '[aeiou]$'  AND CITY NOT REGEXP '^[aeiou]';
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://www.hackerrank.com/challenges/more-than-75-marks/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Higher Than 75 Marks
+                                </a>
+                                <pre>
+                                    <code>
+                                        SELECT NAME FROM STUDENTS WHERE MARKS > 75 ORDER BY RIGHT(NAME,3), ID;
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://www.hackerrank.com/challenges/name-of-employees/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Employee Names
+                                </a>
+                                <pre>
+                                <code>
+                                    SELECT NAME FROM EMPLOYEE ORDER BY NAME;
+                                </code>
+                                </pre>
+                                <a
+                                    href="https://www.hackerrank.com/challenges/salary-of-employees/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Employee Salaries
+                                </a>
+                                <pre>
+                                    <code>
+                                        SELECT NAME FROM EMPLOYEE WHERE SALARY > 2000 AND MONTHS < 10 ORDER BY EMPLOYEE_ID;
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/what-type-of-triangle/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Type of Triangle
+                                </a>
+                                <pre>
+                                    <code>
+                                        SELECT 
+                                        CASE 
+                                            WHEN (A >= B + C) OR (B >= A + C) OR (C >= A + B) THEN 'Not A Triangle' 
+                                            WHEN ((A = B) AND (A != C)) OR ((A = C) AND (A != B)) OR ((B = C )AND( A != B)) THEN 'Isosceles'
+                                            WHEN A = B AND A = C AND B = C THEN 'Equilateral'
+                                            ELSE 'Scalene'
+                                        END 
+                                        FROM TRIANGLES;
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/the-pads/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    The PADS
+                                </a>
+                                <pre>
+                                <code>
+                                    SELECT CONCAT(NAME, '(', LEFT(OCCUPATION, 1), ')') FROM OCCUPATIONS
+                                    UNION ALL 
+                                    SELECT CONCAT('There are a total of ', COUNT(OCCUPATION), ' ', LOWER(OCCUPATION),'s','.')  FROM OCCUPATIONS GROUP BY OCCUPATION ORDER BY 1;
+                                </code>
+                            </pre>
                             </b>
                         </p>
                     </ul>
