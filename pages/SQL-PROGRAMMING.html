@@ -144,11 +144,11 @@
                                     </code>
                                 </pre>
                                 <a
-                                    href="https://www.hackerrank.com/challenges/name-of-employees/problem"
+                                    href="https://www.hackerrank.com/challenges/name-of-EMPLOYEEs/problem"
                                     target="_blank"
                                     style="text-decoration: none"
                                 >
-                                    Employee Names
+                                    EMPLOYEE Names
                                 </a>
                                 <pre>
                                 <code>
@@ -156,11 +156,11 @@
                                 </code>
                                 </pre>
                                 <a
-                                    href="https://www.hackerrank.com/challenges/salary-of-employees/problem"
+                                    href="https://www.hackerrank.com/challenges/salary-of-EMPLOYEEs/problem"
                                     target="_blank"
                                     style="text-decoration: none"
                                 >
-                                    Employee Salaries
+                                    EMPLOYEE Salaries
                                 </a>
                                 <pre>
                                     <code>
@@ -322,7 +322,7 @@
                                 </pre>
 
                                 <a
-                                    href="https://www.hackerrank.com/challenges/earnings-of-employees/problem"
+                                    href="https://www.hackerrank.com/challenges/earnings-of-EMPLOYEEs/problem"
                                     target="_blank"
                                     style="text-decoration: none"
                                 >
@@ -331,8 +331,8 @@
 
                                 <pre>
                                     <code>
-                                        SELECT MAX(SALARY * MONTHS), COUNT(*) FROM Employee
-                                        WHERE (SALARY * MONTHS) = (SELECT MAX(SALARY * MONTHS) FROM Employee);
+                                        SELECT MAX(SALARY * MONTHS), COUNT(*) FROM EMPLOYEE
+                                        WHERE (SALARY * MONTHS) = (SELECT MAX(SALARY * MONTHS) FROM EMPLOYEE);
                                     </code>
                                 </pre>
 
@@ -533,16 +533,155 @@
                                 </a>
 
                                 <pre>
-                                <code>
-                                    SELECT N, 
-                                    CASE 
-                                        WHEN P IS NULL THEN 'Root'
-                                        WHEN N IN (SELECT P FROM BST) THEN 'Inner'
-                                        ELSE 'Leaf'
-                                    END AS P
-                                    FROM BST ORDER BY N;
-                                </code>
-                            </pre>
+                                    <code>
+                                        SELECT N, 
+                                        CASE 
+                                            WHEN P IS NULL THEN 'Root'
+                                            WHEN N IN (SELECT P FROM BST) THEN 'Inner'
+                                            ELSE 'Leaf'
+                                        END AS P
+                                        FROM BST ORDER BY N;
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/the-COMPANY/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    New Companies
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        SELECT 
+                                        COMPANY.COMPANY_CODE, 
+                                        COMPANY.FOUNDER, 
+                                        COUNT(DISTINCT LEAD_MANAGER.LEAD_MANAGER_CODE), 
+                                        COUNT(DISTINCT SENIOR_MANAGER.SENIOR_MANAGER_CODE), 
+                                        COUNT(DISTINCT MANAGER.MANAGER_CODE), 
+                                        COUNT(DISTINCT EMPLOYEE.EMPLOYEE_CODE) FROM COMPANY JOIN LEAD_MANAGER ON COMPANY.COMPANY_CODE = LEAD_MANAGER.COMPANY_CODE 
+                                        JOIN SENIOR_MANAGER ON 
+                                        LEAD_MANAGER.COMPANY_CODE = SENIOR_MANAGER.COMPANY_CODE 
+                                        JOIN MANAGER ON 
+                                        SENIOR_MANAGER.COMPANY_CODE = MANAGER.COMPANY_CODE 
+                                        JOIN EMPLOYEE ON 
+                                        MANAGER.COMPANY_CODE = EMPLOYEE.COMPANY_CODE 
+                                        GROUP BY COMPANY.COMPANY_CODE, COMPANY.FOUNDER ORDER BY COMPANY.COMPANY_CODE,COMPANY.FOUNDER;
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-20/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Weather Observation Station 20
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        WITH RANKS AS (
+                                            SELECT LAT_N, RANK() OVER (ORDER BY LAT_N) AS RANKING FROM STATION
+                                        )
+                                        SELECT ROUND(LAT_N, 4) FROM RANKS
+                                        WHERE RANKING IN (
+                                            SELECT ROUND(COUNT(*) / 2)
+                                            FROM STATION 
+                                            WHERE LAT_N IS NOT NULL
+                                        );
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/the-report/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    The Report
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        WITH GRADES AS (
+                                            SELECT 
+                                            CASE 
+                                                WHEN MARKS >= 70 THEN NAME
+                                                ELSE NULL
+                                            END AS NAME
+                                            , 
+                                            CASE 
+                                                WHEN MARKS >= 90 THEN 10
+                                                WHEN MARKS >= 80 THEN 9
+                                                WHEN MARKS >= 70 THEN 8
+                                                WHEN MARKS >= 60 THEN 7
+                                                WHEN MARKS >= 50 THEN 6
+                                                WHEN MARKS >= 40 THEN 5
+                                                WHEN MARKS >= 30 THEN 4
+                                                WHEN MARKS >= 20 THEN 3
+                                                WHEN MARKS >= 10 THEN 2
+                                                WHEN MARKS >= 10 THEN 1
+                                            END AS GRADE,
+                                            MARKS  FROM STUDENTS
+                                        )
+                                        SELECT * FROM GRADES ORDER BY GRADE DESC, NAME ASC, MARKS ASC;
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/full-score/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Top Competitors
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        SELECT HACKER_ID, HACKER_NAME
+                                        FROM (
+                                            SELECT S.HACKER_ID AS HACKER_ID, 
+                                            H.NAME AS HACKER_NAME, 
+                                            COUNT(S.SUBMISSION_ID) AS GREATS 
+                                            FROM SUBMISSIONS S
+                                            JOIN  CHALLENGES C 
+                                            ON S.CHALLENGE_ID = C.CHALLENGE_ID 
+                                            JOIN DIFFICULTY D
+                                            ON C.DIFFICULTY_LEVEL = D.DIFFICULTY_LEVEL
+                                            JOIN HACKERS H
+                                            ON S.HACKER_ID = H.HACKER_ID 
+                                            WHERE S.SCORE = D.SCORE 
+                                            GROUP BY S.HACKER_ID, H.NAME
+                                        ) AS TEMP_RESULT
+                                        WHERE GREATS > 1 
+                                        ORDER BY GREATS DESC, HACKER_ID ASC; 
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/harry-potter-and-wands/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Ollivander's Inventory
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        SELECT W.ID, WP.AGE, W.COINS_NEEDED, W.POWER FROM WANDS W
+                                        JOIN WANDS_PROPERTY WP ON W.CODE = WP.CODE
+                                        JOIN(
+                                            SELECT AGE, MIN(COINS_NEEDED) AS MIN_GOLD, POWER FROM WANDS W 
+                                            JOIN 
+                                            WANDS_PROPERTY WP ON W.CODE = WP.CODE 
+                                            WHERE IS_EVIL = 0
+                                            GROUP BY WP.AGE, W.POWER
+                                        ) AS NON_EVIL ON WP.AGE = NON_EVIL.AGE AND 
+                                            W.POWER = NON_EVIL.POWER AND 
+                                            W.COINS_NEEDED = NON_EVIL.MIN_GOLD 
+                                        ORDER BY W.POWER DESC, WP.AGE DESC;
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
