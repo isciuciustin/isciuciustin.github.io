@@ -501,6 +501,48 @@
                                         INNER JOIN COUNTRY ON CITY.COUNTRYCODE = COUNTRY.CODE GROUP BY COUNTRY.CONTINENT;
                                     </code>
                                 </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/weather-observation-station-5/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Weather Observation Station 5
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        (SELECT CITY, LENGTH(CITY)
+                                        FROM STATION
+                                        WHERE LENGTH(CITY) = (SELECT MIN(LENGTH(CITY)) FROM STATION)  ORDER BY CITY
+                                        LIMIT 1)
+                                        UNION
+                                        (SELECT CITY, LENGTH(CITY)
+                                        FROM STATION
+                                        WHERE LENGTH(CITY) = (SELECT MAX(LENGTH(CITY)) FROM STATION) ORDER BY CITY
+                                        LIMIT 1 ) ;
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/binary-search-tree-1/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Binary Tree Nodes
+                                </a>
+
+                                <pre>
+                                <code>
+                                    SELECT N, 
+                                    CASE 
+                                        WHEN P IS NULL THEN 'Root'
+                                        WHEN N IN (SELECT P FROM BST) THEN 'Inner'
+                                        ELSE 'Leaf'
+                                    END AS P
+                                    FROM BST ORDER BY N;
+                                </code>
+                            </pre>
                             </b>
                         </p>
                     </ul>
