@@ -682,6 +682,54 @@
                                         ORDER BY W.POWER DESC, WP.AGE DESC;
                                     </code>
                                 </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/challenges/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Challenges
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        WITH TEMP_TABLE AS (
+                                        SELECT H.HACKER_ID, H.NAME, COUNT(*) AS CHALLENGES_CREATED FROM HACKERS H
+                                        INNER JOIN CHALLENGES C ON H.HACKER_ID = C.HACKER_ID GROUP BY H.HACKER_ID, H.NAME
+                                        ORDER BY CHALLENGES_CREATED DESC, H.HACKER_ID ASC)
+                                        SELECT  HACKER_ID, NAME, CHALLENGES_CREATED FROM TEMP_TABLE
+                                        WHERE CHALLENGES_CREATED = (SELECT MAX(CHALLENGES_CREATED) FROM TEMP_TABLE) 
+                                        OR
+                                        CHALLENGES_CREATED IN
+                                        (   SELECT CHALLENGES_CREATED FROM TEMP_TABLE 
+                                                GROUP BY CHALLENGES_CREATED 
+                                                HAVING COUNT(CHALLENGES_CREATED) = 1
+                                        );
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/contest-leaderboard/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Contest Leaderboard
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        SELECT S.HACKER_ID, H.NAME, SUM(S.MAX_SCORE) AS TOTAL_SCORE 
+                                        FROM (
+                                            SELECT HACKER_ID, CHALLENGE_ID, MAX(SCORE) AS MAX_SCORE 
+                                            FROM SUBMISSIONS
+                                            GROUP BY HACKER_ID, CHALLENGE_ID
+                                        ) S 
+                                        JOIN HACKERS H ON S.HACKER_ID = H.HACKER_ID 
+                                        GROUP BY S.HACKER_ID, H.NAME 
+                                        HAVING SUM(S.MAX_SCORE) > 0
+                                        ORDER BY TOTAL_SCORE DESC, S.HACKER_ID;
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
