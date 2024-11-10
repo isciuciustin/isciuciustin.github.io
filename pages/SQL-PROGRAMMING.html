@@ -730,6 +730,127 @@
                                         ORDER BY TOTAL_SCORE DESC, S.HACKER_ID;
                                     </code>
                                 </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/sql-projects/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    SQL Project Planning
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        WITH TEMP_TABLE AS (
+                                        SELECT START_DATE, END_DATE, 
+                                                ROW_NUMBER() OVER (ORDER BY END_DATE) AS RN 
+                                        FROM PROJECTS
+                                        )
+                                        SELECT MIN(START_DATE) AS MIN_START_DATE,
+                                            MAX(END_DATE) AS MAX_END_DATE
+                                            FROM TEMP_TABLE 
+                                        GROUP BY DATE_SUB(END_DATE, INTERVAL RN DAY)
+                                        ORDER BY (MAX_END_DATE - MIN_START_DATE);
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/placements/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Placements
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        SELECT S.NAME FROM STUDENTS S 
+                                        INNER JOIN FRIENDS F
+                                        ON F.ID = S.ID 
+                                        INNER JOIN PACKAGES P
+                                        ON P.ID = F.FRIEND_ID
+                                        INNER JOIN PACKAGES PP 
+                                        ON PP.ID = S.ID
+                                        WHERE PP.SALARY < P.SALARY
+                                        ORDER BY P.SALARY;
+                                        
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/symmetric-pairs/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Symmetric Pairs
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        WITH TB1 AS ( 
+                                            SELECT X, Y , ROW_NUMBER() OVER (ORDER BY X) AS RN  FROM FUNCTIONS F
+                                        ),
+                                        TB2 AS (
+                                            SELECT X, Y, ROW_NUMBER() OVER (ORDER BY X) AS RN2
+                                            FROM FUNCTIONS FF
+                                        )
+                                        SELECT TB1.X, TB1.Y
+                                        FROM TB1
+                                        INNER JOIN TB2 ON TB1.X = TB2.Y AND TB2.X = TB1.Y AND TB1.RN != TB2.RN2
+                                        WHERE TB1.X <= TB1.Y
+                                        GROUP BY TB1.X, TB1.Y  ORDER BY TB1.X;
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/interviews/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Interviews
+                                </a>
+
+                                <pre>
+                                    <code>
+                                        SELECT 
+                                            T_T1.CONTEST_ID,
+                                            T_T1.HACKER_ID,
+                                            T_T1.NAME,
+                                            T_T2.TOTAL_SUBMISSIONS,
+                                            T_T2.TOTAL_ACCEPTED_SUBMISSIONS,
+                                            T_T1.TOTAL_VIEWS,
+                                            T_T1.TOTAL_UNIQUE_VIEWS 
+                                        FROM (
+                                            SELECT 
+                                                C.CONTEST_ID,
+                                                C.HACKER_ID, 
+                                                C.NAME, 
+                                                SUM(VS.TOTAL_VIEWS) AS TOTAL_VIEWS, 
+                                                SUM(VS.TOTAL_UNIQUE_VIEWS) AS TOTAL_UNIQUE_VIEWS 
+                                            FROM CONTESTS C 
+                                            JOIN COLLEGES COL ON C.CONTEST_ID = COL.CONTEST_ID 
+                                            JOIN CHALLENGES CH ON COL.COLLEGE_ID = CH.COLLEGE_ID
+                                            JOIN VIEW_STATS VS ON CH.CHALLENGE_ID = VS.CHALLENGE_ID 
+                                            GROUP BY C.CONTEST_ID, C.HACKER_ID, C.NAME 
+                                            HAVING SUM(VS.TOTAL_VIEWS) > 0 OR SUM(VS.TOTAL_UNIQUE_VIEWS) > 0 
+                                        ) AS T_T1
+                                        JOIN (
+                                            SELECT 
+                                                C.CONTEST_ID, 
+                                                C.HACKER_ID, 
+                                                C.NAME, 
+                                                SUM(SS.TOTAL_SUBMISSIONS) AS TOTAL_SUBMISSIONS, 
+                                                SUM(SS.TOTAL_ACCEPTED_SUBMISSIONS) AS TOTAL_ACCEPTED_SUBMISSIONS
+                                            FROM CONTESTS C 
+                                            JOIN COLLEGES COL ON C.CONTEST_ID = COL.CONTEST_ID 
+                                            JOIN CHALLENGES CH ON COL.COLLEGE_ID = CH.COLLEGE_ID
+                                            JOIN SUBMISSION_STATS SS ON CH.CHALLENGE_ID = SS.CHALLENGE_ID 
+                                            GROUP BY C.CONTEST_ID, C.HACKER_ID, C.NAME 
+                                            HAVING SUM(SS.TOTAL_SUBMISSIONS) > 0 OR SUM(SS.TOTAL_ACCEPTED_SUBMISSIONS) > 0 
+                                        ) AS T_T2 ON T_T1.CONTEST_ID = T_T2.CONTEST_ID
+                                        ORDER BY T_T1.CONTEST_ID;
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
