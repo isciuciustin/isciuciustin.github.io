@@ -56,18 +56,65 @@
                                     Diagonal Difference
                                 </a>
                                 <pre>
-                                <code>
-                                    def diagonalDifference(arr):
-                                    dp = 0
-                                    ds = 0
-                                    n = len(arr) - 1
-                                    for i in range(0, len(arr)):
-                                            dp += arr[i][i]
-                                            ds += arr[i][n - i]
-                                    difference = abs(dp - ds)
-                                    return difference
-                                </code>
-                            </pre>
+                                    <code>
+                                        def diagonalDifference(arr):
+                                        dp = 0
+                                        ds = 0
+                                        n = len(arr) - 1
+                                        for i in range(0, len(arr)):
+                                                dp += arr[i][i]
+                                                ds += arr[i][n - i]
+                                        difference = abs(dp - ds)
+                                        return difference
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/plus-minus/problem?isFullScreen=true"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Plus Minus
+                                </a>
+                                <pre>
+                                    <code>
+                                        def plusMinus(arr):
+                                        cntPoz = 0
+                                        cntNeg = 0
+                                        cntZero = 0
+                                        for x in arr:
+                                            if x < 0:
+                                                cntNeg += 1;
+                                            elif x == 0 : 
+                                                cntZero += 1;
+                                            else:
+                                                cntPoz += 1
+                                        print(round(cntPoz / len(arr), 6))
+                                        print(round(cntNeg / len(arr), 6))
+                                        print(round(cntZero / len(arr),6))
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/staircase/problem?isFullScreen=false"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Staircase
+                                </a>
+                                <pre>
+                                    <code>
+                                        def staircase(n):
+                                        for i in range(0, n):
+                                            line = ''
+                                            for j in range(0, n):
+                                                if i + j < (n - 1):
+                                                    line += ' '
+                                                else:
+                                                    line += '#'
+                                            print(line)
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
