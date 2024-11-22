@@ -2357,6 +2357,22 @@
 
                                     </code>
                                 </pre>
+                                SORT DICTIONARIES
+
+                                <pre>
+                                    <code>
+                                        # How to sort a list based on values, but how to sort a list based on key lengths
+                                        programming_class = {'java':12, 'python':10, 'javascript': 7, 'C':11}
+
+                                        sorted_dict = {key: value for key, value in sorted(programming_class.items(), key=lambda item : item[1])}
+
+                                        print(sorted_dict)
+
+                                        sorted_dict = {key: value for key, value in sorted(programming_class.items(), key=lambda item : len(item[0]))}
+
+                                        print(sorted_dict)
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
