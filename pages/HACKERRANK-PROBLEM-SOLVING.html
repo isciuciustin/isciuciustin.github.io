@@ -292,6 +292,59 @@
                                             return res;                                   
                                     </code>
                                 </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/breaking-best-and-worst-records/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Breaking the Records
+                                </a>
+                                <pre>
+                                    <code>
+                                        def breakingRecords(scores):
+                                            minimum = maximum = scores[0]
+                                            cntMin = 0
+                                            cntMax = 0
+                                            for x in scores:
+                                                if maximum < x:
+                                                    maximum = x;
+                                                    cntMax += 1;
+                                                if minimum > x:
+                                                    minimum = x;
+                                                    cntMin += 1;
+                                            return [cntMax, cntMin];  
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/the-birthday-bar/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Subarray Division
+                                </a>
+                                <pre>
+                                    <code>
+                                        def birthday(s, d, m):
+                                            cnt = 0
+                                            c_sum = 0
+                                            i = 0
+                                            j = (i + m - 1)
+                                            for x in range(i, j + 1):
+                                                c_sum += s[x]
+
+                                            while j < len(s):
+                                                if c_sum == d:
+                                                    cnt += 1
+                                                c_sum -= s[i]
+                                                i += 1
+                                                j += 1
+                                                if j < len(s):
+                                                    c_sum += s[j]
+                                            return cnt
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
