@@ -387,6 +387,25 @@
                                             return maxnum
                                     </code>
                                 </pre>
+
+                                <a
+                                    href="https://www.hackerrank.com/challenges/divisible-sum-pairs/problem"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    Divisible Sum Pairs
+                                </a>
+                                <pre>
+                                    <code>
+                                        def divisibleSumPairs(n, k, ar):
+                                            cnt = 0
+                                            for i in range(0, n - 1):
+                                                for j in range(i + 1, n):
+                                                    if (ar[i] + ar[j]) % k == 0:
+                                                        cnt += 1
+                                            return cnt
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
