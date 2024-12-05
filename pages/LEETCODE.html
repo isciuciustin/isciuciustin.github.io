@@ -1406,36 +1406,49 @@
                                         #     def __init__(self, val=0, next=None):
                                         #         self.val = val
                                         #         self.next = next
-                                        
+
                                         class Solution:
                                             def reorderList(self, head: Optional[ListNode]) -> None:
                                                 """
                                                 Do not return anything, modify head in-place instead.
                                                 """
-                                                slow, fast = head, head.next
-                                        
+                                                # 1 Find the middle and split the list in two segments
+
+                                                slow = head 
+                                                fast = head.next
+
                                                 while fast and fast.next:
                                                     slow = slow.next
                                                     fast = fast.next.next
-                                        
-                                                second = slow.next 
-                                                prev = slow.next = None
-                                        
+
+                                                second = slow.next
+                                                slow.next = prev = None
+
+                                                # 2 Reverse the second segment
+
                                                 while second:
-                                                    tmp = second.next
-                                                    second.next = prev 
+                                                    tmp = second.next 
+                                                    second.next = prev
                                                     prev = second
                                                     second = tmp
-                                        
-                                                first, second = head, prev
-                                        
+                                                
+                                                first = head
+                                                second = prev
+
+                                                # 3 Merge the two segments
+
                                                 while second:
-                                                    tmp1 = first.next 
+                                                    tmp1 = first.next
                                                     tmp2 = second.next
+
                                                     first.next = second
                                                     second.next = tmp1
                                                     first = tmp1
-                                                    second = tmp2                                        
+                                                    second = tmp2
+
+                                                #4 Return the reordered list
+
+                                                return head                                    
                                     </code>
                                 </pre>
                                 <a
@@ -1454,47 +1467,35 @@
                                         #         self.next = next
                                         class Solution:
                                             def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-                                                nodes = 0
-                                                node = head
-                                                while node:
-                                                    nodes += 1
-                                                    node = node.next
-                                                it = nodes - n
-                                                node = head
-
-                                                if it == 0:
-                                                    head = head.next 
-                                                    return head
-                                                for i in range(1, it):
-                                                    node = node.next
-                                                node.next = node.next.next
+                                                # 1 Initialize two pointers
+                                        
+                                                p1 = head
+                                                p2 = head
+                                        
+                                                # 2 Move the second pointer n nodes away from the first pointer
+                                        
+                                                while n > 0:
+                                                    p2 = p2.next
+                                                    n -= 1
+                                                
+                                                # 3 Iterate the second pointer until it reaches the end of the list
+                                        
+                                                while p2 and p2.next:
+                                                    p1 = p1.next
+                                                    p2 = p2.next
+                                                
+                                                # 4 Remove the n-th node from the end of the list
+                                        
+                                                if p2 == None: # if the first node should be removed
+                                                    head = head.next
+                                                else:
+                                                    p1.next = p1.next.next
+                                                
+                                                # 5 Return the list
+                                        
                                                 return head
                                     </code> 
                                 </pre>
-                                SOLUTION WITH ONE PASS:
-                                <pre>
-                                    <code>
-                                        # Definition for singly-linked list.
-                                        # class ListNode:
-                                        #     def __init__(self, val=0, next=None):
-                                        #         self.val = val
-                                        #         self.next = next
-                                        class Solution:
-                                            def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-                                                dummy = ListNode(0, head)
-                                                left = dummy
-                                                right = head
-                                                while n > 0 and right:
-                                                    right = right.next
-                                                    n -= 1
-                                                while right:
-                                                    left = left.next
-                                                    right = right.next
-                                                left.next = left.next.next
-                                                return dummy. next
-                                    </code> 
-                                </pre>
-
                                 <a
                                     href="https://leetcode.com/problems/copy-list-with-random-pointer/description/"
                                     target="_blank"
@@ -1505,32 +1506,43 @@
                                 <pre>
                                     <code>
                                         """
-                                            # Definition for a Node.
-                                            class Node:
-                                                def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
-                                                    self.val = int(x)
-                                                    self.next = next
-                                                    self.random = random
+                                        # Definition for a Node.
+                                        class Node:
+                                            def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+                                                self.val = int(x)
+                                                self.next = next
+                                                self.random = random
                                         """
 
                                         class Solution:
                                             def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+                                                # 1 Initialize a hash table where each node of the orginal list 
+                                                # will be a key to each node in the copied list
+
                                                 oldToCopy = {None : None}
 
-                                                cur = head 
+                                                # 2 Iterate over the list and create a copy of each node with the 
+                                                # same value 
 
+                                                cur = head 
                                                 while cur:
                                                     copy = Node(cur.val)
                                                     oldToCopy[cur] = copy
                                                     cur = cur.next
 
-                                                cur = head 
+                                                # 3 Iterate once again and add the next and random references
+
+                                                cur = head
                                                 while cur:
                                                     copy = oldToCopy[cur]
                                                     copy.next = oldToCopy[cur.next]
                                                     copy.random = oldToCopy[cur.random]
                                                     cur = cur.next
+                                                
+                                                # 4 Return the head of the copied linked list
+
                                                 return oldToCopy[head]
+                                                
                                     </code> 
                                 </pre>
                             </b>
