@@ -1706,22 +1706,81 @@
                                     <code>
                                         class Solution:
                                         def findDuplicate(self, nums: List[int]) -> int:
+                                            # 1 Initialize two pointers slow and fast
                                             slow = fast = 0
-
+                                    
+                                            # 2 Iterate the fast pointer twice as fast as the slow pointer
+                                            # and break when they meet each other 
+                                    
                                             while True:
                                                 slow = nums[slow]
                                                 fast = nums[nums[fast]]
                                                 if slow == fast:
                                                     break
-
+                                    
+                                            # 3 Initialize a new pointer at the start
                                             slow2 = 0
-
+                                    
+                                            # 4 Iterate slow2 and slow until they meet at the start 
+                                            # of the cycle which is the duplicate number
+                                    
                                             while True:
                                                 slow2 = nums[slow2]
                                                 slow = nums[slow]
                                                 if slow == slow2:
-                                                    return slow        
+                                                    return slow               
                                     </code>
+                                </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/lru-cache/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    146. LRU Cache
+                                </a>
+                                <pre>
+                                    <code>
+                                        class Node:
+                                            def __init__(self, key, val):
+                                                self.key, self.val = key, val
+                                                self.prev = self.next = None
+
+                                        class LRUCache:
+                                            def __init__(self, capacity: int):
+                                                self.cap = capacity
+                                                self.cache = {} 
+
+                                                self.left, self.right = Node(0, 0), Node(0, 0)
+                                                self.left.next, self.right.prev = self.right, self.left
+
+                                            def remove(self, node):
+                                                prev, nxt = node.prev, node.next
+                                                prev.next, nxt.prev = nxt, prev
+
+                                            def insert(self, node):
+                                                prev, nxt = self.right.prev, self.right
+                                                prev.next = nxt.prev = node
+                                                node.next, node.prev = nxt, prev
+
+                                            def get(self, key: int) -> int:
+                                                if key in self.cache:
+                                                    self.remove(self.cache[key])
+                                                    self.insert(self.cache[key])
+                                                    return self.cache[key].val
+                                                return -1
+
+                                            def put(self, key: int, value: int) -> None:
+                                                if key in self.cache:
+                                                    self.remove(self.cache[key])
+                                                self.cache[key] = Node(key, value)
+                                                self.insert(self.cache[key])
+
+                                                if len(self.cache) > self.cap:
+                                                    lru = self.left.next
+                                                    self.remove(lru)
+                                                    del self.cache[lru.key]
+                                    </code> 
                                 </pre>
                             </b>
                         </p>
