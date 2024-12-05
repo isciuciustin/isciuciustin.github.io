@@ -1545,6 +1545,155 @@
                                                 
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/add-two-numbers/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    2. Add Two Numbers
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, val=0, next=None):
+                                        #         self.val = val
+                                        #         self.next = next
+                                        class Solution:
+                                            def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+                                                l3 = prev = None
+                                                sum = 0
+                                                # 1 Iterate over the digits of the list 
+
+                                                while l1 and l2:
+                                                    # 2 Retain the sum of the digits 
+                                                    sum += l1.val + l2.val
+
+                                                    # 3 Create a new node with the last digit of sum
+                                                    node = ListNode(sum % 10)
+                                                    print(node.val)
+                                                    # 4 If l3 is not initialized, then the cur node is the 
+                                                    # head of the list
+
+                                                    if l3 == None:
+                                                        prev = node
+                                                        l3 = node
+                                                    else: # 5 Else it is the next node in the l3
+                                                        prev.next = node
+                                                        prev = node
+                                                    
+                                                    # 6 Remove the last digit in the sum
+                                                    
+                                                    sum = sum // 10
+
+                                                    l1 = l1.next
+                                                    l2 = l2.next
+                                                # 7 If there are more digits remained, add them to the l3
+
+                                                while l2:
+                                                    sum += l2.val
+                                                    node = ListNode(sum % 10)
+                                                    prev.next = node
+                                                    prev = node
+                                                    sum = sum // 10
+                                                    l2 = l2.next
+                                                
+                                                while l1:
+                                                    sum += l1.val
+                                                    node = ListNode(sum % 10)
+                                                    prev.next = node
+                                                    prev = node
+                                                    sum = sum // 10
+                                                    l1 = l1.next
+
+                                                # 8 Remove all digits remained in sum
+
+                                                while sum > 0:
+                                                    node = ListNode(sum % 10)
+                                                    prev.next = node
+                                                    prev = node
+                                                    sum = sum // 10
+                                                # 9 Return the sum as a linked list 
+
+                                                return l3
+                                    </code> 
+                                </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/linked-list-cycle/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    141. Linked List Cycle
+                                </a>
+
+                                FIRST APPROACH O(n) memory
+
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, x):
+                                        #         self.val = x
+                                        #         self.next = None
+
+                                        class Solution:
+                                            def hasCycle(self, head: ListNode) -> bool:
+                                                # 1 Create a hash table in order to retain all the nodes in the 
+                                                # linked list 
+
+                                                copy = {}
+
+                                                # 2 Iterate over all the nodes in the list 
+                                                # If the same node is reached twice, then we have a cycle
+                                                # otherwise not
+
+                                                cur = head 
+
+                                                while cur:
+                                                    if cur in copy:
+                                                        return True
+                                                    else:
+                                                        copy[cur] = True
+                                                    cur = cur.next
+
+                                                return False 
+                                    </code> 
+                                </pre>
+
+                                SECOND APPROACH TWO POINTERS : FLOYD'S TURTOISE
+                                AND HARE
+
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, x):
+                                        #         self.val = x
+                                        #         self.next = None
+
+                                        class Solution:
+                                            def hasCycle(self, head: ListNode) -> bool:
+                                                # 1 Initialize two pointers slow and fast
+                                                slow = fast = head
+
+                                                # 2 The fastest pointer iterates twice as fast 
+                                                # as the second pointer
+                                                
+                                                # 3 They will meet each other if there is a cycle 
+                                                # in the list because when they enter in the cycle 
+                                                # the gap between them will be decremented by ine 
+                                                # with each iteration
+
+                                                while fast and fast.next:
+                                                    slow = slow.next
+                                                    fast = fast.next.next
+                                                    if slow == fast:
+                                                        return True
+                                                return False
+
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
