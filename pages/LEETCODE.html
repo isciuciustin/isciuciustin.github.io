@@ -1561,59 +1561,51 @@
                                         #         self.next = next
                                         class Solution:
                                             def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-                                                l3 = prev = None
+                                                # 1 Initialize the sum variable that will retain the sum of the digits
                                                 sum = 0
-                                                # 1 Iterate over the digits of the list 
+                                                # 2 Initialize the head of the sum linked list 
+                                                # and also the last node of this list
+
+                                                l3 = last = None
+
+                                                # 3 Iterate over the l1 and l2 and add the digits to l3 
 
                                                 while l1 and l2:
-                                                    # 2 Retain the sum of the digits 
                                                     sum += l1.val + l2.val
-
-                                                    # 3 Create a new node with the last digit of sum
-                                                    node = ListNode(sum % 10)
-                                                    print(node.val)
-                                                    # 4 If l3 is not initialized, then the cur node is the 
-                                                    # head of the list
-
                                                     if l3 == None:
-                                                        prev = node
-                                                        l3 = node
-                                                    else: # 5 Else it is the next node in the l3
-                                                        prev.next = node
-                                                        prev = node
-                                                    
-                                                    # 6 Remove the last digit in the sum
-                                                    
+                                                        l3 = ListNode(sum % 10)
+                                                        last = l3 
+                                                    else:
+                                                        last.next = ListNode(sum % 10)
+                                                        last = last.next
                                                     sum = sum // 10
-
-                                                    l1 = l1.next
+                                                    l1 = l1.next 
                                                     l2 = l2.next
-                                                # 7 If there are more digits remained, add them to the l3
+                                                # 4 Iterate over both lists until the finish node
 
+                                                while l1:
+                                                    sum += l1.val
+                                                    last.next = ListNode(sum % 10)
+                                                    last = last.next
+                                                    sum = sum // 10
+                                                    l1 = l1.next
+                                                    
                                                 while l2:
                                                     sum += l2.val
-                                                    node = ListNode(sum % 10)
-                                                    prev.next = node
-                                                    prev = node
+                                                    last.next = ListNode(sum % 10)
+                                                    last = last.next
                                                     sum = sum // 10
                                                     l2 = l2.next
                                                 
-                                                while l1:
-                                                    sum += l1.val
-                                                    node = ListNode(sum % 10)
-                                                    prev.next = node
-                                                    prev = node
-                                                    sum = sum // 10
-                                                    l1 = l1.next
+                                                # 5 If there is 1 digit remained in the sum 
+                                                # add it to the sum list
 
-                                                # 8 Remove all digits remained in sum
-
-                                                while sum > 0:
-                                                    node = ListNode(sum % 10)
-                                                    prev.next = node
-                                                    prev = node
+                                                if sum > 0:
+                                                    last.next = ListNode(sum % 10)
+                                                    last = last.next
                                                     sum = sum // 10
-                                                # 9 Return the sum as a linked list 
+                                                
+                                                # 6 Return the sum as a linked list
 
                                                 return l3
                                     </code> 
@@ -1674,16 +1666,18 @@
 
                                         class Solution:
                                             def hasCycle(self, head: ListNode) -> bool:
-                                                # 1 Initialize two pointers slow and fast
+                                                # 1 Initialize two pointers at the head 
                                                 slow = fast = head
 
-                                                # 2 The fastest pointer iterates twice as fast 
-                                                # as the second pointer
-                                                
-                                                # 3 They will meet each other if there is a cycle 
-                                                # in the list because when they enter in the cycle 
-                                                # the gap between them will be decremented by ine 
-                                                # with each iteration
+                                                # 2 Iterate the pointers over the list 
+                                                # fast pointer will be iterated twice as fast as 
+                                                # the slow pointer
+
+                                                # 3 If there is a cycle in the list, then they 
+                                                # will meet at the same position because 
+                                                # the difference between them will be decremented 
+                                                # by one with each iteration when they 
+                                                # are both in the cycle
 
                                                 while fast and fast.next:
                                                     slow = slow.next
@@ -1691,6 +1685,7 @@
                                                     if slow == fast:
                                                         return True
                                                 return False
+        
 
                                     </code>
                                 </pre>
