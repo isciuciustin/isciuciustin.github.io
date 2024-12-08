@@ -1855,6 +1855,122 @@
                                                 return res
                                     </code> 
                                 </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/reverse-nodes-in-k-group/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    25. Reverse Nodes in k-Group
+                                </a>
+                                FIRST APPROACH O(n) Time, O(k) Memory
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, val=0, next=None):
+                                        #         self.val = val
+                                        #         self.next = next
+                                        class Solution:
+                                            def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+                                                # 1 Traverse the linked list and split the list at every k nodes
+                                                # and retain the heads of the segments in an array
+                                                seg = []
+                                                cur = head 
+                                                n = 0
+                                                while cur:
+                                                    hs = cur
+                                                    n = k - 1
+                                                    seg.append(hs)
+                                                    while n > 0 and cur:
+                                                        cur = cur.next
+                                                        n = n - 1
+                                                    if cur:
+                                                        nxt = cur.next
+                                                        cur.next = None
+                                                        cur = nxt
+
+                                                # 2 Check if the last segment has k nodes
+
+                                                cnt = 0
+                                                cur = seg[len(seg) - 1]
+                                                while cur:
+                                                    cnt = cnt + 1
+                                                    cur = cur.next
+                                                r_l = False
+                                                if cnt == k:
+                                                    r_l = True
+                                                
+                                                # 3 Reverse the segements with k nodes
+                                                
+                                                for i in range(0, len(seg)):
+                                                    x = seg[i]
+                                                    if (i == (len(seg) - 1) and r_l) or i < (len(seg) - 1):
+                                                        cur = x
+                                                        prev = None
+                                                        while cur:
+                                                            nxt = cur.next
+                                                            cur.next = prev
+                                                            prev = cur
+                                                            cur = nxt
+                                                        seg[i] = prev
+                                                        
+                                                # 4 Connect the reversed segments toghether
+
+                                                for i in range(0, len(seg) - 1):
+                                                    cur = seg[i]
+                                                    while cur and cur.next:
+                                                        cur = cur.next
+                                                    print("CUR" , cur.val, seg[i + 1].val)
+                                                    cur.next = seg[i + 1]
+                                                
+
+                                                return seg[0]
+
+                                    </code> 
+                                </pre>
+                                SECOND APPROACH O(n) Time, O(1) Memory
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, val=0, next=None):
+                                        #         self.val = val
+                                        #         self.next = next
+                                        class Solution:
+                                            def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+                                                # 1 Traverse the list and reverse the k group nodes
+                                                head_prev = ListNode(0, head)
+                                                group_prev = head_prev
+
+                                                while True:
+                                                    kth = self.get_kth(group_prev, k)
+                                                    # 2 If we are in the last group, and it contains less than k nodes
+                                                    if not kth:
+                                                        break
+                                                    group_next = kth.next
+                                                    # 3 Reverse the cur group
+
+                                                    prev = kth.next
+                                                    cur = group_prev.next
+                                                    while cur != group_next:
+                                                        nxt = cur.next
+                                                        cur.next = prev
+                                                        prev = cur
+                                                        cur = nxt
+                                                    
+                                                    tmp = group_prev.next
+                                                    group_prev.next = kth
+                                                    group_prev = tmp
+
+                                                return head_prev.next 
+                                            def get_kth(self, cur, k):
+                                                while cur and k > 0:
+                                                    cur = cur.next
+                                                    k = k - 1
+                                                return cur
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
