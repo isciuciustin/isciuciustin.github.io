@@ -1806,6 +1806,55 @@
                                                     self.cap += 1
                                     </code> 
                                 </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/merge-k-sorted-lists/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    23. Merge k Sorted Lists
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for singly-linked list.
+                                        # class ListNode:
+                                        #     def __init__(self, val=0, next=None):
+                                        #         self.val = val
+                                        #         self.next = next
+                                        class Solution:
+                                            def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+                                                # 1 Iterate the current node on each k linked lists 
+                                                # and find the node with the minimum value 
+                                                # and iterate the list with the minimum value node 
+
+                                                res = None
+                                                last = None
+                                                while True:
+                                                    min_node = None
+                                                    minimum = float("inf")
+                                                    it = -1
+                                                    for i  in range(0, len(lists)):
+                                                        x = lists[i]
+                                                        if x is None:
+                                                            continue
+                                                        if minimum > x.val:
+                                                            min_node = x
+                                                            minimum = x.val
+                                                            it = i
+                                                    # if all the lists are finished, 
+                                                    # then stop the search
+                                                    if min_node == None:  
+                                                        break
+                                                    if res == None:
+                                                        res = min_node
+                                                        last = res
+                                                    else:
+                                                        last.next = min_node
+                                                        last = last.next
+                                                    lists[it] = lists[it].next
+                                                return res
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
