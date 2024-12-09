@@ -1971,6 +1971,254 @@
                                                 return cur
                                     </code> 
                                 </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/invert-binary-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    226. Invert Binary Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the binary search tree and reverse 
+                                            the left and the right subtree of each node """
+                                            def invertTreeMet(self, node: TreeNode):
+                                                if node:
+                                                    aux = node.left
+                                                    node.left = node.right
+                                                    node.right = aux
+                                                    if node.left:
+                                                        self.invertTree(node.left)
+                                                    if node.right:
+                                                        self.invertTree(node.right)
+
+                                            def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+                                                self.invertTreeMet(node=root)
+                                                return root
+                                    </code> 
+                                </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/maximum-depth-of-binary-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    104. Maximum Depth of Binary Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the list and retain the max stack level, 
+                                            which is going to  be the maximum depth of the binary tree """
+                                            def __init__(self):
+                                                self.st = 0
+                                                self.max = -float("inf")
+                                            def maxDepth(self, root: Optional[TreeNode]) -> int:
+                                                if root is None:
+                                                    return 0;
+                                                self.st = self.st + 1
+
+                                                if self.max < self.st:
+                                                    self.max = self.st 
+                                                if root.left:
+                                                    self.maxDepth(root=root.left)
+
+                                                if root.right:
+                                                    self.maxDepth(root=root.right)
+
+                                                self.st = self.st - 1
+
+                                                if self.st == 0:
+                                                    return self.max
+
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/diameter-of-binary-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    543. Diameter of Binary Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse each node of the binary tree 
+                                            and the max diameter is going to be 
+                                            the max depth of the left subtree + 
+                                            the max depth of the right subtree of the cur node"""
+                                        
+                                            def __init__(self):
+                                                self.diameter = 0
+                                                self.max_depth = -float("inf")
+                                        
+                                            def dfs(self, node: TreeNode):
+                                                if node == None:
+                                                    return 0
+                                                left = self.dfs(node=node.left)
+                                                right = self.dfs(node=node.right)
+                                                if self.diameter < (left + right):
+                                                    self.diameter = (left + right)
+                                                return 1 + max(left, right)
+                                        
+                                            def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+                                                self.dfs(node=root)
+                                                return self.diameter
+                                    </code> 
+                                </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/balanced-binary-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    110. Balanced Binary Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the binary tree and for each node 
+                                            check if the difference between the height of the left subtree and 
+                                            the right subtree is greater than 1, in which case the binary 
+                                            tree is not balanced """
+                                            def __init__(self):
+                                                self.is_balanced = True
+                                            
+                                            def dfs(self, node: TreeNode):
+                                                if node is None: 
+                                                    return 0
+
+                                                left = self.dfs(node.left)
+                                                right = self.dfs(node.right)
+
+                                                if abs(left - right) > 1:
+                                                    self.is_balanced = False
+                                                return 1 + max(left, right)
+                                            
+                                            def isBalanced(self, root: Optional[TreeNode]) -> bool:
+                                                self.dfs(node=root)
+                                                return self.is_balanced
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/same-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    100. Same Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse both trees at the same time and check if they are the same """
+                                            def __init__(self):
+                                                self.same = True
+
+                                            def dfs(self, p: TreeNode, q : TreeNode): 
+                                                if (p == None) != (q == None):
+                                                    self.same = False
+                                                    return 
+                                                if p == None:
+                                                    return 
+                                                if p.val != q.val:
+                                                    self.same = False
+                                                    return 
+
+                                                self.dfs(p.left, q.left)
+                                                self.dfs(p.right, q.right)
+                                                
+                                            def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+                                                self.dfs(p, q)
+                                                return self.same
+                                    </code> 
+                                </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/subtree-of-another-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    572. Subtree of Another Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse each node of the root binary tree and check 
+                                            if the subtree which has the root as the cur node is identical 
+                                            with the subRoot tree """
+                                            def __init__(self):
+                                                self.same = True
+                                                self.found = False
+
+
+                                            def is_same_tree(self, p : TreeNode, q : TreeNode):
+                                                if (p == None) != (q == None):
+                                                    self.same = False
+                                                    return 
+                                                if p == None:
+                                                    return
+                                                if p.val != q.val:
+                                                    self.same = False
+                                                    return 
+                                                
+                                                self.is_same_tree(p.left, q.left)
+                                                self.is_same_tree(p.right, q.right)
+
+                                            def dfs(self, node: TreeNode, subRoot: TreeNode):
+                                                if node == None:
+                                                    return 
+                                                self.same = True
+                                                self.is_same_tree(node, subRoot)
+
+                                                if self.same == True:
+                                                    self.found = True
+
+                                                self.dfs(node=node.left, subRoot=subRoot)
+                                                self.dfs(node=node.right, subRoot=subRoot)
+                                            def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+                                                self.dfs(node=root, subRoot=subRoot)
+                                                return self.found
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
