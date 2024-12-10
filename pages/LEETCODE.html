@@ -2219,6 +2219,319 @@
                                                 return self.found
                                     </code> 
                                 </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    235. Lowest Common Ancestor of a Binary
+                                    Search Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, x):
+                                        #         self.val = x
+                                        #         self.left = None
+                                        #         self.right = None
+
+                                        class Solution:
+                                            """ Traverse the bst with from the root
+                                            if both p and q are greater than root then go to the right
+                                            if both p and q are lower than root than go to the left
+                                            else the current node is the lca """
+                                            def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+                                                while True:
+                                                    if p.val == root.val or q.val == root.val:
+                                                        break
+                                                    if p.val > root.val and q.val > root.val:
+                                                        root = root.right
+                                                    elif p.val < root.val and q.val < root.val:
+                                                        root = root.left
+                                                    else:
+                                                        break
+                                                return root
+        
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/binary-tree-level-order-traversal/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    102. Binary Tree Level Order Traversal
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the list and retain a hash table with a key for each level
+                                            which is going to have an arr with all the node values , 
+                                            then combine the res into a single list"""
+                                            def __init__(self):
+                                                self.st = 0
+                                                self.max_level = 0
+                                                self.levels = {}
+                                            
+                                            def dfs(self, node : TreeNode):
+                                                if not node:
+                                                    return 
+                                                self.st = self.st + 1
+                                                self.max_level = max(self.max_level, self.st)
+                                                if self.st not in  self.levels:
+                                                    self.levels[self.st] = []
+                                                
+                                                self.levels[self.st].append(node.val)
+                                                self.dfs(node.left)
+                                                self.dfs(node.right)
+
+                                                self.st = self.st - 1
+
+                                            def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+                                                self.dfs(root)
+                                                res = []
+                                                for i in range(1, self.max_level + 1):
+                                                    res.append(self.levels[i])
+                                                return res
+
+                                    </code>
+                                </pre>
+
+                                <a
+                                    href="https://leetcode.com/problems/binary-tree-right-side-view/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    199. Binary Tree Right Side View
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the list and append to the res arr the right most node 
+                                            for each level """
+                                            def __init__(self):
+                                                self.res = []
+                                            def dfs(self,node: TreeNode, depth: int):
+                                                if not node:
+                                                    return 
+                                                if len(self.res) == depth:
+                                                    self.res.append([])
+                                                self.res[depth] = node.val
+
+                                                self.dfs(node.left, depth + 1)
+                                                self.dfs(node.right, depth + 1)
+
+                                            def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+                                                self.dfs(node=root, depth=0)
+                                                return self.res
+        
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    1448. Count Good Nodes in Binary Tree
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the binary tree and retain a stack with the maximum nodes 
+                                            on the current path every time when we add a new item to stack,
+                                            increment the number of good nodes"""
+
+                                            def __init__(self):
+                                                self.st = []
+                                                self.cnt = 0
+                                            def dfs(self, node):
+                                                if not node:
+                                                    return
+                                                ok = False
+                                                if len(self.st) == 0 or self.st[-1] <= node.val:
+                                                    self.st.append(node.val)
+                                                    self.cnt = self.cnt + 1
+                                                    ok = True
+                                                self.dfs(node.left)
+                                                self.dfs(node.right)
+                                                if ok:
+                                                    self.st.pop()
+                                            def goodNodes(self, root: TreeNode) -> int:
+                                                self.dfs(root)
+                                                return self.cnt
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/validate-binary-search-tree/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    98. Validate Binary Search Tree
+                                </a>
+                                FIRST APPROACH O(n^2)
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the binary tree and for each node check if
+                                            all the nodes in the right subtree are greater than the current node and 
+                                            if all the nodes in the left subtree are lower than the current node"""
+
+                                            def __init__(self):
+                                                self.val = None
+                                                self.part = ""
+                                                self.res = True
+                                            def dfs(self, node : TreeNode):
+                                                if not node:
+                                                    return 
+                                                if self.part == "left" and node.val >= self.val:
+                                                    self.res = False
+                                                if self.part == "right" and node.val <= self.val:
+                                                    self.res = False
+                                                self.dfs(node.left)
+                                                self.dfs(node.right)
+
+                                            def traverse_bt(self, node: TreeNode):
+                                                if not node:
+                                                    return
+                                                self.val = node.val
+                                                self.part = "left"
+                                                self.dfs(node.left)
+                                                self.part = "right"
+                                                self.dfs(node.right)
+                                                self.traverse_bt(node.left)
+                                                self.traverse_bt(node.right)
+                                            
+                                            def isValidBST(self, root: Optional[TreeNode]) -> bool:
+                                                self.traverse_bt(root)
+                                                return self.res 
+                                    </code> 
+                                </pre>
+
+                                SECOND APPROACH O(n)
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the list and keep track of a left boundary and a right 
+                                            boundary and check at each iteration if they are in order."""
+                                        
+                                            def dfs(self, left, node, right):
+                                                if not node:
+                                                    return True
+                                                if not (left < node.val < right):
+                                                    return False
+                                        
+                                                return self.dfs(left,node.left ,node.val) and self.dfs(node.val,node.right,right)
+                                        
+                                            def isValidBST(self, root: Optional[TreeNode]) -> bool:
+                                                return self.dfs(float("-inf"), root, float("inf"))                                        
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    230. Kth Smallest Element in a BST
+                                </a>
+                                APPROACH O(n)
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Traverse the bst and keep track of a stack that will contain the
+                                            smallest values. When this stack has a size of k, then return
+                                            the top"""
+                                            
+                                            def __init__(self):
+                                                self.st = []
+                                                self.res = None
+                                            
+                                            def dfs(self, node: TreeNode, k : int):
+                                                if node == None or self.res != None:
+                                                    return 
+                                                self.dfs(node.left, k)
+                                                self.st.append(node.val)
+                                                if len(self.st) == k and self.res == None:
+                                                    self.res = self.st[-1]
+                                                self.dfs(node.right, k )
+
+                                            def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+                                                self.dfs(root, k)
+                                                return self.res
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    105. Construct Binary Tree from Preorder and
+                                    Inorder Traversal
+                                </a>
+                                <pre>
+                                    <code>
+                                        # Definition for a binary tree node.
+                                        # class TreeNode:
+                                        #     def __init__(self, val=0, left=None, right=None):
+                                        #         self.val = val
+                                        #         self.left = left
+                                        #         self.right = right
+                                        class Solution:
+                                            """ Recursive approach:
+                                            base case: if preorder or inorder arr are empty, then return None,
+                                            recursive case : The root is going to be pre[0], 
+                                            mid is going to be inorder index of pre[0].
+                                            The right side until mid in the inorder arr is going to be the left subtree
+                                            and the left side, the left subtree."""
+                                            def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+                                                if not preorder or not inorder:
+                                                    return None
+                                                
+                                                root = TreeNode(preorder[0])
+                                                mid = inorder.index(preorder[0])
+
+                                                root.left = self.buildTree(preorder[1: mid + 1], inorder[:mid])
+                                                root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
+
+                                                return root
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
