@@ -2824,11 +2824,11 @@
                                     </code>
                                 </pre>
                                 <a
-                                    href="https://leetcode.com/problems/kth-largest-element-in-a-stream/description/"
+                                    href="https://leetcode.com/problems/k-closest-points-to-origin/description/"
                                     target="_blank"
                                     style="text-decoration: none"
                                 >
-                                    703. Kth Largest Element in a Stream
+                                    973. K Closest Points to Origin
                                 </a>
                                 <pre>
                                     <code>
@@ -2853,6 +2853,156 @@
                                         # obj = KthLargest(k, nums)
                                         # param_1 = obj.add(val)
                                     </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/last-stone-weight/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    1046. Last Stone Weight
+                                </a>
+                                <pre>
+                                    <code>
+                                        from heapq import heapify, heappush, heappop
+
+                                        class Solution:
+                                            """Create a max heap and while this heap has at least 2 values
+                                            smash the heaviest two stones """
+                                            def lastStoneWeight(self, stones: List[int]) -> int:
+                                                heap = []
+                                                heapify(heap)
+                                                for x in stones:
+                                                    heappush(heap, -x)
+                                                while len(heap) > 1:
+                                                    y = - heappop(heap)
+                                                    x = - heappop(heap)
+                                                    if x != y:
+                                                        heappush(heap, -(y - x))
+                                                res = 0
+                                                while len(heap) > 0:
+                                                    res = - heappop(heap)
+                                                
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/last-stone-weight/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    1046. Last Stone Weight
+                                </a>
+                                <pre>
+                                    <code>
+                                        from heapq import heapify, heappush, nsmallest
+                                        class Solution:
+                                            """Create a small heap with tuples where the first element in the tuple
+                                            is the dist from a point to the origin and the second element is 
+                                            the index in points arr, then get the k smallest elements in that heap"""
+                                            def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+                                                heap = []
+                                                res = []
+                                                heapify(heap)
+                                                for i in range(0, len(points)):
+                                                    p = points[i]
+                                                    x = p[0]
+                                                    y = p[1]
+                                                    distance = sqrt(pow(abs(x - 0), 2) + pow(abs(y - 0), 2))
+                                                    heappush(heap, (distance, i))
+                                                k_smallest = nsmallest(k, heap)
+                                                for i in k_smallest:
+                                                    res.append(points[i[1]])
+                                                return res
+
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/kth-largest-element-in-an-array/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    215. Kth Largest Element in an Array
+                                </a>
+                                <pre>
+                                    <code>
+                                        from heapq import heapify, heappush, heappop, nlargest
+                                        class Solution:
+                                            """Create a min heap and return the k_largest element from that heap"""
+                                            def findKthLargest(self, nums: List[int], k: int) -> int:
+                                                heap = nums
+                                                heapify(heap)
+                                                k_largest = nlargest(k, heap)
+                                                return k_largest[-1]
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/task-scheduler/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    621. Task Scheduler
+                                </a>
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                        """Retain a max heap of the frequencies and deque of the idle times"""
+                                        def leastInterval(self, tasks: List[str], n: int) -> int:
+                                            count = Counter(tasks)
+                                            max_heap = [-cnt for cnt in count.values()]
+                                            heapq.heapify(max_heap)
+
+                                            time = 0
+                                            q = deque()
+
+                                            while max_heap or q:
+                                                time += 1
+                                                if max_heap:
+                                                    cnt = 1 + heapq.heappop(max_heap)
+                                                    if cnt:
+                                                        q.append([cnt, time + n])
+                                                if q and q[0][1] == time:
+                                                    heapq.heappush(max_heap, q.popleft()[0])
+                                                
+                                            return time
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/design-twitter/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    355. Design Twitter
+                                </a>
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict, deque
+
+                                        class Twitter:
+
+                                            def __init__(self):
+                                                self.follows = defaultdict(set)
+                                                self.feed = deque()
+
+                                            def postTweet(self, userId: int, tweetId: int) -> None:
+                                                self.feed.appendleft((userId, tweetId))
+
+                                            def getNewsFeed(self, userId: int) -> List[int]:
+                                                return [tweetId for user, tweetId in self.feed if userId == user or user in self.follows[userId]][:10]
+
+                                            def follow(self, followerId: int, followeeId: int) -> None:
+                                                self.follows[followerId].add(followeeId)
+
+                                            def unfollow(self, followerId: int, followeeId: int) -> None:
+                                                self.follows[followerId].discard(followeeId)
+
+
+                                        # Your Twitter object will be instantiated and called as such:
+                                        # obj = Twitter()
+                                        # obj.postTweet(userId,tweetId)
+                                        # param_2 = obj.getNewsFeed(userId)
+                                        # obj.follow(followerId,followeeId)
+                                        # obj.unfollow(followerId,followeeId)
+                                    </code>
                                 </pre>
                             </b>
                         </p>
