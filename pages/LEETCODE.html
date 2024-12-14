@@ -3004,6 +3004,79 @@
                                         # obj.unfollow(followerId,followeeId)
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/find-median-from-data-stream/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    295. Find Median from Data Stream
+                                </a>
+                                <br />
+                                FIRST APPROACH : Sorting O(m∗nlogn)
+                                <pre>
+                                    <code>
+                                        class MedianFinder:
+                                        """"Store numbers in an arr on addNum
+                                        and on findMedian sort the arr and find the median"""
+                                        def __init__(self):
+                                            self.arr = []
+
+                                        def addNum(self, num: int) -> None:
+                                            self.arr.append(num)
+
+                                        def findMedian(self) -> float:
+                                            self.arr.sort()
+                                            if len(self.arr) % 2 == 0:
+                                                return (self.arr[len(self.arr) // 2] + self.arr[len(self.arr) // 2 - 1]) / 2
+                                            return self.arr[len(self.arr) // 2]
+
+
+
+                                    # Your MedianFinder object will be instantiated and called as such:
+                                    # obj = MedianFinder()
+                                    # obj.addNum(num)
+                                    # param_2 = obj.findMedian()
+                                    </code>
+                                </pre>
+                                <br />
+                                SECOND APPROACH: Heaps O(m * logn)
+                                <pre>
+                                    <code>
+                                        class MedianFinder:
+
+                                        def __init__(self):
+                                            """Using two heaps, which should be aproximately equal in size"""
+                                            self.small = [] 
+                                            self.large = [] 
+                                    
+                                        def addNum(self, num: int) -> None:
+                                            if self.large and num > self.large[0]:
+                                                heapq.heappush(self.large, num)
+                                            else:
+                                                heapq.heappush(self.small, -num)
+                                    
+                                            if len(self.small) > len(self.large) + 1:
+                                                val = - heapq.heappop(self.small)
+                                                heapq.heappush(self.large, val)
+                                    
+                                            if len(self.large) > len(self.small) + 1:
+                                                val = heapq.heappop(self.large)
+                                                heapq.heappush(self.small, -val)
+                                    
+                                        def findMedian(self) -> float:
+                                            if len(self.small) > len(self.large):
+                                                return -1 * self.small[0]
+                                            elif len(self.large) > len(self.small):
+                                                return self.large[0]
+                                            return (-self.small[0] + self.large[0]) / 2
+                                    
+                                    
+                                        # Your MedianFinder object will be instantiated and called as such:
+                                        # obj = MedianFinder()
+                                        # obj.addNum(num)
+                                        # param_2 = obj.findMedian()
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
