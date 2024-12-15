@@ -3077,6 +3077,68 @@
                                         # param_2 = obj.findMedian()
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/subsets/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    78. Subsets
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/combination-sum/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    39. Combination Sum
+                                </a>
+                                <br />
+
+                                FIRST APPROACH
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                        """Add an element to the curr path with each iteration"""
+                                        def subsets(self, nums: List[int]) -> List[List[int]]:
+                                            res = []
+
+                                            def bkt(start, path):
+                                                res.append(path)
+                                                for i in range(start, len(nums)):
+                                                    bkt(i + 1, path + [nums[i]])
+                                            bkt(0, [])
+                                            return res
+                                    </code> 
+                                </pre>
+                                <br />
+                                SECOND APPROACH
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Using dfs with two branches"""
+                                            def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+                                                res = []
+                                                def dfs(i, cur, total): 
+                                                    if total == target:
+                                                        res.append(cur[:])
+                                                        return
+                                                    if i >= len(candidates) or total > target:
+                                                        return
+                                                    cur.append(candidates[i])
+                                                    dfs(i, cur, total + candidates[i]) 
+                                                    cur.pop()
+                                                    dfs(i + 1, cur, total)
+
+                                                dfs(0, [], 0) 
+                                                return res
+                    
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
