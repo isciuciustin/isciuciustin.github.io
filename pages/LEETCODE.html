@@ -3087,7 +3087,17 @@
                                 <br />
                                 <pre>
                                     <code>
+                                        class Solution:
+                                            """Add an element to the curr path with each iteration"""
+                                            def subsets(self, nums: List[int]) -> List[List[int]]:
+                                                res = []
 
+                                                def bkt(start, path):
+                                                    res.append(path)
+                                                    for i in range(start, len(nums)):
+                                                        bkt(i + 1, path + [nums[i]])
+                                                bkt(0, [])
+                                                return res  
                                     </code>
                                 </pre>
                                 <a
@@ -3137,6 +3147,79 @@
                                                 dfs(0, [], 0) 
                                                 return res
                     
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/permutations/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    46. Permutations
+                                </a>
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """A simple bkt solution, 
+                                            recursive case if v doesn't appear in the cur solution
+                                            base case: if len(sol) = len(nums)"""
+                                            def permute(self, nums: List[int]) -> List[List[int]]:
+                                                res = []
+                                                path = []
+
+                                                def ok(v):
+                                                    for val in path:
+                                                        if v == val:
+                                                            return False
+                                                    return True
+                                                def bkt():
+                                                    if len(path) == len(nums):
+                                                        print(path)
+                                                        res.append(path[:])
+                                                    if len(path) >= len(nums):
+                                                        return 
+                                                    for v in nums:
+                                                        if ok(v):
+                                                            path.append(v)
+                                                            bkt()
+                                                            path.pop()
+                                                bkt()
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/subsets-ii/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    90. Subsets II
+                                </a>
+                                <br />
+
+                                FIRST APPROACH: Hash Set
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Backtracking solution with a hash set"""
+                                            def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+                                                res = []
+                                                path = []
+                                                hash_set = set()
+                                                nums.sort()
+                                                def bkt(i):
+                                                    if tuple(path) not in hash_set:
+                                                        hash_set.add(tuple(path))
+                                                        res.append(path[:])
+
+                                                    if len(path) >= len(nums):
+                                                        return
+
+                                                    for idx in range(i, len(nums)): 
+                                                        path.append(nums[idx])
+                                                        bkt(idx + 1)
+                                                        path.pop()
+                                                        bkt(idx + 1)
+                                                bkt(0)
+                                                return res
                                     </code> 
                                 </pre>
                             </b>
