@@ -3222,6 +3222,88 @@
                                                 return res
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/combination-sum-ii/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    40. Combination Sum II
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Backtracking solution, base case: if s == target:
+                                            recursive case, if I pass duplicated values and the s is not greater than the target"""
+                                            def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
+                                                res = []
+                                                path = []
+                                                candidates.sort()
+                                                s = 0
+
+                                                def bkt(i, s):
+                                                    if s == target:
+                                                        res.append(path[:])
+                                                        return 
+
+                                                    for idx in range(i, len(candidates)):
+                                                        if idx > i and candidates[idx] == candidates[idx - 1]:
+                                                            continue
+                                                        if (s + candidates[idx] ) > target:
+                                                            break
+                                                        path.append(candidates[idx])
+                                                        s += candidates[idx]
+                                                        bkt(idx + 1, s)
+                                                        path.pop()
+                                                        s -= candidates[idx]
+                                                
+                                                bkt(0, 0)
+
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/word-search/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    79. Word Search
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>]
+                                        class Solution:
+                                            """Backtracking in plan approach with a set for visited indices"""
+                                            def exist(self, board: List[List[str]], word: str) -> bool:
+                                                m = len(board)
+                                                n = len(board[0])
+                                                vis = set()
+                                                def bkt(i, j, idx):
+                                                    if idx == len(word):
+                                                        return True
+
+                                                    if i < 0 or j < 0 or i == m or j == n:
+                                                        return False
+                                                    
+                                                    if board[i][j] != word[idx] or (i, j) in vis:
+                                                        return False
+
+                                                    vis.add((i, j))
+
+                                                    found =  bkt(i - 1, j, idx + 1) or bkt(i + 1, j, idx + 1) or bkt(i, j + 1, idx + 1) or bkt(i, j - 1, idx + 1)
+                                                    
+                                                    vis.remove((i, j))
+
+                                                    return found
+
+                                                for i in range(0, m):
+                                                    for j in range(0, n):
+                                                        if bkt(i, j, 0):
+                                                            return True
+                                                        vis.clear()
+                                                return False
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
