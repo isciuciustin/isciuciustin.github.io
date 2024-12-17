@@ -3271,7 +3271,7 @@
                                 </a>
                                 <br />
                                 <pre>
-                                    <code>]
+                                    <code>
                                         class Solution:
                                             """Backtracking in plane approach with a set for visited indices"""
                                             def exist(self, board: List[List[str]], word: str) -> bool:
@@ -3302,6 +3302,151 @@
                                                             return True
                                                         vis.clear()
                                                 return False
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/palindrome-partitioning/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    131. Palindrome Partitioning
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Backtraking approach:
+                                            base case : idx == len(s)
+                                            recursive case : sub is a palindrome"""
+                                            def partition(self, s: str) -> List[List[str]]:
+                                                res = []
+                                                p = []
+                                                def bkt(idx):
+                                                    if idx == len(s):
+                                                        res.append(p[:])
+                                                        return 
+                                                    sub = ""
+                                                    for i in range(idx, len(s)):
+                                                        c = s[i]
+                                                        sub += c
+                                                        if sub == sub[::-1]:
+                                                            p.append(sub)
+                                                            bkt(i + 1)
+                                                            p.pop()
+                                                bkt(0)
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/letter-combinations-of-a-phone-number/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    17. Letter Combinations of a Phone Number
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Backtraking recursive function:
+                                            Retain in a dict all the posible letters for each digit
+                                            Create a board with all the possible letters for each digit
+                                            Run a bkt for each row in the board:
+                                            Base case : when current row == rows in the board:
+                                            Recursive case: add each cell of the curr row to the current comb"""
+                                            def letterCombinations(self, digits: str) -> List[str]:
+                                                if len(digits) == 0:
+                                                    return []
+
+                                                d = {
+                                                    2: ['a', 'b', 'c'],
+                                                    3: ['d', 'e', 'f'],
+                                                    4: ['g', 'h', 'i'],
+                                                    5: ['j', 'k', 'l'],
+                                                    6: ['m', 'n', 'o'],
+                                                    7: ['p', 'q', 'r', 's'],
+                                                    8: ['t', 'u', 'v'],
+                                                    9: ['w', 'x', 'y', 'z']
+                                                }
+                                                
+                                                b = []
+
+                                                for digit in digits:
+                                                    b.append(d.get(int(digit)))
+
+                                                res = []
+                                                comb = []
+                                                ROWS = len(b)
+                                                COLS = len(b[0])
+
+                                                def bkt(r):
+                                                    if r == ROWS:
+                                                        res.append("".join(comb))
+                                                        return 
+                                                    for c in b[r]:
+                                                        comb.append(c)
+                                                        bkt(r + 1)
+                                                        comb.pop()
+
+                                                bkt(0)
+
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/n-queens/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    51. N-Queens
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Backtraking recursive function:
+                                            base case: if r == n
+                                            recursive case: Try to add a Q to each column of the current row and 
+                                            move to the next row"""
+                                            def solveNQueens(self, n: int):
+                                                res = []
+                                                board = [["."] * n for i in range(n)]
+
+                                                def bkt(r):
+                                                    if r == n:
+                                                        copy = ["".join(row) for row in board]
+                                                        res.append(copy)
+                                                        return
+                                                    for c in range(n):
+                                                        if self.isSafe(r, c, board):
+                                                            board[r][c] = "Q"
+                                                            bkt(r + 1)
+                                                            board[r][c] = "."
+
+                                                bkt(0)
+                                                return res
+
+                                            def isSafe(self, r: int, c: int, board):
+                                                row = r - 1
+                                                while row >= 0:
+                                                    if board[row][c] == "Q":
+                                                        return False
+                                                    row -= 1
+                                                    
+                                                row, col = r - 1, c - 1
+                                                while row >= 0 and col >= 0:
+                                                    if board[row][col] == "Q":
+                                                        return False
+                                                    row -= 1
+                                                    col -= 1
+
+                                                row, col = r - 1, c + 1
+                                                while row >= 0 and col < len(board):
+                                                    if board[row][col] == "Q":
+                                                        return False
+                                                    row -= 1
+                                                    col += 1
+                                                return True
                                     </code> 
                                 </pre>
                             </b>
