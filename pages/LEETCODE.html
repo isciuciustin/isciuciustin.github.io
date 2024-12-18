@@ -39,7 +39,7 @@
         <main>
             <div class="container min-vh-100 py-5">
                 <div class="d-flex justify-content-center my-3">
-                    <i> These are my solutions to Leetcode 150: </i>
+                    <i> These are some cool solutions to leetcode problems </i>
                 </div>
                 <div class="d-flex justify-content-start my-3">
                     <ul>
@@ -3447,6 +3447,125 @@
                                                     row -= 1
                                                     col += 1
                                                 return True
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/number-of-islands/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    200. Number of Islands
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Backtraking in plane:
+                                            Base case: if indices are in the grid, are not visitedm and the grid[i][j] is a part 
+                                            of an island
+                                            Recursive case: go in all directions"""
+                                            def numIslands(self, grid: List[List[str]]) -> int:
+                                                m = len(grid)
+                                                n = len(grid[0])
+                                                cnt = 0
+                                                vis = set()
+
+                                                def dfs(i, j):
+                                                    if i < 0 or j < 0 or i == m or j == n or (i, j) in vis or grid[i][j] == "0":
+                                                        return 
+
+                                                    vis.add((i, j))
+
+                                                    dfs(i - 1, j)
+                                                    dfs(i + 1, j)
+                                                    dfs(i, j + 1)
+                                                    dfs(i, j - 1)
+                                            
+                                                for i in range(m):
+                                                    for j in range(n):
+                                                        if grid[i][j] == "1" and (i,j) not in vis:
+                                                            dfs(i, j)
+                                                            cnt += 1
+                                                return cnt
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/max-area-of-island/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    695. Max Area of Island
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """Backtraking in plane:
+                                            Base case: if indices are in the grid and represent a part of an island which 
+                                            was not visited yet.
+                                            Recursive case: Go in all directions and return the sum"""
+                                            def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+                                                m = len(grid)
+                                                n = len(grid[0])
+                                                max_cells = 0
+                                                vis = set()
+
+                                                def bkt(i, j):
+                                                    if i < 0 or i == m or j < 0 or j == n or (i, j) in vis or grid[i][j] == 0:
+                                                        return 0
+                                                    vis.add((i, j))
+
+                                                    return 1 + bkt(i - 1, j) + bkt(i + 1, j) + bkt(i, j + 1) + bkt(i, j - 1)
+
+                                                for i in range(m):
+                                                    for j in range(n):
+                                                        if grid[i][j] == 1 and (i, j) not in vis:
+                                                            max_cells = max(max_cells, bkt(i, j))
+                                                return max_cells
+
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/clone-graph/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    133. Clone Graph
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        """
+                                        # Definition for a Node.
+                                        class Node:
+                                            def __init__(self, val = 0, neighbors = None):
+                                                self.val = val
+                                                self.neighbors = neighbors if neighbors is not None else []
+                                        """
+
+                                        from typing import Optional
+                                        class Solution:
+                                            """Use a hash table in order to store the copy for each node
+                                            and call a dfs with the starting node"""
+                                            def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
+                                                if not node:
+                                                    return None
+
+                                                oldToNew = {}
+
+                                                def dfs(node):
+                                                    if node in oldToNew:
+                                                        return oldToNew[node]
+
+                                                    copy = Node(node.val)
+                                                    oldToNew[node] = copy
+
+                                                    for n in node.neighbors:
+                                                        copy.neighbors.append(dfs(n))
+                                                    return copy
+
+                                                return dfs(node)
+
                                     </code> 
                                 </pre>
                             </b>
