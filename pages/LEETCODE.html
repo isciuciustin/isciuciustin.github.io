@@ -3726,6 +3726,54 @@
                                                             board[i][j] = 'O'
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/check-if-n-and-its-double-exist/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    1346. Check If N and Its Double Exist
+                                </a>
+                                FIRST APPROACH
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """"
+                                            Brute Force solution 
+                                            Test for each pair of indices if the condition applies
+                                            Time: O(n^2)
+                                            Space: O(1)
+                                            """"
+                                            def checkIfExist(self, arr: List[int]) -> bool:
+                                                arr.sort()
+                                                for i in range(0, len(arr)):
+                                                    for j in range(0, len(arr)):
+                                                        if i != j and arr[i] == (2 * arr[j]):
+                                                            return True
+                                                return False
+                                    </code>
+                                </pre>
+                                <br />
+                                SECOND APPROACH
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Use a hash table to keep track of all the numbers visited
+                                            If for the current number, the half or the double of it exxists in the 
+                                            hash, then return True
+                                            Time: O(n)
+                                            Space: O(n)
+                                            """
+                                            def checkIfExist(self, arr: List[int]) -> bool:
+                                                seen = set()
+                                                for n in arr:
+                                                    if (n * 2) in seen or n / 2 in seen:
+                                                        return True
+                                                    seen.add(n)
+                                                return False
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
