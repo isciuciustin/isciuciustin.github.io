@@ -3774,6 +3774,389 @@
                                                 return False
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://neetcode.io/problems/islands-and-treasure"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    286. Walls And Gates - Explanation
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import deque
+                                        class Solution:
+                                            """
+                                            Run a bfs from each tresure chest and update the neighbouring land cells
+                                            Time: O(m * n)
+                                            Space: O(m * n)
+                                            """
+                                            def islandsAndTreasure(self, grid: List[List[int]]) -> None:
+                                                ROWS = len(grid)
+                                                COLS = len(grid[0])
+                                                q = deque()
+                                                for i in range(ROWS):
+                                                    for j in range(COLS):
+                                                        if grid[i][j] == 0:
+                                                            q.append((i,j))
+                                                di = [-1, 0, 1, 0]
+                                                dj = [0, 1, 0, -1]
+                                                while q:
+                                                    i,j = q.popleft()
+                                                    for k in range(4):
+                                                        iv = i + di[k]
+                                                        jv = j + dj[k]
+                                                        if iv < 0 or jv < 0 or iv == ROWS or jv == COLS \
+                                                        or grid[iv][jv] == -1 or grid[iv][jv] <= grid[i][j] + 1:
+                                                            continue
+                                                        grid[iv][jv] = grid[i][j] + 1
+                                                        q.append((iv,jv))
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/course-schedule/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    207. Course Schedule
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Run through all the prerequisites courses and construct a directed graph
+                                            If a cycle exists in that graph, that means we can't take all the courses, 
+                                            otherwise we can
+                                            Time: O(V + E)
+                                            Space: O(V + E)
+                                            """
+                                            def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+                                                seen = set()
+                                                st = []
+                                                gr = defaultdict(list)
+                                                for a, b in prerequisites:
+                                                    gr[b].append(a)
+
+                                                def dfs(v):
+                                                    st.append(v)
+                                                    seen.add(v)
+                                                    for n in gr[v]:
+                                                        if n in seen and n in st:
+                                                            return False
+                                                        if n not in seen:
+                                                            if not dfs(n):
+                                                                return False
+                                                    st.pop()
+                                                    return True
+
+                                                for v in range(numCourses):
+                                                    if v not in seen:
+                                                        if not dfs(v):
+                                                            return False
+
+                                                return True
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/course-schedule-ii/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    210. Course Schedule II
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import deque, defaultdict
+                                        class Solution:
+                                            """
+                                            Create a driected graph from the prerequisites,
+                                            Run Khan's Algorithm for finding the topological sort
+                                            If we have all the vertices in the result that means we have a solution,
+                                            otherwise not.
+                                            Time: O(V + E)
+                                            Space: O(V + E)
+                                            """
+                                            def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> List[int]:
+                                                result = []
+                                                q = deque()
+                                                indegree = defaultdict(int)
+                                                gr = defaultdict(list)
+
+                                                for a, b in prerequisites:
+                                                    gr[b].append(a)
+                                                    indegree[a] += 1
+                                                
+                                                for v in range(numCourses):
+                                                    if indegree[v] == 0:
+                                                        q.append(v)
+                                                
+                                                while q:
+                                                    v = q.popleft()
+                                                    result.append(v)
+                                                    for n in gr[v]:
+                                                        indegree[n] -= 1
+                                                        if indegree[n] == 0:
+                                                            q.append(n)
+                                                if len(result) != numCourses:
+                                                    return []
+                                                return result
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://neetcode.io/problems/valid-tree"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    261. Graph Valid Tree
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Check if all vertices are part of the same connected component
+                                            and all vertices are visited during DFS and we don't have any  cycles
+                                            Time: O(V + E)
+                                            Space: O(V + E)
+                                            """
+                                            def validTree(self, n: int, edges: List[List[int]]) -> bool:
+                                                if len(edges) == 0:
+                                                    return True
+                                                gr = defaultdict(list)
+                                                for a, b in edges:
+                                                    gr[a].append(b)
+                                                    gr[b].append(a)
+
+                                                seen = set()
+                                                st = []
+
+                                                def dfs(v, p):
+                                                    seen.add(v)
+                                                    st.append(v)
+                                                    for n in gr[v]:
+                                                        if n not in seen:
+                                                            if not dfs(n, v):
+                                                                return False
+                                                        elif n in seen and n in st and n != p:
+                                                            return False
+                                                    st.pop()
+                                                    return True
+                                                cycle = dfs(0, -1)
+                                                for v in range(n):
+                                                    if v not in seen:
+                                                        return False
+                                                return cycle
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://neetcode.io/problems/count-connected-components"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    323. Number of Connected Components In An
+                                    Undirected Graph
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Run a dfs for each unvisited vertex and increment the 
+                                            number of connected components
+                                            Time: O(V + E)
+                                            Space: O(V + E)
+                                            """
+                                            def countComponents(self, n: int, edges: List[List[int]]) -> int:
+                                                gr = defaultdict(list)
+                                                for a, b in edges:
+                                                    gr[a].append(b)
+                                                    gr[b].append(a)
+
+                                                seen = set()
+                                                cnt = 0
+
+                                                def dfs(v):
+                                                    seen.add(v)
+                                                    for n in gr[v]:
+                                                        if n not in seen:
+                                                            dfs(n)
+                                                for v in range(n):
+                                                    if v not in seen:
+                                                        cnt += 1
+                                                        dfs(v)
+                                                return cnt
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/redundant-connection/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    684. Redundant Connection
+                                </a>
+                                FIRST APPROACH NAIVE DFS
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Naive approach: remove every single edge from the end to the beggining
+                                            of edges and check if the graph is still connected in that case return
+                                            the removed edge
+                                            Time: O(E * (V + E))
+                                            Space: O(V + E)
+                                            """
+                                            def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+                                                gr = defaultdict(list)
+                                                n = len(edges)
+                                                seen = set()
+                                                for a, b in edges:
+                                                    gr[a].append(b)
+                                                    gr[b].append(a)
+
+                                                def dfs(v):
+                                                    seen.add(v)
+                                                    for n in gr[v]:
+                                                        if n not in seen:
+                                                            dfs(n)
+                                                
+                                                for i in range(n - 1, -1, -1):
+                                                    seen.clear()
+                                                    a, b = edges[i]
+                                                    gr[a].remove(b)
+                                                    gr[b].remove(a)
+                                                    dfs(1)
+                                                    if len(seen) == n:
+                                                        return [a,b] 
+                                                    gr[a].append(b)
+                                                    gr[b].append(a)
+                                    </code> 
+                                </pre>
+                                SECOND APPROACH OPTIMAL DFS
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Optimal Approach: Run a DFS from the first node 
+                                            If the node is visited, then it represents the start of a cycle
+                                            Otherwise run through all the neightbours and keep a hash with
+                                            all the vertices which are part of a cycle.
+                                            Traverse edges in reversed order, if the nodes of the current 
+                                            edge are both part of a cycle then return the current edge
+                                            Time: O(V + E)
+                                            Space: O(V + E)
+                                            """
+                                            def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+                                                n = len(edges)
+                                                gr = defaultdict(list)
+                                                for a, b in edges:
+                                                    gr[a].append(b)
+                                                    gr[b].append(a)
+
+                                                seen = set()
+                                                cycle = set() 
+                                                cycle_start = -1
+
+                                                def dfs(v, p):
+                                                    nonlocal cycle_start
+                                                    if v in seen:
+                                                        cycle_start = v
+                                                        return True
+
+                                                    seen.add(v)
+                                                    for n in gr[v]:
+                                                        if n == p:
+                                                            continue
+                                                        if dfs(n, v):
+                                                            if cycle_start != -1:
+                                                                cycle.add(v)
+                                                            if cycle_start == v:
+                                                                cycle_start = -1
+                                                            return True
+                                                    return False
+
+                                                dfs(1, -1)
+
+                                                for a, b in reversed(edges):
+                                                    print(a, b, a in cycle, b in cycle)
+                                                    if a in cycle and b in cycle:
+                                                        return [a,b]
+                                                return []
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/word-ladder/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    127. Word Ladder
+                                </a>
+                                FIRST APPROACH NAIVE BFS
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict, deque
+                                        class Solution:
+                                            """
+                                            BFS
+                                            """
+                                            def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+                                                gr = defaultdict(list)
+                                                for i in range(len(wordList)):
+                                                    cnt_diff = 0
+                                                    for j in range(len(beginWord)):
+                                                        if beginWord[j] != wordList[i][j]:
+                                                            cnt_diff += 1
+                                                    if cnt_diff == 1:
+                                                        gr[0].append(i + 1)
+                                                        gr[i + 1].append(0)
+
+                                                source = 0
+                                                dest = -1
+
+                                                for i in range(len(wordList)):
+                                                    if wordList[i] == endWord:
+                                                        dest = i + 1
+                                                    for j in range(len(wordList)):
+                                                        if i != j:
+                                                            cnt_diff = 0
+                                                            for z in range(len(wordList[i])):
+                                                                if wordList[i][z] != wordList[j][z]:
+                                                                    cnt_diff += 1
+                                                            if cnt_diff == 1:
+                                                                gr[i + 1].append(j + 1)
+                                                                gr[j + 1].append(i + 1)
+                                                if dest == -1:
+                                                    return 0
+                                                
+                                                q = deque()
+                                                q.append(source)
+                                                n = len(gr.keys())
+                                                if dest == -1 or n == 0:
+                                                    return 0
+                                                seen = [0] * 5005
+                                                seen[source] = 1
+
+                                                while q:
+                                                    v = q.popleft()
+                                                    for ng in gr[v]:
+                                                        if seen[ng] == 0:
+                                                            seen[ng] = seen[v] + 1
+                                                            q.append(ng)
+
+                                                if dest < len(seen):
+                                                    return seen[dest]
+                                                return 0
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
