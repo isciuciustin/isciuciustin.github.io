@@ -4157,6 +4157,105 @@
                                                 return 0
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://neetcode.io/problems/valid-tree"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    261. Graph Valid Tree
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict, deque
+                                        class Solution:
+                                            """
+                                            Asign a number to each word
+                                            Create a graph representation where adjacent nodes are 
+                                            words which differ by 1 letter 
+                                            The run a BFS from Start node to the end word and that is the 
+                                            shortest transformation sequence
+                                            Time: O(V ^ 2)
+                                            Space: O(V + E) 
+                                            """
+                                            def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+                                                gr = defaultdict(list)
+                                                dest = -1
+                                                for i in range(len(wordList)):
+                                                    if wordList[i] == endWord:
+                                                        dest = i + 1
+                                                    cnt_diff = 0
+                                                    for j in range(len(beginWord)):
+                                                        if beginWord[j] != wordList[i][j]:
+                                                            cnt_diff += 1
+                                                    if cnt_diff == 1:
+                                                        gr[0].append(i + 1)
+                                                        gr[i + 1].append(0)
+
+                                                source = 0
+                                        
+                                                if dest == -1:
+                                                    return 0
+                                                    
+                                                for i in range(len(wordList) - 1):
+                                                    for j in range(i + 1, len(wordList)):
+                                                        cnt_diff = 0
+                                                        for z in range(len(wordList[i])):
+                                                            if wordList[i][z] != wordList[j][z]:
+                                                                cnt_diff += 1
+                                                        if cnt_diff == 1:
+                                                            gr[i + 1].append(j + 1)
+                                                            gr[j + 1].append(i + 1)
+                                                
+                                                q = deque()
+                                                q.append(source)
+                                                seen = defaultdict(int)
+                                                seen[source] = 1
+
+                                                while q:
+                                                    v = q.popleft()
+                                                    for ng in gr[v]:
+                                                        if seen[ng] == 0:
+                                                            seen[ng] = seen[v] + 1
+                                                            q.append(ng)
+
+                                                return seen[dest]
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/reconstruct-itinerary/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    332. Reconstruct Itinerary
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Construct a graph with edges in lexicographicall order
+                                            Then Run a dfs and remove the edges to the neighbours for 
+                                            each vertex
+                                            Time: O(V + E)
+                                            Space: O(V ^ 2)
+                                            """
+                                            def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+                                                gr = defaultdict(list)
+                                                for src, dest in sorted(tickets)[::-1]:
+                                                    gr[src].append(dest)
+                                                res = []
+
+                                                def dfs(src):
+                                                    while gr[src]:
+                                                        dest = gr[src].pop()
+                                                        dfs(dest)
+                                                    res.append(src)
+                                                dfs("JFK")
+                                                return res[::-1]
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
