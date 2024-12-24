@@ -3999,8 +3999,8 @@
                                 >
                                     684. Redundant Connection
                                 </a>
-                                FIRST APPROACH NAIVE DFS
                                 <br />
+                                FIRST APPROACH NAIVE DFS
                                 <pre>
                                     <code>
                                         from collections import defaultdict
@@ -4254,6 +4254,54 @@
                                                     res.append(src)
                                                 dfs("JFK")
                                                 return res[::-1]
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/min-cost-to-connect-all-points/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    1584. Min Cost to Connect All Points
+                                </a>
+                                <br />
+                                FIRST APPROACH Prim's algorithm for MST
+                                <pre>
+                                    <code>
+                                        from  collections import defaultdict
+                                        import heapq
+                                        class Solution:
+                                            """
+                                            Create a complete undirected weighted graph of the points where 
+                                            the weight of the edge between two points is the manhattan distance
+                                            Then run Prim's algorithm on the graph in order to 
+                                            find the find the Minimum Spanning Tree ( MST ) 
+                                            which will tell us the min cost to connect all points
+                                            Time: O(LEN(points) ^ 2)
+                                            Space: O(V + E)
+                                            """
+                                            def minCostConnectPoints(self, points: List[List[int]]) -> int:
+                                                gr = defaultdict(list)
+
+                                                for i in range(len(points)):
+                                                    for j in range(i + 1, len(points)):
+                                                        dist = abs(points[i][0] - points[j][0]) + abs(points[i][1] - points[j][1])
+                                                        gr[i].append((j, dist))
+                                                        gr[j].append((i, dist))
+                                                pq = []
+                                                seen = set()
+                                                heapq.heappush(pq, (0, 0))
+                                                res = 0
+                                                while pq:
+                                                    wt, v = heapq.heappop(pq)
+                                                    if v in seen:
+                                                        continue
+                                                    res += wt
+                                                    seen.add(v)
+                                                    for u, wt in gr[v]:
+                                                        if u not in seen:
+                                                            heapq.heappush(pq, (wt, u))
+
+                                                return res
                                     </code> 
                                 </pre>
                             </b>
