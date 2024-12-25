@@ -4304,6 +4304,200 @@
                                                 return res
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/network-delay-time/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    743. Network Delay Time
+                                </a>
+                                <br />
+                                FIRST APPROACH Dijkstra's algorithm with deque
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Build a directed weighted graph from times array
+                                            Run Dijkstra's algorithm from source k
+                                            If not all the vertices were visited, then 
+                                            we don;t have a solution so return -1
+                                            otherwise run through the distances and 
+                                            take the maximum distance from k 
+                                            Time: O(V * E)
+                                            Space: O(V + E)
+                                            """
+                                            def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+                                                gr = defaultdict(list)
+                                        
+                                                for u, v, w in times:
+                                                    gr[u].append([v, w])
+                                        
+                                                res = -1
+                                                q = deque()
+                                                q.append(k)
+                                                d = [float("inf")] * (n + 1)
+                                                d[k] = 0
+                                        
+                                                while q:
+                                                    v = q.popleft()
+                                                    for ng, w in gr[v]:
+                                                        if d[ng] > d[v] + w:
+                                                            d[ng] = d[v] + w
+                                                            q.append(ng)
+                                        
+                                                for i in range(1, n + 1):
+                                                    res = max(res, d[i])
+                                                if res == float("inf"):
+                                                    return -1
+                                                return res
+                                    </code>
+                                </pre>
+                                <br />
+                                SECOND APPROACH Dijkstra's algorithm with
+                                Priority Queue
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Using a deque
+                                            Build a directed weighted graph from times array
+                                            Run Dijkstra's algorithm from source k
+                                            If not all the vertices were visited, then 
+                                            we don;t have a solution so return -1
+                                            otherwise run through the distances and 
+                                            take the maximum distance from k 
+                                            Time: O(ElogV)
+                                            Space: O(V + E)
+                                            """
+                                            def networkDelayTime(self, times: List[List[int]], n: int, k: int) -> int:
+                                                gr = defaultdict(list)
+
+                                                for u, v, w in times:
+                                                    gr[u].append([v, w])
+
+                                                res = -1
+                                                pq = []
+                                                heapq.heapify(pq)
+                                                heapq.heappush(pq, (0, k))        
+                                                seen = set()
+                                                t = 0
+                                                while pq:
+                                                    w, v = heapq.heappop(pq)
+                                                    if v in seen:
+                                                        continue
+                                                    seen.add(v)
+                                                    t = w
+                                                    for ng, wn in gr[v]:
+                                                        if ng not in seen:
+                                                            heapq.heappush(pq, (w + wn, ng))
+                                                return t if len(seen) == n else -1 
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/swim-in-rising-water/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    778. Swim in Rising Water
+                                </a>
+                                <br />
+                                FIRST APPROACH DFS with binary search
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                        """
+                                        Run a DFS with binary search
+                                        Time: O(n ^ n log n)
+                                        Space: O(n ^ n)
+                                        """ 
+                                        def swimInWater(self, grid: List[List[int]]) -> int:
+                                            n = len(grid)
+                                            visit = set()
+
+                                            def dfs(node, t):
+                                                r, c = node
+                                                if min(r, c) < 0 or max(r, c) >= n or (r, c) in visit or grid[r][c] > t:
+                                                    return False
+                                                if r == (n - 1) and c == (n - 1):
+                                                    return True
+                                                visit.add((r,c))
+                                                return (dfs((r + 1, c), t) or
+                                                        dfs((r - 1, c), t) or
+                                                        dfs((r, c + 1), t) or
+                                                        dfs((r, c - 1), t))
+                                            
+                                            l = 0
+                                            r = n ** n - 1
+                                            sol = float("inf")
+                                            while l <= r:
+                                                m = (l + r) // 2
+                                                if dfs((0, 0), m):
+                                                    sol = min(sol, m)
+                                                    r = m - 1
+                                                else:
+                                                    l = m + 1
+                                                visit.clear()
+                                            
+                                            return sol
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://neetcode.io/solutions/alien-dictionary"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    269. Alien Dictionary
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                        """
+                                        Build a directed graph from the words
+                                        Run a dfs and check if there is a cycle
+                                        in which case, there is no a valid order
+                                        Time: O(N + V + E)
+                                        Space: O(V + E)
+                                        """
+                                        def foreignDictionary(self, words: List[str]) -> str:
+                                            adj = {c: set() for w in words for c in w}
+
+                                            for i in range(len(words) - 1):
+                                                w1, w2 = words[i], words[i + 1]
+                                                minLen = min(len(w1), len(w2))
+                                                if len(w1) > len(w2) and w1[:minLen] == w2[:minLen]:
+                                                    return ""
+                                                for j in range(minLen):
+                                                    if w1[j] != w2[j]:
+                                                        adj[w1[j]].add(w2[j])
+                                                        break
+
+                                            visited = {}
+                                            res = []
+
+                                            def dfs(char):
+                                                if char in visited:
+                                                    return visited[char]
+
+                                                visited[char] = True
+
+                                                for neighChar in adj[char]:
+                                                    if dfs(neighChar):
+                                                        return True
+
+                                                visited[char] = False
+                                                res.append(char)
+
+                                            for char in adj:
+                                                if dfs(char):
+                                                    return ""
+
+                                            res.reverse()
+                                            return "".join(res)
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
