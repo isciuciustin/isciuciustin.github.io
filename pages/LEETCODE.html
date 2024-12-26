@@ -4654,6 +4654,109 @@
                                                 return res
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/gas-station/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    134. Gas Station
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            If sum of gas is < sum of cost, then we don;t have a solution
+                                            Run through all stations and add to tank the diff between gas and cost 
+                                            if the tank becomes negative, restart from the next station.
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def canCompleteCircuit(self, gas: List[int], cost: List[int]) -> int:
+                                                if sum(gas) < sum(cost):
+                                                    return -1
+                                                tank = 0
+                                                res = 0
+
+                                                for i in range(len(gas)):
+                                                    tank += (gas[i] - cost[i])
+                                                    if tank < 0:
+                                                        tank = 0
+                                                        res = i + 1
+                                                return res
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/hand-of-straights/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    846. Hand of Straights
+                                </a>
+                                <br />
+                                FIRST APPROACH BRUTE FORCE
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Build the res arr.
+                                            Time: O(n ^ 2)
+                                            space: O(n)
+                                            """
+                                            def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+                                                n = len(hand)
+                                                if n % groupSize != 0:
+                                                    return False
+                                                hand.sort()
+                                                res = []
+                                                seen = set()
+                                                while len(res) < n // groupSize:
+                                                    gr = []
+                                                    el = -1
+                                                    while len(gr) < groupSize:
+                                                        ok = False
+                                                        for i in range(n):
+                                                            if (el == -1 or el == hand[i]) and i not in seen: 
+                                                                gr.append(hand[i])
+                                                                ok = True
+                                                                el = hand[i] + 1
+                                                                seen.add(i)
+                                                                break
+                                                        if ok == False:
+                                                            return False
+                                                    res.append(gr)
+                                                return True
+                                    </code>
+                                </pre>
+                                <br />
+                                SECOND APPROACH HASH TABLE
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Sort the hand
+                                            Keep a hash table with the frequencies of each number
+                                            Iterate through the numbers 
+                                            Check if I can create a group with a number with frequency greater than 1
+                                            If not, return False
+                                            Time: O(n logn)
+                                            Space: O(n)
+                                            """
+                                            def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+                                                if len(hand) % groupSize:
+                                                    return False
+                                                count = Counter(hand)
+                                                hand.sort()
+                                                for num in hand:
+                                                    if count[num]:
+                                                        for i in range(num, num + groupSize):
+                                                            if not count[i]:
+                                                                return False
+                                                            count[i] -= 1
+                                                return True
+
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
