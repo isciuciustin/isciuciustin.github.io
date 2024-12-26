@@ -4536,6 +4536,124 @@
                                             return prices[dst] if prices[dst] != float("inf") else -1
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/maximum-subarray/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    53. Maximum Subarray
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                        """
+                                        Using Kadane's Algorithm
+                                        Keeping a sum of the subarray ending at the current element
+                                        If the sum is negative, start the sum of a new subarray
+                                        Otherwise, expand the current subarray
+                                        Time: O(n)
+                                        Space: O(1)
+                                        """
+                                        def maxSubArray(self, nums: List[int]) -> int:
+                                            sum , res = -float("inf"), -float("inf")
+                                            for x in nums:
+                                                if sum < 0:
+                                                    sum = x
+                                                else:
+                                                    sum += x
+                                                res = max(res, sum)
+                                            return res
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/jump-game/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    55. Jump Game
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Traverse the list from right to left and keep a goal index
+                                            where I should jump
+                                            Check for each iteration if I could jump to the goal
+                                            in which case update the goal to the current index
+                                            Return if goal is equal with 0.
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def canJump(self, nums: List[int]) -> bool:
+                                                goal = len(nums) - 1
+                                                for i in range(len(nums) - 2, -1, -1):
+                                                    if i + nums[i] >= goal:
+                                                        goal = i
+                                                return goal == 0
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/jump-game-ii/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    45. Jump Game II
+                                </a>
+                                <br />
+                                FIRST APPROACH O(n^2)
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Keep a goal index which os initally set at len(nums) - 1
+                                            while g != 0:
+                                                Search for the first index from which I can jump to goal, 
+                                                increment the number of jumps and set the goal as that index
+                                            Time: O(n^2)
+                                            Space: O(1)
+                                            """
+                                            def jump(self, nums: List[int]) -> int:
+                                                n = len(nums)
+                                                g = n - 1
+                                                steps = 0
+                                                while g != 0:
+                                                    for i in range(0, g):
+                                                        if i + nums[i] >= g:
+                                                            g = i
+                                                            steps += 1
+                                                            break
+                                                return steps
+                                    </code> 
+                                </pre>
+                                <br />
+                                SECOND APPROACH O(n)
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Keep track of a range left right which represents
+                                            the range of indices where I could jump 
+                                            For each range, find the farthest distence where I could make the next jump
+                                            and update the range.
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def jump(self, nums: List[int]) -> int:
+                                                res = 0
+                                                l = r = 0
+
+                                                while r < len(nums) - 1:
+                                                    farthest = 0
+                                                    for i in range(l, r + 1):
+                                                        farthest = max(farthest, i + nums[i])
+                                                    l = r + 1
+                                                    r = farthest
+                                                    res += 1
+                                                return res
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
