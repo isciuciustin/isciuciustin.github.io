@@ -4757,6 +4757,130 @@
 
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/merge-triplets-to-form-target-triplet/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    1899. Merge Triplets to Form Target Triplet
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Run trough all the triplets
+                                            If one of the values in the current triplet is 
+                                            greater than the corresponding value n target, skip the triplet
+                                            Otherwise check if there are equal values between the current triplet 
+                                            and the target, case in which retain the equal indices.
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
+                                                good = set()
+                                                for t in triplets:
+                                                    if t[0] > target[0] or t[1] > target[1] or t[2] > target[2]:
+                                                        continue
+                                                    for i, v in enumerate(t):
+                                                        if v == target[i]:
+                                                            good.add(i)
+                                                return len(good) == 3
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/partition-labels/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    763. Partition Labels
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from collections import defaultdict
+                                        class Solution:
+                                            """
+                                            Retain the first and last occurences of each letter 
+                                            in s and append then in a pq
+                                            The intersection of the intervals are the partitions
+                                            Add the number of elemnts in those partitions to the res.
+                                            Time: O(n)
+                                            Space: O(n)
+                                            """
+                                            def partitionLabels(self, s: str) -> List[int]:
+                                                f = defaultdict(list)
+                                                pq = []
+                                                res = []
+                                                heapq.heapify(pq)
+                                                for i in range(len(s)):
+                                                    c = s[i]
+                                                    if c not in f:
+                                                        f[c] = [i,i]
+                                                    else:
+                                                        f[c][1] = i
+                                                for k, v in f.items():
+                                                    heapq.heappush(pq, v)
+
+                                                a,b = heapq.heappop(pq)
+                                                if not pq:
+                                                    return [b - a + 1]
+
+                                                while pq:
+                                                    c, d = heapq.heappop(pq)
+                                                    if c <= b:
+                                                        b = max(b, d)
+                                                    else:
+                                                        res.append(b - a + 1)
+                                                        a = c
+                                                        b = d
+                                                res.append(b - a + 1)
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/valid-parenthesis-string/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    678. Valid Parenthesis String
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Keep track of the indices of open pharantheses and indices 
+                                            of asterisks.
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def checkValidString(self, s: str) -> bool:
+                                                st = []
+                                                ast = []
+                                                for i in range(len(s)):
+                                                    c = s[i]
+                                                    if c == "(":
+                                                        st.append(i)
+                                                    if c == "*":
+                                                        ast.append(i)
+                                                    if c == ")":
+                                                        if len(st) > 0:
+                                                            st.pop()
+                                                        elif len(ast) > 0:
+                                                            ast.pop()
+                                                        else:
+                                                            return False
+                                                
+                                                while st and ast:
+                                                    lp = st.pop()
+                                                    last = ast.pop()
+                                                    if lp > last:
+                                                        return False
+                                                
+                                                return len(st) <= len(ast)
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
