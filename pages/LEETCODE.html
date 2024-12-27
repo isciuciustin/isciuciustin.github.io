@@ -4881,6 +4881,227 @@
                                                 return len(st) <= len(ast)
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/insert-interval/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    57. Insert Interval
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Iterate through the entire list and merge the intervals if necessary.
+                                            Time: O(n)
+                                            Space: O(n)
+                                            """
+                                            def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+                                                res = []
+                                        
+                                                for i in range(len(intervals)):
+                                                    if newInterval[1] < intervals[i][0]:
+                                                        res.append(newInterval)
+                                                        return res + intervals[i:]
+                                                    elif newInterval[0] > intervals[i][1]:
+                                                        res.append(intervals[i])
+                                                    else:
+                                                        newInterval = [
+                                                            min(newInterval[0], intervals[i][0]),
+                                                            max(newInterval[1], intervals[i][1]),
+                                                        ]
+                                                res.append(newInterval)
+                                                return res
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/merge-intervals/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    56. Merge Intervals
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Sort the intervals arr, then iterate through it and 
+                                            merge the intervals if necessary.
+                                            Time: O(nlog)
+                                            Space: O(n)
+                                            """
+                                            def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+                                                res = []
+                                                intervals.sort()
+                                                jump = -1
+                                                n = len(intervals)
+                                                for i in range(n):
+                                                    if i <= jump:
+                                                        continue
+                                                    a,b = intervals[i]
+                                                    while i + 1 < n and intervals[i + 1][0] <= b:
+                                                        i += 1
+                                                        a = min(a, intervals[i][0])
+                                                        b = max(b, intervals[i][1])
+                                                        jump = i
+                                                    res.append([a,b])
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/non-overlapping-intervals/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    435. Non-overlapping Intervals
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Sort the intervals, then iterate trough it and 
+                                            merge the intervals if necessary.
+                                            At each merge, increment the res.
+                                            Time: O(nlogn)
+                                            Space: O(1)
+                                            """
+                                            def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
+                                                intervals.sort()
+                                                res = 0
+                                                prev_end = intervals[0][1]
+                                                
+                                                for start, end in intervals[1:]:
+                                                    if start >= prev_end:
+                                                        prev_end = end
+                                                    else:
+                                                        res += 1
+                                                        prev_end = min(end, prev_end)
+                                                return res
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://neetcode.io/solutions/meeting-rooms/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    252. Meeting Rooms
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        """
+                                        Definition of Interval:
+                                        class Interval(object):
+                                            def __init__(self, start, end):
+                                                self.start = start
+                                                self.end = end
+                                        """
+
+                                        class Solution:
+                                            """
+                                            Sort the intervals based on the start value,
+                                            then check if two adjecent intervals overlap.
+                                            Time: O(nlogn)
+                                            Space: O(n)
+                                            """
+                                            def canAttendMeetings(self, intervals: List[Interval]) -> bool:
+                                                intervals.sort(key=lambda x: x.start)
+                                                n = len(intervals)
+                                                for i in range(n - 1):
+                                                    b = intervals[i].end
+                                                    if intervals[i + 1].start < b:
+                                                        return False
+                                                return True
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://neetcode.io/solutions/meeting-rooms-ii"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    253. Meeting Rooms II
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        """
+                                        Definition of Interval:
+                                        class Interval(object):
+                                            def __init__(self, start, end):
+                                                self.start = start
+                                                self.end = end
+                                        """
+
+                                        class Solution:
+                                            """
+                                            Sort the intervals based on the starting time.
+                                            Iterate trough the intervals and check if they overlap,
+                                            in which case we need another day.
+                                            Keep track aff the ending times for the meetings of each day
+                                            in a priority queue, and get the lowest one 
+                                            as the prev end time for each iteration.
+                                            Time: O(nlogn)
+                                            Space: O(n)
+                                            """
+                                            def minMeetingRooms(self, intervals: List[Interval]) -> int:
+                                                n = len(intervals)
+                                                if n == 0:
+                                                    return 0
+                                                intervals.sort(key=lambda x: x.start)
+                                                prev_end = -1
+                                                pq = []
+                                                heapq.heapify(pq)
+                                                heapq.heappush(pq,prev_end)
+                                                days = 1
+                                                for i in range(n):
+                                                    st, end = intervals[i].start, intervals[i].end
+                                                    prev_end = heapq.heappop(pq)
+
+                                                    if st < prev_end:
+                                                        days += 1
+                                                        heapq.heappush(pq, prev_end)
+                                                        heapq.heappush(pq, end)
+                                                    else:
+                                                        heapq.heappush(pq, end)
+                                                return days 
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/minimum-interval-to-include-each-query/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    1851. Minimum Interval to Include Each Query
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Sorting Intervals and queries.
+                                            Time: O(nlogn + qlogq)
+                                            Space: O(n)
+                                            """
+                                            def minInterval(self, intervals: List[List[int]], queries: List[int]) -> List[int]:
+                                                intervals.sort()
+                                                minHeap = []
+                                                res = {}
+                                                i = 0
+                                                for q in sorted(queries):
+                                                    while i < len(intervals) and intervals[i][0] <= q:
+                                                        l, r = intervals[i]
+                                                        heapq.heappush(minHeap, (r - l + 1, r))
+                                                        i += 1
+
+                                                    while minHeap and minHeap[0][1] < q:
+                                                        heapq.heappop(minHeap)
+                                                    res[q] = minHeap[0][0] if minHeap else -1
+                                                return [res[q] for q in queries]
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
