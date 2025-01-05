@@ -5102,6 +5102,42 @@
                                                 return [res[q] for q in queries]
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/climbing-stairs/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    70. Climbing Stairs
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            A staircase with 1 step can be climbed in 1 way
+                                            A staircase with 2 steps cand be climbed in 2 ways
+                                            A staircase with 3 steps can be climbed in 1 + 2 ways = 3
+                                            ...
+                                            A staircase with n steps can be climbed with s(n - 1) + s(n - 2) where
+                                            s(n) represents the number of ways in which I can climb a staircase with
+                                            n steps.
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def climbStairs(self, n: int) -> int:
+                                                if n == 1:
+                                                    return 1
+                                                if n == 2:
+                                                    return 2
+                                                a = 1
+                                                b = 2
+                                                for i in range(3, n + 1):
+                                                    c = a + b
+                                                    a = b
+                                                    b = c
+                                                return c
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
