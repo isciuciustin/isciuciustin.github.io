@@ -5138,6 +5138,37 @@
                                                 return c
                                     </code>
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/min-cost-climbing-stairs/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    746. Min Cost Climbing Stairs
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        from typing import List
+                                        class Solution:
+                                            """
+                                            A right to left traversal and choose the min between 
+                                            i + 1 and i + 2 indices and the current cost.
+                                            Basicaly try to start a traversal from each position.
+                                            Then the minimum between first 2 positions is 
+                                            going to be returned.
+                                            """
+                                            def minCostClimbingStairs(self, cost: List[int]) -> int:
+                                                    n = len(cost) - 1;
+                                                    b = cost[n];
+                                                    a = cost[n - 1]
+
+                                                    for i in range(n - 2, -1, - 1):
+                                                        c = cost[i] + min(a, b);
+                                                        b = a;
+                                                        a = c;
+                                                    return min(a,b);
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
