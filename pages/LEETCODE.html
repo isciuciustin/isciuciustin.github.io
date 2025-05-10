@@ -5171,6 +5171,185 @@
                                                     return min(a,b);
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/house-robber/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    98. House Robber
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Make a traversal from left -> right, and at each position
+                                            store in a new variable the maximum between the money robbed up 
+                                            to position i - 1 or money robbed up to position i - 2 + 
+                                            the current house.
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def rob(self, nums: List[int]) -> int:
+                                                rob1, rob2 = 0, 0
+                                                for n in nums:
+                                                    new_rob = max(n + rob1, rob2)
+                                                    rob1 = rob2
+                                                    rob2 = new_rob
+                                                return rob2
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/house-robber-ii/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    213. House Robber II
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Write a helper function which solves the 
+                                            House Robber I
+                                            Then choose the maximum between 
+                                            an array without the first element,
+                                            an array without the last element
+                                            and the first element
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def rob(self, nums: List[int]) -> int:
+                                                return max(self.house_robber_1(nums[1:]),
+                                                self.house_robber_1(nums[:-1]), nums[0] )
+                                            
+                                            def house_robber_1(self, nums):
+                                                rob1, rob2  = 0, 0
+                                                for n in nums:
+                                                    temp = max(rob1 + n, rob2)
+                                                    rob1 = rob2 
+                                                    rob2 = temp
+                                                return rob2
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/longest-palindromic-substring/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    5. Longest Palindromic Substring
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Two Pointers:
+                                            Keep 2 pointers for left and right and try to expand 
+                                            the substring in both directions.
+                                            Time: O(n^2)
+                                            Space: O(1)
+                                            """
+                                            def longestPalindrome(self, s: str) -> str:
+                                                resIdx = 0
+                                                resLen = 0
+
+                                                for i in range(len(s)):
+                                                    # odd length
+                                                    l, r = i, i
+                                                    while l >= 0 and r < len(s) and s[l] == s[r]:
+                                                        if (r - l + 1) > resLen:
+                                                            resIdx = l
+                                                            resLen = r - l + 1
+                                                        l -= 1
+                                                        r += 1
+
+                                                    # even length
+                                                    l, r = i, i + 1
+                                                    while l >= 0 and r < len(s) and s[l] == s[r]:
+                                                        if (r - l + 1) > resLen:
+                                                            resIdx = l
+                                                            resLen = r - l + 1
+                                                        l -= 1
+                                                        r += 1
+
+                                                return s[resIdx : resIdx + resLen]
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/palindromic-substrings/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    647. Palindromic Substrings
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Traverse the entire string with index i
+                                            From index i exxpand both left and 
+                                            right and check for all possible substrings
+                                            Retain the response in cnt variable
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def countSubstrings(self, s: str) -> int:
+                                                cnt = 0
+                                                for i in range(len(s)):
+                                                    # odd substrings 
+                                                    l, r = i, i
+                                                    while l >= 0 and r < len(s) and s[l] == s[r]:
+                                                        cnt = cnt + 1
+                                                        l -= 1
+                                                        r += 1
+                                                    # even substrings
+
+                                                    l, r = i, i + 1
+
+                                                    while l >= 0 and r < len(s) and s[l] == s[r]:
+                                                        cnt = cnt + 1
+                                                        l -= 1
+                                                        r += 1
+                                                return cnt
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/decode-ways/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    91. Decode Ways
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Make a dfs traversal and for each 
+                                            index chack if it can be extended 1 more digit
+                                            Use a hash table to store the results
+                                            Time: O(n)
+                                            Space: O(n)
+                                            """
+                                            def numDecodings(self, s: str) -> int:
+                                                dp = { len(s) : 1 }
+                                                def dfs(i):
+                                                    if i in dp: 
+                                                        return dp[i]
+                                                    if s[i] == "0":
+                                                        return 0
+                                                    
+                                                    res = dfs(i + 1)
+                                                    if (i + 1 < len(s) and (s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456")): 
+                                                        res += dfs (i + 2)
+                                                    dp[i] = res
+                                                    return res
+                                                return dfs (0)
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
