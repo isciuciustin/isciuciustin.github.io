@@ -5365,28 +5365,64 @@
                                 <br />
                                 <pre>
                                     <code>
+                                    class Solution:
+                                        """
+                                        Retain a dp array of size amount + 1
+                                        dp[0] is going to be 0 because we don't need any coins 
+                                        to make up that amount.
+                                        The rest of the array is going to be an impossible value.
+                                        Iterate trough each coin in coins array
+                                        The iterate trough each amount 'x'  from coin to amount and:
+                                        dp[x] is going to be minimum between dp[x] ( the current minimum 
+                                        number of coins required to make up that amount ) and 
+                                        dp[x - coin] + 1 (the current minimum number of coins 
+                                        required for the amount x + 1 because we are trying to  
+                                        add the value of the current coin).
+                                        Time: O(n ^ 2)
+                                        Space: O(n)
+                                        """
+                                        def coinChange(self, coins: List[int], amount: int) -> int:
+                                            dp = [amount + 1] * (amount + 1)
+                                            dp[0] = 0
+                                            for coin in coins:
+                                                for x in range(coin, amount + 1):
+                                                    dp[x] = min(dp[x], dp[x - coin] + 1)
+                                            
+                                            return dp[amount] if dp[amount] != (amount + 1) else -1
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/maximum-product-subarray/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    152. Maximum Product Subarray
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
                                         class Solution:
                                             """
-                                            Retain a dp array which is going to be 
-                                            initialized with the infinity 
-                                            and traverse the entire array from 
-                                            left -> right and at each 
-                                            position choose the minimum between 
-                                            dp[x - coin] or dp[x]
-                                            Time: O(n^2)
-                                            Space: O(n)
+                                            Make a left -> right traversal and 
+                                            retain the maximum values between 
+                                            num * curMax, num * CurMin , num 
+                                            and minimum between 
+                                            num * curMax, num * curMin, num
+                                            return the max beween all curMax's
+                                            Time: O(n)
+                                            Space: O(1)
                                             """
-                                            def coinChange(self, coins: List[int], amount: int) -> int:
-                                                max_value = amount + 1
-                                                dp = [max_value] * (amount + 1)
+                                            def maxProduct(self, nums: List[int]) -> int:
+                                                res = nums[0]
+                                                curMin, curMax = 1, 1
 
-                                                dp[0] = 0
-
-                                                for coin in coins:
-                                                    for x in range(coin, amount + 1):
-                                                        dp[x] = min(dp[x], dp[x - coin] + 1)
-                                                return dp[amount] if dp[amount] != max_value else -1
-                                    </code>
+                                                for num in nums:
+                                                    tmp = curMax * num
+                                                    curMax = max(num * curMax, num * curMin, num)
+                                                    curMin = min(tmp, num * curMin, num)
+                                                    res = max(res, curMax)
+                                                return res
+                                    </code> 
                                 </pre>
                             </b>
                         </p>
