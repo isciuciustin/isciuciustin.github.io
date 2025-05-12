@@ -5328,27 +5328,65 @@
                                     <code>
                                         class Solution:
                                             """
-                                            Make a dfs traversal and for each 
-                                            index chack if it can be extended 1 more digit
-                                            Use a hash table to store the results
-                                            Time: O(n)
-                                            Space: O(n)
+                                            If the string is empty or it has a leading 0,
+                                            then return 0 because we can't decode it.
+                                            Build a dp array of the same size as the string
+                                            with the following formula:
+                                            dp[i] = 1, if i == 0 or i == 1
+                                            dp[i] + dp[i - 1], if s[i - 1] is a single digit number
+                                            dp[i] + dp[i - 2], if dp[i - 2: i] is a double digit number.
                                             """
                                             def numDecodings(self, s: str) -> int:
-                                                dp = { len(s) : 1 }
-                                                def dfs(i):
-                                                    if i in dp: 
-                                                        return dp[i]
-                                                    if s[i] == "0":
-                                                        return 0
-                                                    
-                                                    res = dfs(i + 1)
-                                                    if (i + 1 < len(s) and (s[i] == "1" or s[i] == "2" and s[i + 1] in "0123456")): 
-                                                        res += dfs (i + 2)
-                                                    dp[i] = res
-                                                    return res
-                                                return dfs (0)
+                                                if not s or s[0] == '0':
+                                                    return 0;
+                                                n = len(s)
+                                                dp = [0] * (n + 1)
+                                                dp[0] = 1
+                                                dp[1] = 1
+
+                                                for i in range(2, n + 1):
+                                                    one_digit = int(s[i - 1])
+                                                    two_digits = int(s[i - 2: i])
+
+                                                    if one_digit != 0:
+                                                        dp[i] += dp[i - 1]
+                                                    if  10 <= two_digits <= 26:
+                                                        dp[i] += dp[i - 2]
+                                                return dp[n]
                                     </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/coin-change/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    322. Coin Change
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Retain a dp array which is going to be 
+                                            initialized with the infinity 
+                                            and traverse the entire array from 
+                                            left -> right and at each 
+                                            position choose the minimum between 
+                                            dp[x - coin] or dp[x]
+                                            Time: O(n^2)
+                                            Space: O(n)
+                                            """
+                                            def coinChange(self, coins: List[int], amount: int) -> int:
+                                                max_value = amount + 1
+                                                dp = [max_value] * (amount + 1)
+
+                                                dp[0] = 0
+
+                                                for coin in coins:
+                                                    for x in range(coin, amount + 1):
+                                                        dp[x] = min(dp[x], dp[x - coin] + 1)
+                                                return dp[amount] if dp[amount] != max_value else -1
+                                    </code>
                                 </pre>
                             </b>
                         </p>
