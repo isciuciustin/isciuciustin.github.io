@@ -5424,6 +5424,139 @@
                                                 return res
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/word-break/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    139. Word Break
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Create a list of size len(s) + 1 with all elements set to False, 
+                                            except for the first one which is going to be set to True.
+                                            Loop through each index i in s and check for each substring
+                                            s[0:i] if it can be segmented.
+                                            For each word w in wordDict check if it matches the current substring
+                                            s[i - len(w) : i]
+                                            If so update dp[i] to True.
+                                            Return the value of dp[-1]
+                                            Time Complexity : O(n * m * k)
+                                            n -> is the length of the input string
+                                            m -> is the number of words in wordDict
+                                            k -> is average sife of substrings
+                                            Space Complexity : O(n)
+                                            """
+                                            def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+                                                dp = [True] + [False] * len(s)
+
+                                                for i in range(1, len(s) + 1):
+                                                    for w in wordDict:
+                                                        start = i - len(w)
+                                                        if start >= 0 and dp[start] and s[start : i] == w:
+                                                            dp[i] = True
+                                                            break
+                                                
+                                                return dp[-1]
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/longest-increasing-subsequence/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    300. Longest Increasing Subsequence
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Keep track of the longest increasing 
+                                            subsequence in the res arr and loop through the entire list 
+                                            of numbers.
+                                            If the current number is greater than the last number 
+                                            in res then add it to the end
+                                            otherwise make a binary search and find the right index
+                                            to add the current number.
+                                            The length of the longest increasing subsequence found is 
+                                            the length of the res arr.
+                                            Time: O(nlogn)
+                                            Space: O(n)
+                                            """
+                                            def lengthOfLIS(self, nums: List[int]) -> int:
+                                                res = []
+
+                                                def binary_search(res, x):
+                                                    lt = 0
+                                                    rt = len(res) - 1
+
+                                                    while lt <= rt:
+                                                        m = (lt + rt) // 2
+                                                        if res[m] == x:
+                                                            return m
+                                                        elif res[m] > x:
+                                                            rt = m - 1
+                                                        else:
+                                                            lt = m + 1
+                                                    return lt
+                                                for x in nums:
+                                                    if not res or res[-1] < x:
+                                                        res.append(x)
+                                                    else:
+                                                        idx = binary_search(res, x);
+                                                        res[idx] = x
+                                                return len(res)
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/partition-equal-subset-sum/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    416. Partition Equal Subset Sum
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            In order to have 2 subsets which sums are equal 
+                                            we need to have the sum of the entire arr to be even.
+                                            Then we need a dp arr which is going to 
+                                            have target elements, target being the half of the 
+                                            total sum of the elements.
+                                            We are going to check for each element of the array 
+                                            if we can create a subbarr wich sum is going to
+                                            be equal to target.
+                                            If dp[target] is going to be True, then we found it 
+                                            otherwise not.
+                                            Time: O(n^2)
+                                            Space: O(n)
+                                            """
+                                            def canPartition(self, nums: List[int]) -> bool:
+                                                total = sum(nums)
+
+                                                if total % 2 == 1:
+                                                    return False
+                                                
+                                                target = total // 2
+
+                                                dp = [False] * (target + 1)
+                                                dp[0] = True
+
+                                                for n in nums:
+                                                    for i in range(len(dp) - 1, n - 1, -1):
+                                                        if dp[i]: continue
+                                                        if dp[i - n]: dp[i] = True
+                                                        if dp[-1]: return True
+                                                
+                                                return False
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
