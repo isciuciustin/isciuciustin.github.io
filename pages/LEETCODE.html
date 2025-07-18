@@ -5634,6 +5634,45 @@
 
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    309. Best Time to Buy and Sell Stock with
+                                    Cooldown
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Keep track of a decision tree and choose the maximum 
+                                            option between selling, buying and cooldown
+                                            Time: O(n)
+                                            Space: O(n)
+                                            """
+                                            def maxProfit(self, prices: List[int]) -> int:
+                                                dp = {}
+
+                                                def dfs(i, canBuy):
+                                                    if i >= len(prices):
+                                                        return 0
+                                                    if (i, canBuy) in dp:
+                                                        return dp[(i, canBuy)]
+                                                    coolDown = dfs(i + 1, canBuy)
+
+
+                                                    if canBuy:
+                                                        buy = dfs(i + 1, False) - prices[i]
+                                                        dp[(i, canBuy)] = max(buy, coolDown)
+                                                    else:
+                                                        sell = dfs(i + 2, True) + prices[i]
+                                                        dp[(i, canBuy)] = max(sell, coolDown)
+                                                    return dp[(i, canBuy)]
+                                                return dfs(0, True)
+                                    </code>
+                                </pre>
                             </b>
                         </p>
                     </ul>
