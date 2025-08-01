@@ -5694,7 +5694,7 @@
                                                 dp = [0] * (amount + 1)
                                                 dp[0] = 1
 
-                                                for i in range(len(coins) -1, -1, -1):
+                                                for i in range(0, len(coins)):
                                                     nextDP = [0] * (amount + 1)
                                                     nextDP[0] = 1
 
