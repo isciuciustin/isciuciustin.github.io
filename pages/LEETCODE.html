@@ -5692,7 +5692,7 @@
 
                                             def change(self, amount: int, coins: List[int]) -> int:
                                                 dp = [0] * (amount + 1)
-                                                dp[0] = 1
+                                                dp[0] = 1f
 
                                                 for i in range(0, len(coins)):
                                                     nextDP = [0] * (amount + 1)
@@ -5705,6 +5705,38 @@
                                                     dp = nextDP
                                                 return dp[amount]
                                     </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/target-sum/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    494. Target Sum
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            I USED 2-D DP 
+                                            EACH COLUMN IS BETWEEN -SUM(NUMS) ... SUM(NUMS)
+                                            EACH ROW IS BETWEEN 0 AND LEN(NUMS)
+                                            Time: O(N)
+                                            Space: O(N)
+                                            """
+                                            def findTargetSumWays(self, nums: List[int], target: int) -> int:
+                                                dp = defaultdict(int)
+                                                dp[0] = 1 # (0 sum) -> 1 way
+
+                                                for i in range(len(nums)):
+                                                    next_dp = defaultdict(int)
+                                                    for cur_sum, count in dp.items():
+                                                        next_dp[cur_sum + nums[i]] += count
+                                                        next_dp[cur_sum - nums[i]] += count
+                                                    dp = next_dp
+
+                                                return dp[target]
+                                    </code> 
                                 </pre>
                             </b>
                         </p>
