@@ -5770,6 +5770,82 @@
                                                 return dp[0][0]
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/single-number/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    136. Single Number
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Use XOR on the entire array
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def singleNumber(self, nums: List[int]) -> int:
+                                                res = 0
+                                                for n in nums:
+                                                    res ^= n
+                                                return res
+                                    </code>
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/number-of-1-bits/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    191. Number of 1 Bits
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Shift all the bits of n to the right and count the number of 1 bits
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def hammingWeight(self, n: int) -> int:
+                                                res = 0
+                                                while n:
+                                                    res += n & 1
+                                                    n >>= 1
+                                                return res
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/counting-bits/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    338. Counting Bits
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Use shifting to the right for each number in range 0, n to count the 
+                                            number of 1's bits
+                                            Time: O(n)
+                                            Space: O(n)
+                                            """
+                                            def countBits(self, n: int) -> List[int]:
+                                                ans = []
+                                                for x in range(n + 1):
+                                                    res = 0
+                                                    while x:
+                                                        res += x & 1
+                                                        x >>= 1
+                                                    
+                                                    ans.append(res)
+                                                return ans
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
