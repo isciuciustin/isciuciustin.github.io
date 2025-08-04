@@ -5846,6 +5846,81 @@
                                                 return ans
                                     </code> 
                                 </pre>
+                                <a
+                                    href="https://leetcode.com/problems/reverse-bits/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    190. Reverse Bits
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Create the string with the binary representation 
+                                            Reverse it and recreate the integer
+                                            Time: O(n)
+                                            Space: O(n)
+                                            """
+                                            def reverseBits(self, n: int) -> int:
+                                                bits = ""
+                                                while n:
+                                                    bits += str(n & 1) 
+                                                    n >>= 1
+
+                                                while len(bits) < 32:
+                                                    bits += "0"
+
+                                                bits = bits[::-1]
+                                                res = 0
+                                                for i in range(31, -1, -1):
+                                                    if bits[i] == '1':
+                                                        res += 1 << i 
+                                                return res
+                                    </code> 
+                                </pre>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Modify the number in place
+                                            Time: O(1)
+                                            Space: O(1)
+                                            """
+                                            def reverseBits(self, n: int) -> int:
+                                                res = 0
+                                                for i in range(32):
+                                                    bit = (n >> i) & 1
+                                                    res |= (bit << (31 - i))
+                                                return res
+                                    </code> 
+                                </pre>
+                                <a
+                                    href="https://leetcode.com/problems/missing-number/description/"
+                                    target="_blank"
+                                    style="text-decoration: none"
+                                >
+                                    268. Missing Number
+                                </a>
+                                <br />
+                                <pre>
+                                    <code>
+                                        class Solution:
+                                            """
+                                            Make an xor with all the numbers in the interval [0, n]
+                                            then xor again with all the number in the nums array
+                                            Time: O(n)
+                                            Space: O(1)
+                                            """
+                                            def missingNumber(self, nums: List[int]) -> int:
+                                                res = len(nums)
+                                                for i in range(len(nums)):
+                                                    res ^= i ^ nums[i]
+                                                return res
+                                    </code> 
+                                </pre>
                             </b>
                         </p>
                     </ul>
