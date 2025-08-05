@@ -1,10 +1,20 @@
 @font-face {
-    font-family: JetBrains;
-    src: url(fonts/JetBrainsMono-Regular.ttf);
+    font-family: APPLE-2-BASIC;
+    src: url(fonts/APPLE-II/Apple\ II\ Display\ Pro.otf);
+}
+
+@font-face {
+    font-family: APPLE-2-PARAGRAPH;
+    src: url(fonts/APPLE-II/Apple\ II\ Display\ NEG\ Pro.otf);
+}
+
+@font-face {
+    font-family: APPLE-2-DISPLAY;
+    src: url(fonts/APPLE-II/Apple\ II\ NEG\ Pro.otf);
 }
 
 body {
-    font-family: JetBrains;
+    font-family: APPLE-2-BASIC;
 }
 pre {
     white-space: pre-wrap;
