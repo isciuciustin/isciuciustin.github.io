@@ -12,6 +12,8 @@ assignees: isciuciustin
 **Code**
 ```
 ```
+**Number Of Attempts:**
+**Time To Complete:**
 
 **Time Complexity:**
 
