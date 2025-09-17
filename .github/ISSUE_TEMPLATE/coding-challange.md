@@ -13,6 +13,7 @@ assignees: isciuciustin
 ```
 ```
 **Number Of Attempts:**
+
 **Time To Complete:**
 
 **Time Complexity:**
