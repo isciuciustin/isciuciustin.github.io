@@ -261,6 +261,62 @@
                     </code>
                 </pre>
             </div>
+            <br />
+            <p class="mt-5">
+                Build a User Configuration Manager:
+            </p>
+            <div class="d-flex justify-content-start my-3">
+                <pre class="text-reset text-decoration-none">
+                    <code class="text-reset text-decoration-none">
+                                def add_setting(settings, parameter):
+                                    key, value = parameter
+                                    key = key.lower()
+                                    value = value.lower()
+
+                                    if key in settings:
+                                        return f"Setting '{key}' already exists! Cannot add a new setting with this name."
+                                    else:
+                                        settings[key] = value
+                                        return f"Setting '{key}' added with value '{value}' successfully!"
+
+                                def update_setting(settings, parameter):
+                                    key, value = parameter
+                                    key = key.lower()
+                                    value = value.lower()
+                                    if key in settings:
+                                        settings[key] = value
+                                        return f"Setting '{key}' updated to '{value}' successfully!"
+                                    else:
+                                        return f"Setting '{key}' does not exist! Cannot update a non-existing setting."
+
+                                def delete_setting(settings, key):
+                                    key = key.lower()
+                                    if key in settings:
+                                        del settings[key]
+                                        return f"Setting '{key}' deleted successfully!"
+                                    else:
+                                        return "Setting not found!"
+
+                                def view_settings(settings):
+                                    if len(settings) == 0:
+                                        return "No settings available."
+                                    res = "Current User Settings:\n"
+                                    for key, value in settings.items():
+                                        key = key.capitalize()
+                                        res += f"{key}: {value}\n"
+                                    return res
+
+                                test_settings = {}
+                                print(add_setting(test_settings, ("TEST", "john")))
+                                print(add_setting(test_settings, ("TEST", "john")))
+                                print(update_setting(test_settings, ("TEST", "Josh")))
+                                print(update_setting(test_settings, ("TEST1", "Josh")))
+                                print(add_setting(test_settings, ("TEST1", "John White")))
+                                print(delete_setting(test_settings, "TEST1"))
+                                print(view_settings(test_settings))
+                    </code>
+                </pre>
+            </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
