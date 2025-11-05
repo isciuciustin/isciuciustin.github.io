@@ -16,12 +16,14 @@
 body {
     font-family: APPLE-2-BASIC;
 }
+
 pre {
     white-space: pre-wrap;
     word-wrap: break-word;
     text-align: start;
     text-align-last: left;
 }
+
 @media only screen and (max-width: 600px) {
     #navbar {
         font-size: medium;
