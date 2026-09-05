@@ -1,426 +1,427 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Isciuc Iustin - Constantin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+
+    <title>freeCodeCamp Curriculum — Isciuc Iustin-Constantin</title>
+    <meta name="description"
+        content="Solutions from the freeCodeCamp Certified Full Stack Developer Curriculum by Isciuc Iustin-Constantin." />
+    <meta name="theme-color" content="#0a0e0a" />
+
+    <link rel="icon" href="../images/code.svg" />
+    <link rel="preload" as="font" type="font/woff2"
+        href="../fonts/JetBrainsMono/jetbrains-mono-latin-400-normal.woff2" crossorigin />
     <link rel="stylesheet" href="../style.css" />
+
+    <script>document.documentElement.className += " js";</script>
+    <script src="../app.js" defer></script>
 </head>
 
 <body>
-    <nav class="navbar bg-body-tertiary fixed-top shadow">
-        <div class="container-fluid d-flex justify-content-center">
-            <span class="navbar-brand mx-auto">
-                <b>
-                    <a id="navbar" href="../index.html" class="text-reset text-decoration-none">
-                        Isciuc Iustin - Constantin
-                    </a>
-                </b>
-            </span>
-        </div>
-    </nav>
+    <canvas id="rain" aria-hidden="true"></canvas>
+    <div class="crt" aria-hidden="true"></div>
+
+    <header class="bar bar--top">
+        <a class="logo" href="../index.html" aria-label="Justin - Hakr - Flexer, home">
+            <span class="logo__seg" data-word="JUSTIN">JUSTIN</span>
+            <span class="logo__sep" aria-hidden="true">-</span>
+            <span class="logo__seg" data-word="HAKR">HAKR</span>
+            <span class="logo__sep" aria-hidden="true">-</span>
+            <span class="logo__seg" data-word="FLEXER">FLEXER</span>
+        </a>
+    </header>
+
     <main>
-        <div class="container min-vh-100 py-5">
-            <div class="d-flex justify-content-center my-3 mt-5">
-                <p>
-                    <i> <b> freeCodeCamp Certified Full Stack Developer Curriculum </b></i>
-                </p>
-            </div>
-            <p class="mt-5">
-                Caesar Cipher:
-            </p>
-            <div class="d-flex justify-content-start my-3">
-                <pre class="text-reset text-decoration-none">
-                    <code class="text-reset text-decoration-none">
-                                def caesar(text, shift, encrypt=True):
+        <a class="back-link" href="../index.html">&lt;&lt; cd ..</a>
 
-                                    if not isinstance(shift, int):
-                                    return "Shift must be an integer value."
+        <h1 class="page-title">
+            <span class="prompt" aria-hidden="true">root@justin:~#</span>
+            ls freeCodeCamp/
+        </h1>
 
-                                    if shift < 1 or shift> 25:
-                                        return "Shift must be an integer between 1 and 25."
+        <div class="code-stack">
+            <article class="code-card">
+                <div class="code-card__bar">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="code-card__name">caesar_cipher.py</span>
+                </div>
+                <pre><code>def caesar(text, shift, encrypt=True):
 
-                                    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    if not isinstance(shift, int):
+    return "Shift must be an integer value."
 
-                                    if not encrypt:
-                                        shift = -shift
+    if shift < 1 or shift> 25:
+        return "Shift must be an integer between 1 and 25."
 
-                                    shifted_alphabet = alphabet[shift:] + alphabet[:shift]
-                                    translation_table = str.maketrans(alphabet + alphabet.upper(), shifted_alphabet +
-                                    shifted_alphabet.upper())
-                                    encrypted_text = text.translate(translation_table)
-                                    return encrypted_text
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
 
+    if not encrypt:
+        shift = -shift
 
-                                def encrypt(text, shift):
-                                    return caesar(text, shift)
-
-
-                                def decrypt(text, shift):
-                                    return caesar(text, shift, encrypt=False)
+    shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+    translation_table = str.maketrans(alphabet + alphabet.upper(), shifted_alphabet +
+    shifted_alphabet.upper())
+    encrypted_text = text.translate(translation_table)
+    return encrypted_text
 
 
-                                encrypted_text = encrypt("freeCodeCamp", 3)
-                                print(encrypted_text)
-                                encrypted_text = "Pbhentr vf sbhaq va hayvxryl cynprf."
-                                decrypted_text = decrypt(encrypted_text, 13)
-                                print(decrypted_text)
-
-                    </code>
-                </pre>
-
-            </div>
-            <br />
-            <p class="mt-5">
-                Build an RPG Character:
-            </p>
-            <div class="d-flex justify-content-start my-3">
-                <pre class="text-reset text-decoration-none">
-                    <code class="text-reset text-decoration-none">
-                                full_dot = "●"
-                                empty_dot = "○"
+def encrypt(text, shift):
+    return caesar(text, shift)
 
 
-                                def create_character(character_name, strength, intelligence, charisma):
-                                    if not isinstance(character_name, str):
-                                        return "The character name should be a string"
-                                    if len(character_name) > 10:
-                                        return "The character name is too long"
-                                    if " " in character_name:
-                                        return "The character name should not contain spaces"
-                                    if not isinstance(strength, int) or not isinstance(intelligence, int) or not isinstance(charisma, int):
-                                        return "All stats should be integers"
-                                    if strength < 1 or intelligence < 1 or charisma < 1:
-                                        return "All stats should be no less than 1"
-                                    if strength > 4 or intelligence > 4 or charisma > 4:
-                                        return "All stats should be no more than 4"
-                                    if strength + intelligence + charisma != 7:
-                                        return "The character should start with 7 points"
-                                    res = ""
-                                    res += character_name + "\n"
-                                    res += "STR " + full_dot * strength + empty_dot * (10 - strength) + "\n"
-                                    res += "INT " + full_dot * intelligence + empty_dot * (10 - intelligence) + "\n"
-                                    res += "CHA " + full_dot * charisma + empty_dot * (10 - charisma)
-                                    return res
+def decrypt(text, shift):
+    return caesar(text, shift, encrypt=False)
 
 
-                                print(create_character("Justin", 2, 3, 2))
-                    </code>
-                </pre>
-            </div>
-            <br />
-            <p class="mt-5">
-                Build a Pin Extractor:
-            </p>
-            <div class="d-flex justify-content-start my-3">
-                <pre class="text-reset text-decoration-none">
-                    <code class="text-reset text-decoration-none">
-                                def pin_extractor(poems):
-                                    secret_codes = []
-                                    for poem in poems:
-                                        secret_code = ""
-                                        lines = poem.split("\n")
-                                        for line_index, line in enumerate(lines):
-                                            words = line.split()
-                                            if len(words) > line_index:
-                                                secret_code += str(len(words[line_index]))
-                                            else:
-                                                secret_code += "0"
-                                        secret_codes.append(secret_code)
-                                    return secret_codes
+encrypted_text = encrypt("freeCodeCamp", 3)
+print(encrypted_text)
+encrypted_text = "Pbhentr vf sbhaq va hayvxryl cynprf."
+decrypted_text = decrypt(encrypted_text, 13)
+print(decrypted_text)</code></pre>
+            </article>
+
+            <article class="code-card">
+                <div class="code-card__bar">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="code-card__name">rpg_character.py</span>
+                </div>
+                <pre><code>full_dot = "●"
+empty_dot = "○"
 
 
-                                poem = """Stars and the moon
-                                shine in the sky
-                                white and
-                                until the end of the night"""
-
-                                poem2 = "The grass is green\nhere and there\nhoping for rain\nbefore it turns yellow"
-                                poem3 = "There\nonce\nwas\na\ndragon"
-
-                                print(pin_extractor([poem, poem2, poem3]))
-                    </code>
-                </pre>
-            </div>
-            <br />
-            <p class="mt-5">
-                Build a Number Pattern Generator:
-            </p>
-            <div class="d-flex justify-content-start my-3">
-                <pre class="text-reset text-decoration-none">
-                    <code class="text-reset text-decoration-none">
-                                def number_pattern(n):
-                                    if not isinstance(n, int):
-                                        return "Argument must be an integer value."
-                                    if n < 1:
-                                        return "Argument must be an integer greater than 0."
-                                    res = ""
-                                    for i in range(n):
-                                        res += str(i + 1) + " "
-
-                                    return res.rstrip()
+def create_character(character_name, strength, intelligence, charisma):
+    if not isinstance(character_name, str):
+        return "The character name should be a string"
+    if len(character_name) > 10:
+        return "The character name is too long"
+    if " " in character_name:
+        return "The character name should not contain spaces"
+    if not isinstance(strength, int) or not isinstance(intelligence, int) or not isinstance(charisma, int):
+        return "All stats should be integers"
+    if strength < 1 or intelligence < 1 or charisma < 1:
+        return "All stats should be no less than 1"
+    if strength > 4 or intelligence > 4 or charisma > 4:
+        return "All stats should be no more than 4"
+    if strength + intelligence + charisma != 7:
+        return "The character should start with 7 points"
+    res = ""
+    res += character_name + "\n"
+    res += "STR " + full_dot * strength + empty_dot * (10 - strength) + "\n"
+    res += "INT " + full_dot * intelligence + empty_dot * (10 - intelligence) + "\n"
+    res += "CHA " + full_dot * charisma + empty_dot * (10 - charisma)
+    return res
 
 
-                                print(number_pattern(4))
+print(create_character("Justin", 2, 3, 2))</code></pre>
+            </article>
 
-                    </code>
-                </pre>
-            </div>
-            <p class="mt-5">
-                Build a Medical Data Validator:
-            </p>
-            <div class="d-flex justify-content-start my-3">
-                <pre class="text-reset text-decoration-none">
-                    <code class="text-reset text-decoration-none">
-                                import re
-                                medical_records = [
-                                    {
-                                        "patient_id": "P1001",
-                                        "age": 34,
-                                        "gender": "Female",
-                                        "diagnosis": "Hypertension",
-                                        "medications": ["Lisinopril"],
-                                        "last_visit_id": "V2301",
-                                    },
-                                    {
-                                        "patient_id": "p1002",
-                                        "age": 47,
-                                        "gender": "male",
-                                        "diagnosis": "Type 2 Diabetes",
-                                        "medications": ["Metformin", "Insulin"],
-                                        "last_visit_id": "v2302",
-                                    },
-                                    {
-                                        "patient_id": "P1003",
-                                        "age": 29,
-                                        "gender": "female",
-                                        "diagnosis": "Asthma",
-                                        "medications": ["Albuterol"],
-                                        "last_visit_id": "v2303",
-                                    },
-                                    {
-                                        "patient_id": "p1004",
-                                        "age": 56,
-                                        "gender": "Male",
-                                        "diagnosis": "Chronic Back Pain",
-                                        "medications": ["Ibuprofen", "Physical Therapy"],
-                                        "last_visit_id": "V2304",
-                                    },
-                                ]
+            <article class="code-card">
+                <div class="code-card__bar">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="code-card__name">pin_extractor.py</span>
+                </div>
+                <pre><code>def pin_extractor(poems):
+    secret_codes = []
+    for poem in poems:
+        secret_code = ""
+        lines = poem.split("\n")
+        for line_index, line in enumerate(lines):
+            words = line.split()
+            if len(words) > line_index:
+                secret_code += str(len(words[line_index]))
+            else:
+                secret_code += "0"
+        secret_codes.append(secret_code)
+    return secret_codes
 
 
-                                def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
+poem = """Stars and the moon
+shine in the sky
+white and
+until the end of the night"""
 
-                                    constraints = {
-                                        "patient_id": isinstance(patient_id, str) and re.fullmatch("p\d+", patient_id, re.IGNORECASE),
-                                        "age": isinstance(age, int) and age >= 18,
-                                        "gender": isinstance(gender, str) and gender.lower() in ("male", "female"),
-                                        "diagnosis": isinstance(diagnosis, str) or diagnosis is None,
-                                        "medications": isinstance(medications, list) and all([isinstance(i, str) for i in medications]),
-                                        "last_visit_id": isinstance(last_visit_id, str) and re.fullmatch("v\d+", last_visit_id, re.IGNORECASE),
-                                    }
+poem2 = "The grass is green\nhere and there\nhoping for rain\nbefore it turns yellow"
+poem3 = "There\nonce\nwas\na\ndragon"
 
-                                    return [key for key, value in constraints.items() if not value]
+print(pin_extractor([poem, poem2, poem3]))</code></pre>
+            </article>
 
+            <article class="code-card">
+                <div class="code-card__bar">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="code-card__name">number_pattern_generator.py</span>
+                </div>
+                <pre><code>def number_pattern(n):
+    if not isinstance(n, int):
+        return "Argument must be an integer value."
+    if n < 1:
+        return "Argument must be an integer greater than 0."
+    res = ""
+    for i in range(n):
+        res += str(i + 1) + " "
 
-                                def validate(data):
-                                    is_sequence = isinstance(data, (list, tuple))
-
-                                    if not is_sequence:
-                                        print("Invalid format: expected a list or tuple.")
-                                        return False
-
-                                    is_invalid = False
-                                    key_set = set(["patient_id", "age", "gender", "diagnosis", "medications", "last_visit_id"])
-
-                                    for index, dictionary in enumerate(data):
-                                        if not isinstance(dictionary, dict):
-                                            print(f"Invalid format: expected a dictionary at position {index}.")
-                                            is_invalid = True
-                                            continue
-
-                                        if set(dictionary.keys()) != key_set:
-                                            print(f"Invalid format: {dictionary} at position {index} has missing and/or invalid keys.")
-                                            is_invalid = True
-                                            continue
-
-                                        invalid_records = find_invalid_records(**dictionary)
-                                        for invalid_record in invalid_records:
-                                            print(f"Unexpected format '{invalid_record}: {data[index][invalid_record]}' at position {index}.")
-                                            is_invalid = True
-                                    if is_invalid:
-                                        return False
-                                    print("Valid format.")
-                                    return True
+    return res.rstrip()
 
 
-                                validate(medical_records)
-                    </code>
-                </pre>
-            </div>
-            <br />
-            <p class="mt-5">
-                Build a User Configuration Manager:
-            </p>
-            <div class="d-flex justify-content-start my-3">
-                <pre class="text-reset text-decoration-none">
-                    <code class="text-reset text-decoration-none">
-                                def add_setting(settings, parameter):
-                                    key, value = parameter
-                                    key = key.lower()
-                                    value = value.lower()
+print(number_pattern(4))</code></pre>
+            </article>
 
-                                    if key in settings:
-                                        return f"Setting '{key}' already exists! Cannot add a new setting with this name."
-                                    else:
-                                        settings[key] = value
-                                        return f"Setting '{key}' added with value '{value}' successfully!"
+            <article class="code-card">
+                <div class="code-card__bar">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="code-card__name">medical_data_validator.py</span>
+                </div>
+                <pre><code>import re
+medical_records = [
+    {
+        "patient_id": "P1001",
+        "age": 34,
+        "gender": "Female",
+        "diagnosis": "Hypertension",
+        "medications": ["Lisinopril"],
+        "last_visit_id": "V2301",
+    },
+    {
+        "patient_id": "p1002",
+        "age": 47,
+        "gender": "male",
+        "diagnosis": "Type 2 Diabetes",
+        "medications": ["Metformin", "Insulin"],
+        "last_visit_id": "v2302",
+    },
+    {
+        "patient_id": "P1003",
+        "age": 29,
+        "gender": "female",
+        "diagnosis": "Asthma",
+        "medications": ["Albuterol"],
+        "last_visit_id": "v2303",
+    },
+    {
+        "patient_id": "p1004",
+        "age": 56,
+        "gender": "Male",
+        "diagnosis": "Chronic Back Pain",
+        "medications": ["Ibuprofen", "Physical Therapy"],
+        "last_visit_id": "V2304",
+    },
+]
 
-                                def update_setting(settings, parameter):
-                                    key, value = parameter
-                                    key = key.lower()
-                                    value = value.lower()
-                                    if key in settings:
-                                        settings[key] = value
-                                        return f"Setting '{key}' updated to '{value}' successfully!"
-                                    else:
-                                        return f"Setting '{key}' does not exist! Cannot update a non-existing setting."
 
-                                def delete_setting(settings, key):
-                                    key = key.lower()
-                                    if key in settings:
-                                        del settings[key]
-                                        return f"Setting '{key}' deleted successfully!"
-                                    else:
-                                        return "Setting not found!"
+def find_invalid_records(patient_id, age, gender, diagnosis, medications, last_visit_id):
 
-                                def view_settings(settings):
-                                    if len(settings) == 0:
-                                        return "No settings available."
-                                    res = "Current User Settings:\n"
-                                    for key, value in settings.items():
-                                        key = key.capitalize()
-                                        res += f"{key}: {value}\n"
-                                    return res
+    constraints = {
+        "patient_id": isinstance(patient_id, str) and re.fullmatch("p\d+", patient_id, re.IGNORECASE),
+        "age": isinstance(age, int) and age >= 18,
+        "gender": isinstance(gender, str) and gender.lower() in ("male", "female"),
+        "diagnosis": isinstance(diagnosis, str) or diagnosis is None,
+        "medications": isinstance(medications, list) and all([isinstance(i, str) for i in medications]),
+        "last_visit_id": isinstance(last_visit_id, str) and re.fullmatch("v\d+", last_visit_id, re.IGNORECASE),
+    }
 
-                                test_settings = {}
-                                print(add_setting(test_settings, ("TEST", "john")))
-                                print(add_setting(test_settings, ("TEST", "john")))
-                                print(update_setting(test_settings, ("TEST", "Josh")))
-                                print(update_setting(test_settings, ("TEST1", "Josh")))
-                                print(add_setting(test_settings, ("TEST1", "John White")))
-                                print(delete_setting(test_settings, "TEST1"))
-                                print(view_settings(test_settings))
-                    </code>
-                </pre>
-            </div>
-            <p class="mt-5">
-                Debug an ISBN Validator:
-            </p>
-            <div class="d-flex justify-content-start my-3">
-                <pre class="text-reset text-decoration-none">
-                    <code class="text-reset text-decoration-none">
-                        def validate_isbn(isbn, length):
-                            try:
-                                if len(isbn) != length:
-                                    print(f'ISBN-{length} code should be {length} digits long.')
-                                    return
-                                main_digits = isbn[0:length - 1]
-                                given_check_digit = isbn[length - 1]
-                                main_digits_list = [int(digit) for digit in main_digits]
-                                # Calculate the check digit from other digits
-                                if length == 10:
-                                    expected_check_digit = calculate_check_digit_10(main_digits_list[:length - 1])
-                                else:
-                                    expected_check_digit = calculate_check_digit_13(main_digits_list[:length - 1])
-                                # Check if the given check digit matches with the calculated check digit
-                                if given_check_digit == expected_check_digit:
-                                    print('Valid ISBN Code.')
-                                else:
-                                    print('Invalid ISBN Code.')
-                            except ValueError:
-                                print("Invalid character was found.")
+    return [key for key, value in constraints.items() if not value]
 
-                        def calculate_check_digit_10(main_digits_list):
-                            # Note: You don't have to fully understand the logic in this function.
-                            digits_sum = 0
-                            # Multiply each of the first 9 digits by its corresponding weight (10 to 2) and sum up the results
-                            for index, digit in enumerate(main_digits_list):
-                                digits_sum += digit * (10 - index)
-                            # Find the remainder of dividing the sum by 11, then subtract it from 11
-                            result = 11 - digits_sum % 11
-                            # The calculation result can range from 1 to 11.
-                            # If the result is 11, use 0.
-                            # If the result is 10, use upper case X.
-                            # Use the value as it is for other numbers.
-                            if result == 11:
-                                expected_check_digit = '0'
-                            elif result == 10:
-                                expected_check_digit = 'X'
-                            else:
-                                expected_check_digit = str(result)
-                            return expected_check_digit
 
-                        def calculate_check_digit_13(main_digits_list):
-                            # Note: You don't have to fully understand the logic in this function.
-                            digits_sum = 0
-                            # Multiply each of the first 12 digits by 1 and 3 alternately (starting with 1), and sum up the results
-                            for index, digit in enumerate(main_digits_list):
-                                if index % 2 == 0:
-                                    digits_sum += digit * 1
-                                else:
-                                    digits_sum += digit * 3
-                            # Find the remainder of dividing the sum by 10, then subtract it from 10
-                            result = 10 - digits_sum % 10
-                            # The calculation result can range from 1 to 10.
-                            # If the result is 10, use 0.
-                            # Use the value as it is for other numbers.
-                            if result == 10:
-                                expected_check_digit = '0'
-                            else:
-                                expected_check_digit = str(result)
-                            return expected_check_digit
+def validate(data):
+    is_sequence = isinstance(data, (list, tuple))
 
-                        def main():
-                            try:
-                                user_input = input('Enter ISBN and length: ')
-                                values = user_input.split(',')
-                                isbn = values[0]
-                                length = int(values[1])
-                                if length == 10 or length == 13:
-                                    validate_isbn(isbn, length)
-                                else:
-                                    print('Length should be 10 or 13.')
-                            except IndexError:
-                                print("Enter comma-separated values.")
-                            except ValueError:
-                                print('Length must be a number.')
+    if not is_sequence:
+        print("Invalid format: expected a list or tuple.")
+        return False
+
+    is_invalid = False
+    key_set = set(["patient_id", "age", "gender", "diagnosis", "medications", "last_visit_id"])
+
+    for index, dictionary in enumerate(data):
+        if not isinstance(dictionary, dict):
+            print(f"Invalid format: expected a dictionary at position {index}.")
+            is_invalid = True
+            continue
+
+        if set(dictionary.keys()) != key_set:
+            print(f"Invalid format: {dictionary} at position {index} has missing and/or invalid keys.")
+            is_invalid = True
+            continue
+
+        invalid_records = find_invalid_records(**dictionary)
+        for invalid_record in invalid_records:
+            print(f"Unexpected format '{invalid_record}: {data[index][invalid_record]}' at position {index}.")
+            is_invalid = True
+    if is_invalid:
+        return False
+    print("Valid format.")
+    return True
+
+
+validate(medical_records)</code></pre>
+            </article>
+
+            <article class="code-card">
+                <div class="code-card__bar">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="code-card__name">user_configuration_manager.py</span>
+                </div>
+                <pre><code>def add_setting(settings, parameter):
+    key, value = parameter
+    key = key.lower()
+    value = value.lower()
+
+    if key in settings:
+        return f"Setting '{key}' already exists! Cannot add a new setting with this name."
+    else:
+        settings[key] = value
+        return f"Setting '{key}' added with value '{value}' successfully!"
+
+def update_setting(settings, parameter):
+    key, value = parameter
+    key = key.lower()
+    value = value.lower()
+    if key in settings:
+        settings[key] = value
+        return f"Setting '{key}' updated to '{value}' successfully!"
+    else:
+        return f"Setting '{key}' does not exist! Cannot update a non-existing setting."
+
+def delete_setting(settings, key):
+    key = key.lower()
+    if key in settings:
+        del settings[key]
+        return f"Setting '{key}' deleted successfully!"
+    else:
+        return "Setting not found!"
+
+def view_settings(settings):
+    if len(settings) == 0:
+        return "No settings available."
+    res = "Current User Settings:\n"
+    for key, value in settings.items():
+        key = key.capitalize()
+        res += f"{key}: {value}\n"
+    return res
+
+test_settings = {}
+print(add_setting(test_settings, ("TEST", "john")))
+print(add_setting(test_settings, ("TEST", "john")))
+print(update_setting(test_settings, ("TEST", "Josh")))
+print(update_setting(test_settings, ("TEST1", "Josh")))
+print(add_setting(test_settings, ("TEST1", "John White")))
+print(delete_setting(test_settings, "TEST1"))
+print(view_settings(test_settings))</code></pre>
+            </article>
+
+            <article class="code-card">
+                <div class="code-card__bar">
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="dot" aria-hidden="true"></span>
+                    <span class="code-card__name">isbn_validator.py</span>
+                </div>
+                <pre><code>def validate_isbn(isbn, length):
+    try:
+        if len(isbn) != length:
+            print(f'ISBN-{length} code should be {length} digits long.')
+            return
+        main_digits = isbn[0:length - 1]
+        given_check_digit = isbn[length - 1]
+        main_digits_list = [int(digit) for digit in main_digits]
+        # Calculate the check digit from other digits
+        if length == 10:
+            expected_check_digit = calculate_check_digit_10(main_digits_list[:length - 1])
+        else:
+            expected_check_digit = calculate_check_digit_13(main_digits_list[:length - 1])
+        # Check if the given check digit matches with the calculated check digit
+        if given_check_digit == expected_check_digit:
+            print('Valid ISBN Code.')
+        else:
+            print('Invalid ISBN Code.')
+    except ValueError:
+        print("Invalid character was found.")
+
+def calculate_check_digit_10(main_digits_list):
+    # Note: You don't have to fully understand the logic in this function.
+    digits_sum = 0
+    # Multiply each of the first 9 digits by its corresponding weight (10 to 2) and sum up the results
+    for index, digit in enumerate(main_digits_list):
+        digits_sum += digit * (10 - index)
+    # Find the remainder of dividing the sum by 11, then subtract it from 11
+    result = 11 - digits_sum % 11
+    # The calculation result can range from 1 to 11.
+    # If the result is 11, use 0.
+    # If the result is 10, use upper case X.
+    # Use the value as it is for other numbers.
+    if result == 11:
+        expected_check_digit = '0'
+    elif result == 10:
+        expected_check_digit = 'X'
+    else:
+        expected_check_digit = str(result)
+    return expected_check_digit
+
+def calculate_check_digit_13(main_digits_list):
+    # Note: You don't have to fully understand the logic in this function.
+    digits_sum = 0
+    # Multiply each of the first 12 digits by 1 and 3 alternately (starting with 1), and sum up the results
+    for index, digit in enumerate(main_digits_list):
+        if index % 2 == 0:
+            digits_sum += digit * 1
+        else:
+            digits_sum += digit * 3
+    # Find the remainder of dividing the sum by 10, then subtract it from 10
+    result = 10 - digits_sum % 10
+    # The calculation result can range from 1 to 10.
+    # If the result is 10, use 0.
+    # Use the value as it is for other numbers.
+    if result == 10:
+        expected_check_digit = '0'
+    else:
+        expected_check_digit = str(result)
+    return expected_check_digit
+
+def main():
+    try:
+        user_input = input('Enter ISBN and length: ')
+        values = user_input.split(',')
+        isbn = values[0]
+        length = int(values[1])
+        if length == 10 or length == 13:
+            validate_isbn(isbn, length)
+        else:
+            print('Length should be 10 or 13.')
+    except IndexError:
+        print("Enter comma-separated values.")
+    except ValueError:
+        print('Length must be a number.')
 
 
 
-                        # main()
-                    </code>
-                </pre>
-            </div>
+# main()</code></pre>
+            </article>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+
+    <footer class="bar bar--bottom">
+        <span class="status">
+            <b>while True:</b>
+            <span class="cursor" aria-hidden="true"></span>
+        </span>
+        <span class="status status--right">
+            session uptime <span id="uptime">00:00:00</span>
+        </span>
+    </footer>
 </body>
-<footer>
-    <nav class="navbar bg-body-tertiary sticky-bottom">
-        <div class="container-fluid d-flex justify-content-center">
-            <p>
-                <b>
-                    <i>while True:</i>
-                </b>
-            </p>
-        </div>
-    </nav>
-</footer>
 
 </html>

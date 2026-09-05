@@ -1,271 +1,302 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Isciuc Iustin - Constantin</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="./images/code.svg" />
-    <meta content="isciuciustin.github.io" property="og:title" />
+
+    <title>Isciuc Iustin-Constantin — Justin/Hakr/Flexer</title>
+    <meta name="description"
+        content="Résumé of Isciuc Iustin-Constantin — software developer. React, Remix, AWS, Python, Linux. Terminal-flavoured and slightly defaced." />
+    <meta name="theme-color" content="#0a0e0a" />
+
+    <meta property="og:title" content="Isciuc Iustin-Constantin — Justin/Hakr/Flexer" />
+    <meta property="og:description" content="Software developer. React, Remix, AWS, Python, Linux." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://isciuciustin.github.io/" />
+    <meta property="og:image" content="https://isciuciustin.github.io/images/IMG.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
 
+    <link rel="icon" href="./images/code.svg" />
+    <link rel="preload" as="font" type="font/woff2"
+        href="fonts/JetBrainsMono/jetbrains-mono-latin-400-normal.woff2" crossorigin />
+    <link rel="stylesheet" href="style.css" />
 
+    <!-- Flip the stylesheet out of its no-JS mode before first paint. -->
+    <script>document.documentElement.className += " js";</script>
+    <script src="app.js" defer></script>
 </head>
 
 <body>
-    <nav class="navbar bg-body-tertiary fixed-top shadow">
-        <div class="container-fluid d-flex justify-content-center">
-            <span class="navbar-brand mx-auto">
-                <b>
-                    <a id="navbar" href="./index.html" class="text-reset text-decoration-none">
-                        Justin - Hakr - Flexer
-                    </a>
-                </b>
-            </span>
-        </div>
-    </nav>
+    <canvas id="rain" aria-hidden="true"></canvas>
+    <div class="crt" aria-hidden="true"></div>
+
+    <header class="bar bar--top">
+        <a class="logo" href="./index.html" aria-label="Justin - Hakr - Flexer, home">
+            <span class="logo__seg" data-word="JUSTIN">JUSTIN</span>
+            <span class="logo__sep" aria-hidden="true">-</span>
+            <span class="logo__seg" data-word="HAKR">HAKR</span>
+            <span class="logo__sep" aria-hidden="true">-</span>
+            <span class="logo__seg" data-word="FLEXER">FLEXER</span>
+        </a>
+    </header>
+
     <main>
-        <div class="container min-vh-100 py-5">
-            <pre>
-                    <code class="my-auto">
-		    <h1>&lt;h1&gt; This website has been defaced! &lt;/h1&gt;</h1>
-                    </code>
-	    </pre>
-
-            <h3>
-                <a style="
-                            text-decoration: none;
-                            color: black;
-                            font-family: APPLE-2-DISPLAY;
-                        " href="#Skills" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="Skills">Skills</a>
-            </h3>
-            <div class="collapse multi-collapse" id="Skills">
-                <b>Hard Skills:</b>
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>Data Structures & Algorithms</li>
-                    <li>Python Programming Language</li>
-                    <li>AWS</li>
-                    <li>React</li>
-                    <li>Remix</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>Git</li>
-                    <li>Linux</li>
-                </ul>
-                <b>Soft Skills:</b>
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>Communication</li>
-                    <li>Team Work</li>
-                    <li>Time Management</li>
-                </ul>
-            </div>
-            <h3>
-                <a style="
-                            text-decoration: none;
-                            color: black;
-                            font-family: APPLE-2-DISPLAY;
-                        " href="#Experience" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="Experience">
-                    Experience
-                </a>
-            </h3>
-            <div class="collapse multi-collapse" id="Experience">
-                <b>Comono AS ( Vasonim ) : </b>
-                <i> August 2022 - April 2024</i>
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>Vasonim is a startup, with funding from Comono that
-                        aims to improve how clinical psychologists follow up
-                        their patients between cognitive behavioral therapy
-                        (CBT) sessions.
-                    </li>
-                    <li>At this startup I learned the new React based
-                        framework Remix, and how to run and scale
-                        applications with AWS.
-                    </li>
-                    <li>I implemented the entire authentication system and
-                        all the API’s necessary on the frontend.
-                    </li>
-                    <li>I integrated the Google Calendar API for letting
-                        the users schedule the online therapy sessions.
-                    </li>
-                    <li>I increased performance of the entire app by 30% by
-                        coming up with more efficient solutions for applying
-                        nested routes on the frontend.
-                    </li>
-                    <li>By working closely with senior developers from
-                        Comono I learned a lot about principles of writing
-                        high quality software.</li>
-                </ul>
-            </div>
-
-
-            <h3>
-                <a style="
-                            text-decoration: none;
-                            color: black;
-                            font-family: APPLE-2-DISPLAY;
-                        " href="#Projects" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="Projects">
-                    Projects
-                </a>
-            </h3>
-            <div class="collapse multi-collapse" id="Projects">
-                <b>freeCodeCamp </b>
-                <i>October 2025 – Present</i>
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>
-                        I started to work on Certified Full Stack Developer Curriculum
-                        on freeCodeCamp.
-                    </li>
-                    <li>
-                        <a href="./projects/freeCodeCamp-Certified-Full-Stack-Developer-Curriculum.html"
-                            target="_blank">
-                            freeCodeCamp Certified Full Stack Developer Curriculum
-                        </a>
-                    </li>
-                </ul>
-                <b>DIGITAL ARTIST </b>
-                <i>October 2024 – November 2024</i>
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>
-                        To gain hands-on experience with Nest.js, I
-                        developed a modern CRUD application for a digital
-                        artist. This application uses Remix.js for the
-                        frontend and MySQL as the backend database.
-                    </li>
-                    <li>
-                        <a href="https://github.com/isciuciustin/digital-artist" target="_blank">
-                            Source Code
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <h3>
-                <a style="
-                            text-decoration: none;
-                            color: black;
-                            font-family: APPLE-2-DISPLAY;
-                        " href="#Certifications" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="Skills">Certifications</a>
-            </h3>
-            <div class="collapse multi-collapse" id="Certifications">
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>
-                        <b>
-                            Software Engineer Intern Certificate -
-                            HackerRank
-                        </b>
-                        <br />
-                        26 November 2024 :
-                        <a href="https://www.hackerrank.com/certificates/06070072e5ec" target="_blank">Link</a>
-                    </li>
-                    <li>
-                        <b>
-                            Problem Solving (Basic) Certificate - HackerRank
-                        </b>
-                        <br />
-                        23 November 2024 :
-                        <a href="https://www.hackerrank.com/certificates/442354b72e81" target="_blank">Link</a>
-                    </li>
-                    <b>
-                        Python (Basic) Certificate - HackerRank
-                    </b>
-                    <br />
-                    14 October 2023
-                    <a href="https://www.hackerrank.com/certificates/f0161a29e60f" target="_blank">Link</a>
-                    </li>
-                </ul>
-            </div>
-
-            <h3>
-                <a style="
-                            text-decoration: none;
-                            color: black;
-                            font-family: APPLE-2-DISPLAY;
-                        " href="#Social" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="Skills">Social</a>
-            </h3>
-            <div class="collapse multi-collapse" id="Social">
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>
-                        <a href="https://github.com/isciuciustin" target="_blank">Github</a>
-                    </li>
-                    <li>
-                        <a href="https://www.freecodecamp.org/isciuciustin01" target="_blank">freeCodeCamp</a>
-                    </li>
-                </ul>
-            </div>
-            <h3>
-                <a style="
-                            text-decoration: none;
-                            color: black;
-                            font-family: APPLE-2-DISPLAY;
-                        " href="#Contact" data-bs-toggle="collapse" role="button" aria-expanded="false"
-                    aria-controls="Skills">Contact</a>
-            </h3>
-            <div class="collapse multi-collapse" id="Contact">
-                <ul class="list-unstyled" style="
-                            list-style-type: disc !important;
-                            padding-left: 1em;
-                            font-family: APPLE-2-PARAGRAPH;
-                        ">
-                    <li>
-                        <a target="_blank" href="mailto:isciuciustin01@gmail.com">
-                            isciuciustin01@gmail.com
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-</body>
-<footer>
-    <nav class="navbar bg-body-tertiary sticky-bottom">
-        <div class="container-fluid d-flex justify-content-center">
-            <p>
-                <b>
-                    <i>while True:</i>
-                </b>
+        <div class="deface">
+            <p class="deface__tag">system compromised</p>
+            <h1 class="deface__title">THIS SITE HAS BEEN DEFACED</h1>
+            <p class="deface__sub">
+                Attacker left one file behind: <b>résumé.txt</b> — read it below.
             </p>
         </div>
-    </nav>
-</footer>
+
+        <div class="toolbar">
+            <button type="button" id="toggle-all" class="ghost-btn">root@justin:~# ./expand --all</button>
+        </div>
+
+        <!-- ================= SKILLS ================= -->
+        <section class="sect">
+            <h2 class="sect__h">
+                <button type="button" class="sect__btn" id="Skills-btn" aria-expanded="false" aria-controls="Skills">
+                    <span class="prompt" aria-hidden="true">root@justin:~#</span>
+                    <span class="cmd">cat skills.txt</span>
+                    <span class="sect__state" aria-hidden="true">[+]</span>
+                </button>
+            </h2>
+            <div class="panel" id="Skills" role="region" aria-labelledby="Skills-btn">
+                <div class="panel__in">
+                    <div class="panel__body">
+                        <div class="entry">
+                            <p class="entry__head"><span class="entry__name">Hard Skills</span></p>
+                            <ul class="list list--grid">
+                                <li>Data Structures &amp; Algorithms</li>
+                                <li>Python Programming Language</li>
+                                <li>AWS</li>
+                                <li>React</li>
+                                <li>Remix</li>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Git</li>
+                                <li>Linux</li>
+                            </ul>
+                        </div>
+                        <div class="entry">
+                            <p class="entry__head"><span class="entry__name">Soft Skills</span></p>
+                            <ul class="list list--grid">
+                                <li>Communication</li>
+                                <li>Team Work</li>
+                                <li>Time Management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= EXPERIENCE ================= -->
+        <section class="sect">
+            <h2 class="sect__h">
+                <button type="button" class="sect__btn" id="Experience-btn" aria-expanded="false"
+                    aria-controls="Experience">
+                    <span class="prompt" aria-hidden="true">root@justin:~#</span>
+                    <span class="cmd">cat experience.txt</span>
+                    <span class="sect__state" aria-hidden="true">[+]</span>
+                </button>
+            </h2>
+            <div class="panel" id="Experience" role="region" aria-labelledby="Experience-btn">
+                <div class="panel__in">
+                    <div class="panel__body">
+                        <div class="entry">
+                            <p class="entry__head">
+                                <span class="entry__name">Comono AS ( Vasonim )</span>
+                                <span class="entry__date">August 2022 - April 2024</span>
+                            </p>
+                            <ul class="list">
+                                <li>Vasonim is a startup, with funding from Comono that
+                                    aims to improve how clinical psychologists follow up
+                                    their patients between cognitive behavioral therapy
+                                    (CBT) sessions.
+                                </li>
+                                <li>At this startup I learned the new React based
+                                    framework Remix, and how to run and scale
+                                    applications with AWS.
+                                </li>
+                                <li>I implemented the entire authentication system and
+                                    all the API’s necessary on the frontend.
+                                </li>
+                                <li>I integrated the Google Calendar API for letting
+                                    the users schedule the online therapy sessions.
+                                </li>
+                                <li>I increased performance of the entire app by 30% by
+                                    coming up with more efficient solutions for applying
+                                    nested routes on the frontend.
+                                </li>
+                                <li>By working closely with senior developers from
+                                    Comono I learned a lot about principles of writing
+                                    high quality software.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PROJECTS ================= -->
+        <section class="sect">
+            <h2 class="sect__h">
+                <button type="button" class="sect__btn" id="Projects-btn" aria-expanded="false"
+                    aria-controls="Projects">
+                    <span class="prompt" aria-hidden="true">root@justin:~#</span>
+                    <span class="cmd">ls -la projects/</span>
+                    <span class="sect__state" aria-hidden="true">[+]</span>
+                </button>
+            </h2>
+            <div class="panel" id="Projects" role="region" aria-labelledby="Projects-btn">
+                <div class="panel__in">
+                    <div class="panel__body">
+                        <div class="entry">
+                            <p class="entry__head">
+                                <span class="entry__name">freeCodeCamp</span>
+                                <span class="entry__date">October 2025 – Present</span>
+                            </p>
+                            <ul class="list">
+                                <li>
+                                    I started to work on Certified Full Stack Developer Curriculum
+                                    on freeCodeCamp.
+                                </li>
+                                <li>
+                                    <a href="./projects/freeCodeCamp-Certified-Full-Stack-Developer-Curriculum.html"
+                                        target="_blank" rel="noopener">
+                                        freeCodeCamp Certified Full Stack Developer Curriculum
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="entry">
+                            <p class="entry__head">
+                                <span class="entry__name">DIGITAL ARTIST</span>
+                                <span class="entry__date">October 2024 – November 2024</span>
+                            </p>
+                            <ul class="list">
+                                <li>
+                                    To gain hands-on experience with Nest.js, I
+                                    developed a modern CRUD application for a digital
+                                    artist. This application uses Remix.js for the
+                                    frontend and MySQL as the backend database.
+                                </li>
+                                <li>
+                                    <a href="https://github.com/isciuciustin/digital-artist" target="_blank"
+                                        rel="noopener">
+                                        Source Code
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CERTIFICATIONS ================= -->
+        <section class="sect">
+            <h2 class="sect__h">
+                <button type="button" class="sect__btn" id="Certifications-btn" aria-expanded="false"
+                    aria-controls="Certifications">
+                    <span class="prompt" aria-hidden="true">root@justin:~#</span>
+                    <span class="cmd">cat certs.txt</span>
+                    <span class="sect__state" aria-hidden="true">[+]</span>
+                </button>
+            </h2>
+            <div class="panel" id="Certifications" role="region" aria-labelledby="Certifications-btn">
+                <div class="panel__in">
+                    <div class="panel__body">
+                        <ul class="list">
+                            <li>
+                                <b>Software Engineer Intern Certificate - HackerRank</b>
+                                <br />
+                                <span class="entry__date">26 November 2024</span> :
+                                <a href="https://www.hackerrank.com/certificates/06070072e5ec" target="_blank"
+                                    rel="noopener">Link</a>
+                            </li>
+                            <li>
+                                <b>Problem Solving (Basic) Certificate - HackerRank</b>
+                                <br />
+                                <span class="entry__date">23 November 2024</span> :
+                                <a href="https://www.hackerrank.com/certificates/442354b72e81" target="_blank"
+                                    rel="noopener">Link</a>
+                            </li>
+                            <li>
+                                <b>Python (Basic) Certificate - HackerRank</b>
+                                <br />
+                                <span class="entry__date">14 October 2023</span> :
+                                <a href="https://www.hackerrank.com/certificates/f0161a29e60f" target="_blank"
+                                    rel="noopener">Link</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SOCIAL ================= -->
+        <section class="sect">
+            <h2 class="sect__h">
+                <button type="button" class="sect__btn" id="Social-btn" aria-expanded="false" aria-controls="Social">
+                    <span class="prompt" aria-hidden="true">root@justin:~#</span>
+                    <span class="cmd">cat social.txt</span>
+                    <span class="sect__state" aria-hidden="true">[+]</span>
+                </button>
+            </h2>
+            <div class="panel" id="Social" role="region" aria-labelledby="Social-btn">
+                <div class="panel__in">
+                    <div class="panel__body">
+                        <ul class="list">
+                            <li>
+                                <a href="https://github.com/isciuciustin" target="_blank" rel="noopener">Github</a>
+                            </li>
+                            <li>
+                                <a href="https://www.freecodecamp.org/isciuciustin01" target="_blank"
+                                    rel="noopener">freeCodeCamp</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT ================= -->
+        <section class="sect">
+            <h2 class="sect__h">
+                <button type="button" class="sect__btn" id="Contact-btn" aria-expanded="false" aria-controls="Contact">
+                    <span class="prompt" aria-hidden="true">root@justin:~#</span>
+                    <span class="cmd">cat contact.txt</span>
+                    <span class="sect__state" aria-hidden="true">[+]</span>
+                </button>
+            </h2>
+            <div class="panel" id="Contact" role="region" aria-labelledby="Contact-btn">
+                <div class="panel__in">
+                    <div class="panel__body">
+                        <ul class="list">
+                            <li>
+                                <a href="mailto:isciuciustin01@gmail.com">isciuciustin01@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bar bar--bottom">
+        <span class="status">
+            <b>while True:</b>
+            <span class="cursor" aria-hidden="true"></span>
+        </span>
+        <span class="status status--right">
+            session uptime <span id="uptime">00:00:00</span>
+        </span>
+    </footer>
+</body>
 
 </html>

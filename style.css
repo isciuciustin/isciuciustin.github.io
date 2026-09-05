@@ -1,32 +1,863 @@
+/* ============================================================================
+   isciuciustin.github.io — defaced terminal résumé
+   No frameworks. No CDN. No dependencies.
+   ========================================================================= */
+
+/* --- JetBrains Mono, self-hosted (latin subset) --------------------------- */
+
 @font-face {
-    font-family: APPLE-2-BASIC;
-    src: url(fonts/APPLE-II/Apple\ II\ Display\ Pro.otf);
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("fonts/JetBrainsMono/jetbrains-mono-latin-400-normal.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: APPLE-2-PARAGRAPH;
-    src: url(fonts/APPLE-II/Apple\ II\ Display\ NEG\ Pro.otf);
+    font-family: "JetBrains Mono";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("fonts/JetBrainsMono/jetbrains-mono-latin-700-normal.woff2") format("woff2");
 }
 
 @font-face {
-    font-family: APPLE-2-DISPLAY;
-    src: url(fonts/APPLE-II/Apple\ II\ NEG\ Pro.otf);
+    font-family: "JetBrains Mono";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("fonts/JetBrainsMono/jetbrains-mono-latin-400-italic.woff2") format("woff2");
+}
+
+/* --- Design tokens -------------------------------------------------------- */
+
+:root {
+    --bg: #0a0e0a;
+    --bg-panel: #0d120d;
+    --bg-raise: #111a12;
+    --fg: #c8facc;
+    --fg-dim: #6f9a74;
+    --accent: #39ff6a;
+    --amber: #ffb000;
+    --red: #ff3355;
+    --cyan: #22d3ee;
+    --rule: #1d2a1f;
+
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 74ch;
+    --pad: clamp(1rem, 4vw, 2.5rem);
+    --bar-h: 3.25rem;
+
+    /* driven by JS during the click-glitch pulse */
+    --glitch: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    background: var(--bg);
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
-    font-family: APPLE-2-BASIC;
+    margin: 0;
+    padding: calc(var(--bar-h) + 1rem) 0 calc(var(--bar-h) + 1rem);
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--mono);
+    font-size: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+    line-height: 1.65;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
 }
 
-pre {
+::selection {
+    background: var(--accent);
+    color: #04140a;
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* --- Ambient layers ------------------------------------------------------- */
+
+/* Digital rain sits behind everything. */
+#rain {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+/* CRT: scanlines + vignette + a very slow flicker. One layer, no hit-testing. */
+.crt {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0 2px,
+            rgba(0, 0, 0, 0.28) 2px 3px),
+        radial-gradient(ellipse at center,
+            rgba(0, 0, 0, 0) 45%,
+            rgba(0, 0, 0, 0.55) 100%);
+    animation: flicker 7s steps(60) infinite;
+    will-change: opacity;
+}
+
+/* The page-wide pulse the logo fires on click. */
+.crt::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(57, 255, 106, 0.09) 48%,
+        rgba(255, 51, 85, 0.09) 52%,
+        transparent 100%);
+    opacity: var(--glitch);
+    transform: translateY(calc(var(--glitch) * 12vh));
+    transition: opacity 0.18s linear;
+}
+
+@keyframes flicker {
+    0%, 96%, 100% { opacity: 1; }
+    97% { opacity: 0.86; }
+    98% { opacity: 1; }
+    99% { opacity: 0.92; }
+}
+
+body.is-glitching main {
+    animation: tear 0.28s steps(3) 1;
+}
+
+@keyframes tear {
+    0% { transform: translate3d(0, 0, 0); filter: none; }
+    33% { transform: translate3d(-3px, 1px, 0); filter: hue-rotate(35deg); }
+    66% { transform: translate3d(3px, -1px, 0); filter: hue-rotate(-25deg); }
+    100% { transform: translate3d(0, 0, 0); filter: none; }
+}
+
+/* --- Bars ----------------------------------------------------------------- */
+
+.bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    min-height: var(--bar-h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.5rem var(--pad);
+    background: rgba(8, 12, 8, 0.92);
+    backdrop-filter: blur(6px);
+}
+
+.bar--top {
+    top: 0;
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 1px 0 rgba(57, 255, 106, 0.18), 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.bar--bottom {
+    bottom: 0;
+    border-top: 1px solid var(--rule);
+    justify-content: space-between;
+    color: var(--fg-dim);
+    font-size: 0.8em;
+}
+
+/* --- The logo ------------------------------------------------------------- */
+
+.logo {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0 0.5ch;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: clamp(0.95rem, 0.65rem + 1.6vw, 1.6rem);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-shadow: 0 0 12px rgba(57, 255, 106, 0.35);
+    cursor: pointer;
+}
+
+.logo__sep {
+    color: var(--fg-dim);
+    animation: sep-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes sep-pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+}
+
+/* One span per glyph, injected by app.js. */
+.logo .g {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.12s ease, color 0.12s ease;
+}
+
+.logo .g::before,
+.logo .g::after {
+    content: attr(data-c);
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s ease;
+}
+
+.logo .g::before { color: var(--red); }
+.logo .g::after { color: var(--cyan); }
+
+.logo .g:hover {
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+.logo .g:hover::before {
+    opacity: 0.95;
+    transform: translate(-2px, -1px);
+    animation: jitter-a 0.2s steps(2, end) infinite;
+}
+
+.logo .g:hover::after {
+    opacity: 0.95;
+    transform: translate(2px, 1px);
+    animation: jitter-b 0.2s steps(2, end) infinite;
+}
+
+/* Keyboard users get the same treatment across the whole word. */
+.logo:focus-visible .g::before,
+.logo.is-hot .g::before {
+    opacity: 0.8;
+    transform: translate(-2px, 0);
+}
+
+.logo:focus-visible .g::after,
+.logo.is-hot .g::after {
+    opacity: 0.8;
+    transform: translate(2px, 0);
+}
+
+@keyframes jitter-a {
+    0%, 100% { transform: translate(-2px, -1px); }
+    50% { transform: translate(-3px, 1px); }
+}
+
+@keyframes jitter-b {
+    0%, 100% { transform: translate(2px, 1px); }
+    50% { transform: translate(3px, -1px); }
+}
+
+/* --- Layout --------------------------------------------------------------- */
+
+main {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 0 var(--pad);
+}
+
+/* --- Defacement banner ---------------------------------------------------- */
+
+.deface {
+    position: relative;
+    margin: clamp(1.5rem, 5vw, 3.5rem) 0;
+    padding: clamp(1.25rem, 4vw, 2.25rem) clamp(1rem, 3vw, 2rem);
+    border: 3px double var(--red);
+    background:
+        repeating-linear-gradient(45deg,
+            rgba(255, 51, 85, 0.05) 0 10px,
+            transparent 10px 20px);
+    text-align: center;
+}
+
+/* Corner brackets, drawn rather than typed so they land exactly on the corner. */
+.deface::before,
+.deface::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-style: solid;
+    border-color: var(--accent);
+}
+
+.deface::before {
+    top: -6px;
+    left: -6px;
+    border-width: 3px 0 0 3px;
+}
+
+.deface::after {
+    bottom: -6px;
+    right: -6px;
+    border-width: 0 3px 3px 0;
+}
+
+.deface__tag {
+    margin: 0 0 0.5rem;
+    color: var(--red);
+    font-size: 0.75em;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+}
+
+.deface__title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(1.15rem, 0.6rem + 3.4vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    text-shadow:
+        2px 0 var(--red),
+        -2px 0 var(--cyan);
+    animation: deface-glitch 4.5s steps(1) infinite;
+}
+
+@keyframes deface-glitch {
+    0%, 88%, 100% { text-shadow: 2px 0 var(--red), -2px 0 var(--cyan); transform: none; }
+    90% { text-shadow: -5px 0 var(--red), 5px 0 var(--cyan); transform: translateX(2px); }
+    92% { text-shadow: 4px 0 var(--cyan), -4px 0 var(--red); transform: translateX(-2px); }
+    94% { text-shadow: 2px 0 var(--red), -2px 0 var(--cyan); transform: none; }
+}
+
+.deface__sub {
+    margin: 0.75rem 0 0;
+    color: var(--fg-dim);
+    font-size: 0.85em;
+}
+
+.deface__sub b {
+    color: var(--amber);
+    font-weight: 400;
+}
+
+/* --- Global controls ------------------------------------------------------ */
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 0.75rem;
+}
+
+.ghost-btn {
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--fg-dim);
+    font: inherit;
+    font-size: 0.82em;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.ghost-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(57, 255, 106, 0.06);
+}
+
+/* --- Sections / accordions ------------------------------------------------ */
+
+.sect {
+    margin: 0;
+    border-top: 1px solid var(--rule);
+}
+
+.sect:last-of-type {
+    border-bottom: 1px solid var(--rule);
+}
+
+.sect__h {
+    margin: 0;
+    font-size: 1em;
+    font-weight: 400;
+}
+
+.sect__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75ch;
+    width: 100%;
+    padding: 0.9rem 0.25rem;
+    border: 0;
+    background: transparent;
+    color: var(--fg);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.sect__btn:hover {
+    background: rgba(57, 255, 106, 0.05);
+}
+
+.sect__btn:hover .cmd {
+    color: #fff;
+}
+
+.prompt {
+    flex: none;
+    color: var(--accent);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.cmd {
+    flex: 1 1 auto;
+    min-width: 0;
+    color: var(--fg);
+    font-size: clamp(0.95rem, 0.85rem + 0.5vw, 1.2rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: color 0.15s ease;
+}
+
+.sect__state {
+    flex: none;
+    color: var(--fg-dim);
+    font-weight: 700;
+    transition: color 0.15s ease;
+}
+
+.sect__btn[aria-expanded="true"] .sect__state {
+    color: var(--amber);
+}
+
+/* 0fr -> 1fr: a real height transition with zero JS measurement. */
+.panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.38s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.panel.is-open {
+    grid-template-rows: 1fr;
+}
+
+.panel__in {
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* Without JS every panel is open, so the résumé is always readable. The
+   toggle affordances would be lying in that state, so they come off. */
+html:not(.js) .panel {
+    grid-template-rows: 1fr;
+}
+
+html:not(.js) .sect__state,
+html:not(.js) .toolbar {
+    display: none;
+}
+
+html:not(.js) .sect__btn {
+    cursor: default;
+}
+
+.panel__body {
+    padding: 0.25rem 0 1.5rem clamp(0.5rem, 2.5vw, 2.5rem);
+    max-width: var(--measure);
+}
+
+/* --- Résumé content ------------------------------------------------------- */
+
+.entry {
+    margin: 0 0 1.5rem;
+}
+
+.entry:last-child {
+    margin-bottom: 0;
+}
+
+.entry__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 1ch;
+    margin: 0 0 0.4rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px dashed var(--rule);
+}
+
+.entry__name {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.entry__date {
+    color: var(--amber);
+    font-size: 0.85em;
+    font-style: italic;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list > li {
+    position: relative;
+    padding-left: 2.5ch;
+    margin-bottom: 0.45rem;
+}
+
+.list > li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    opacity: 0.75;
+}
+
+/* Compact two-up grid for the short skill lists. */
+.list--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0 1.5rem;
+}
+
+/* Stagger the reveal. `is-revealing` is transient — JS removes it once the
+   cascade is done, so the resting state carries no animation at all. Résumé
+   text can never be left stranded at opacity 0 by a stalled animation clock. */
+.panel.is-revealing .list > li {
+    animation: line-in 0.34s ease both;
+    animation-delay: calc(var(--i, 0) * 40ms);
+}
+
+@keyframes line-in {
+    from { opacity: 0; transform: translateX(-0.75rem); }
+    to { opacity: 1; transform: none; }
+}
+
+/* --- Links ---------------------------------------------------------------- */
+
+a {
+    color: var(--cyan);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(34, 211, 238, 0.35);
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(57, 255, 106, 0.08);
+}
+
+a.logo,
+a.plain {
+    border-bottom: 0;
+}
+
+a.plain:hover {
+    background: transparent;
+}
+
+/* External links get a marker. */
+a[target="_blank"]::after {
+    content: " ↗";
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+/* --- Footer status bar ---------------------------------------------------- */
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.6ch;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status b {
+    color: var(--accent);
+    font-weight: 400;
+}
+
+.status .cursor {
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+.status--right {
+    color: var(--fg-dim);
+}
+
+/* --- Boot overlay --------------------------------------------------------- */
+
+/* Sits on top of already-rendered content; never gates it. */
+.boot {
+    position: fixed;
+    inset: 0;
+    z-index: 9500;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: var(--pad);
+    background: var(--bg);
+    color: var(--accent);
+    font-size: clamp(0.7rem, 0.6rem + 0.5vw, 0.9rem);
+    line-height: 1.7;
     white-space: pre-wrap;
-    word-wrap: break-word;
-    text-align: start;
-    text-align-last: left;
+    overflow: hidden;
+    transition: opacity 0.4s ease;
 }
 
-@media only screen and (max-width: 600px) {
-    #navbar {
-        font-size: medium;
-        font-weight: 500;
+.boot.is-done {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.boot__skip {
+    position: absolute;
+    right: var(--pad);
+    bottom: var(--pad);
+    color: var(--fg-dim);
+    font-size: 0.85em;
+}
+
+.boot .ok { color: var(--accent); }
+.boot .warn { color: var(--amber); }
+.boot .bad { color: var(--red); }
+
+/* --- Code blocks (projects page) ------------------------------------------ */
+
+.code-card {
+    margin: 0 0 2rem;
+    border: 1px solid var(--rule);
+    background: var(--bg-panel);
+}
+
+.code-card__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.75ch;
+    padding: 0.5rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-raise);
+    color: var(--fg-dim);
+    font-size: 0.82em;
+}
+
+.code-card__bar .dot {
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+.code-card__bar .dot:nth-child(1) { color: var(--red); }
+.code-card__bar .dot:nth-child(2) { color: var(--amber); }
+.code-card__bar .dot:nth-child(3) { color: var(--accent); }
+
+.code-card__name {
+    margin-left: 0.5ch;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--fg);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Copy button — injected by app.js, so it never shows up dead with JS off. */
+.copy-btn {
+    flex: none;
+    margin-left: auto;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid var(--rule);
+    background: transparent;
+    color: var(--fg-dim);
+    font: inherit;
+    font-size: 1em;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.copy-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(57, 255, 106, 0.08);
+}
+
+.copy-btn.is-ok {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(57, 255, 106, 0.12);
+}
+
+.copy-btn.is-err {
+    color: var(--red);
+    border-color: var(--red);
+    background: rgba(255, 51, 85, 0.12);
+}
+
+/* A brief confirmation flash on the card itself. */
+.code-card.is-copied {
+    border-color: var(--accent);
+}
+
+.code-card.is-copied .code-card__bar {
+    border-bottom-color: var(--accent);
+}
+
+.code-card {
+    transition: border-color 0.2s ease;
+}
+
+.code-card pre {
+    margin: 0;
+    padding: 1rem;
+    overflow-x: auto;
+    color: var(--fg);
+    font-size: 0.85em;
+    line-height: 1.6;
+    tab-size: 4;
+}
+
+.code-card code {
+    font-family: inherit;
+}
+
+.page-title {
+    margin: clamp(1.5rem, 5vw, 3rem) 0 2rem;
+    color: var(--accent);
+    font-size: clamp(1.1rem, 0.8rem + 1.6vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--fg-dim);
+}
+
+/* --- Utilities ------------------------------------------------------------ */
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* --- Small screens -------------------------------------------------------- */
+
+@media (max-width: 40rem) {
+    :root { --bar-h: 2.85rem; }
+
+    .prompt { font-size: 0.8em; }
+
+    .bar--bottom .status--right { display: none; }
+
+    .list--grid { grid-template-columns: 1fr; }
+}
+
+/* Very narrow: the prompt string alone would force horizontal scroll. */
+@media (max-width: 24rem) {
+    .prompt::after { content: ""; }
+    .prompt { font-size: 0.72em; }
+}
+
+/* --- Reduced motion ------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
     }
+
+    #rain { display: none; }
+
+    .crt { animation: none; }
+
+    .deface__title { text-shadow: none; }
+
+    .status .cursor { opacity: 1; }
+}
+
+/* --- Print: hand them a clean résumé -------------------------------------- */
+
+@media print {
+    :root {
+        --bg: #fff;
+        --fg: #000;
+        --fg-dim: #444;
+        --accent: #000;
+        --amber: #444;
+        --rule: #bbb;
+    }
+
+    body { padding: 0; }
+
+    #rain,
+    .crt,
+    .boot,
+    .bar--bottom,
+    .toolbar,
+    .copy-btn,
+    .deface { display: none !important; }
+
+    .bar--top {
+        position: static;
+        background: none;
+        backdrop-filter: none;
+        box-shadow: none;
+    }
+
+    .logo { text-shadow: none; }
+
+    .panel { grid-template-rows: 1fr !important; }
+
+    .sect__state { display: none; }
+
+    a { color: #000; border: 0; }
+
+    a[target="_blank"]::after { content: " (" attr(href) ")"; font-size: 0.75em; }
 }
